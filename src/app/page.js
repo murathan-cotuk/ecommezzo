@@ -1,4 +1,6 @@
-import AnimatedSection from './components/AnimatedSection';
+import Navbar from '../components/Navbar'; // Navbar bileşenini doğru yoldan import edin / Import the Navbar component from the correct path
+import AnimatedSection from '../components/AnimatedSection'; // AnimatedSection bileşenini doğru yoldan import edin // Import the AnimatedSection component from the correct path
+
 
 export default function Home() {
   return (
