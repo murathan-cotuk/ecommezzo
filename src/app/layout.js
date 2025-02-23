@@ -1,7 +1,8 @@
+import Banner from "../components/Banner";
 import Navbar from '../components/Navbar'; // Navbar bileşenini doğru yoldan import edin / Import the Navbar component from the correct path
+import Footer from "../components/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "../components/Footer";
 import DynamicMetadata from "../components/DynamicMetadata"; // ✅ Yeni metadata bileşeni
 
 const geistSans = Geist({
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="de">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <DynamicMetadata /> {/* ✅ Sayfa başlığını güncelleyen component */}
+        {/*<Banner />*/}
         <Navbar />
         {children}
         <Footer />
