@@ -1,7 +1,7 @@
 "use client";
-
-import { useState, useEffect } from "react";
-
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef} from "react";
+import SplashScreen from './SplashScreen';
 
 export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);
@@ -21,15 +21,22 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed w-full top-0 left-0 transition-all duration-300 h-24 flex items-center z-50 ${
+        className={`fixed w-full top-0 left-0 transition-all duration-30 h-24 flex items-center z-50 ${
           scrolling ? "bg-white shadow-lg text-cyan-950" : "bg-transparent text-white"
         }`}
       >
         <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8 w-full relative items-center justify-between">
         <div className="flex items-center justify-between w-full">
             <a href="/" className="text-4xl font-bold justify-between">
-            {/*<img src="/Test1.png" alt="Ecommezzo" className="h-10 w-auto" />*/}
-            <span className="text-4xl font-bold font-serif mr-0 px-0">ECOMMEZZO</span>
+            <span className="text-4xl font-bold font-serif mr-0 scale-150 px-0">
+            <span className="text-4xl font-bold font-serif mr-0 scale-150 px-0">
+            E
+            <span className="C">
+              C
+            </span>
+            OMMEZZO
+          </span>
+          </span>
             </a>
             <div className="flex items-center space-x-8 text-md justify-between ml-20">
               <a href="/webdesign" className="hover:text-cyan-600 font-bold">Webdesign</a>
@@ -60,7 +67,7 @@ export default function Navbar() {
               </a>
               
             
-              <a href="/termin-buchen"><button className="px-3 py-4 border-5 border-teal-500 bg-teal-500 text-cyan-950 hover:bg-teal-600 hover:text-cyan-950 transition-all duration-00 rounded-md font-bold">
+              <a href="/termin-buchen"><button className="px-3 py-4 border-5 border-teal-500 bg-teal-400 text-cyan-950 hover:bg-teal-600 hover:text-cyan-950 transition-all duration-00 rounded-md font-bold">
               Termin Buchen
             </button>
             </a>

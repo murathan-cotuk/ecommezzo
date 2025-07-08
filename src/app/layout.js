@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DynamicMetadata from "../components/DynamicMetadata"; // ✅ Yeni metadata bileşeni
+import SplashScreen from '../components/SplashScreen';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* <SplashScreen /> */}
         <DynamicMetadata /> {/* ✅ Sayfa başlığını güncelleyen component */}
         {/*<Banner />*/}
         <Navbar />
