@@ -1,32 +1,139 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 
-export default function SplashScreen() {
+export default function ScrollScene() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
+    container: typeof window !== 'undefined' ? undefined : null,
   });
 
-  // Transformations for scale, vertical movement, and opacity
-  const scale = useTransform(scrollYProgress, [0, 1, 5], [1, 1.5, 0.1]); // Scale shrinks after two scrolls
-  const y = useTransform(scrollYProgress, [0, 1, 2], [0, 0, -200]); // Moves down as you scroll
-  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.5, 0]); // Opacity decreases over scroll
+  // Zoom-out effect for GTA background
+  const gtaScale = useTransform(scrollYProgress, [0, 0.3], [2, 0.3]);
+  const gtaZ = useTransform(scrollYProgress, [0, 0.3], [600, 0]);
+  const gtaTransform = useMotionTemplate`translateZ(${gtaZ}px) scale(${gtaScale})`;
+
+  // GTA logo slide and scale
+  const gtalogoX = useTransform(scrollYProgress, [0.1, 0.4], [300, 0]);
+  const gtalogoScale = useTransform(scrollYProgress, [0.1, 0.85], [6, 1]);
+  const gtalogoTransform = useMotionTemplate`translateX(${gtalogoX}px) scale(${gtalogoScale})`;
+
+  const gtalogoMaskOpacity = useTransform(scrollYProgress, [0.1, 0.35], [1, 0]);
+  const gtalogoFillOpacity = useTransform(scrollYProgress, [0.1, 0.35], [0, 1]);
+  const gtalogoFilter = useTransform(scrollYProgress, [0.95, 1], ['none', 'brightness(1000%)']);
+  const gtaRawOpacity = useTransform(scrollYProgress, [0, 0.36], [1, 0]);
+  const lineScale = useTransform(scrollYProgress, [0.4, 1], [-20, 1]);
 
   return (
-    <motion.div
-      ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none flex items-center justify-center"
-      style={{ scale, y, opacity }}
-    >
-      <motion.img
-        src="/gta.png"
-        alt="Hero Image"
-        className="w-full h-full object-cover"
-        style={{ scale }}
-      />
-    </motion.div>
+    <div ref={containerRef} style={{ height: '300vh', backgroundColor: '#000' }}>
+      {/* Sticky Container */}
+      <motion.div
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          width: '100%',
+          perspective: 1000,
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#000',
+        }}
+      >
+        {/* GTA Background */}
+        <motion.img
+          src="/gta.png"
+          alt="GTA Background"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transform: gtaTransform,
+            transformStyle: 'preserve-3d',
+            opacity: gtaRawOpacity,
+            zIndex: 1,
+          }}
+          draggable={false}
+        />
+
+        {/* Masked Logo */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            width: '20vw',
+            height: '20vw',
+            top: '50%',
+            right: '2vw',
+            transform: 'translateY(-50%)',
+            overflow: 'hidden',
+            zIndex: 10,
+            maskImage: 'url(/gtalogo.png)',
+            WebkitMaskImage: 'url(/gtalogo.png)',
+            maskRepeat: 'no-repeat',
+            WebkitMaskRepeat: 'no-repeat',
+            maskSize: 'contain',
+            WebkitMaskSize: 'contain',
+            maskPosition: 'center',
+            WebkitMaskPosition: 'center',
+            opacity: gtalogoMaskOpacity,
+            transform: gtalogoTransform,
+          }}
+        >
+          <motion.img
+            src="/gta.png"
+            alt="GTA Background Masked"
+            style={{
+              width: '100%',
+              height: '100%',
+              transform: gtaTransform,
+            }}
+            draggable={false}
+          />
+        </motion.div>
+
+        {/* Solid gtalogo */}
+        <motion.img
+          src="/gtalogo.png"
+          alt="gtalogo"
+          style={{
+            position: 'absolute',
+            width: '20vw',
+            height: '20vw',
+            top: '50%',
+            right: '2vw',
+            transform: 'translateY(-50%)',
+            zIndex: 11,
+            opacity: gtalogoFillOpacity,
+            filter: gtalogoFilter,
+            transform: gtalogoTransform,
+          }}
+          draggable={false}
+        />
+
+        {/* Bottom Line */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            bottom: 50,
+            left: 0,
+            height: '4px',
+            width: '100%',
+            background: 'linear-gradient(to right, #facc15, #f97316)',
+            transformOrigin: 'left',
+            scaleX: lineScale,
+            zIndex: 10,
+          }}
+        />
+      </motion.div>
+
+      {/* Final Content */}
+      <div style={{ height: '100vh', padding: '2rem', backgroundColor: '#111', color: '#fff' }}>
+        <h2 className="text-2xl font-bold">Scroll tamamlandı</h2>
+        <p>gtalogo animasyonu başarıyla tamamlandı. Şimdi diğer içerikler görünüyor.</p>
+      </div>
+    </div>
   );
 }
