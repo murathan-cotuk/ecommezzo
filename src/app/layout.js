@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'; // Navbar bileşenini doğru yoldan i
 import Footer from "../components/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ScrollToTop";
 import DynamicMetadata from "../components/DynamicMetadata"; // ✅ Yeni metadata bileşeni
 import SplashScreen from '../components/SplashScreen';
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         {/*<Banner />*/}
         <Navbar />
         {children}
+        <ScrollToTop />
         <Footer />
       </body>
     </html>
