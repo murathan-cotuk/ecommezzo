@@ -4,8 +4,10 @@ import Footer from "../components/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
+import Loader from "@/components/Loader";
 import DynamicMetadata from "../components/DynamicMetadata"; // ✅ Yeni metadata bileşeni
 import SplashScreen from '../components/SplashScreen';
+import StyledComponentsRegistry from '../lib/registry';
 
 
 const geistSans = Geist({
@@ -22,13 +24,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* <SplashScreen /> */}
-        <DynamicMetadata /> {/* ✅ Sayfa başlığını güncelleyen component */}
-        {/*<Banner />*/}
-        <Navbar />
-        {children}
-        <ScrollToTop />
-        <Footer />
+        <StyledComponentsRegistry>
+          {/* <SplashScreen /> */}
+          <DynamicMetadata /> {/* ✅ Sayfa başlığını güncelleyen component */}
+          {/*<Banner />*/}
+          <Navbar />
+          {children}
+          <ScrollToTop />
+          <Loader />
+          <Footer />
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

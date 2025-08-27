@@ -5,46 +5,6 @@ import { ShoppingBagIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24
 export default function ShopifySection() {
   return (
     <section id="shopify" className="bg-gradient-to-br from-emerald-800 via-slate-900 to-green-900 py-32 px-6 relative overflow-hidden">
-      {/* 3.1. Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          rotate: [0, -360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-      >
-        <div className="absolute top-20 left-20 w-40 h-40 bg-blue-200/30 rounded-full"></div>
-        <div className="absolute top-40 right-32 w-32 h-32 bg-indigo-200/25 rounded-full"></div>
-        <div className="absolute bottom-32 left-32 w-60 h-60 bg-slate-200/20 rounded-full"></div>
-      </motion.div>
-
-      {/* 3.2.Floating Elements with Different Animations */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          y: [0, -30, 0],
-          x: [0, 15, 0],
-          rotate: [0, 180, 360],
-        }}
-        transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
-      >
-        <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-cyan-300/40 rounded-full"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-12 h-12 bg-purple-300/35 rounded-full"></div>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          y: [0, 25, 0],
-          x: [0, -20, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 18, ease: "easeInOut", delay: 3 }}
-      >
-        <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-teal-300/30 rounded-full"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-14 h-14 bg-blue-300/40 rounded-full"></div>
-      </motion.div>
 
       {/* 3.3. Pulsing Elements */}
       <motion.div
@@ -58,16 +18,7 @@ export default function ShopifySection() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/10 rounded-full"></div>
       </motion.div>
 
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.5, 0.2],
-        }}
-        transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: 5 }}
-      >
-        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-blue-300/20 rounded-full"></div>
-      </motion.div>
+     
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/*3.4. Hero Section */}
@@ -78,26 +29,15 @@ export default function ShopifySection() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            animate={{ 
-              rotate: [0, -10, 10, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-            className="inline-block mb-8"
-          >
-            <div className="w-24 h-24 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mx-auto shadow-2xl">
-              <ShoppingBagIcon className="w-12 h-12 text-white" />
-            </div>
-          </motion.div>
+          
           <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
             Shopify E-Commerce Experte
           </h2>
           <p className="text-2xl max-w-4xl mx-auto leading-relaxed text-white">
-            <span className="font-bold text-amber-300">Online-Shop Spezialist</span> für professionelle E-Commerce Lösungen. 
-            Shopify ist die <span className="font-bold text-blue-200">beste Wahl für Online-Shops</span> - 
+            <span className="font-bold">Online-Shop Spezialist</span> für professionelle E-Commerce Lösungen. 
+            Shopify ist die beste Wahl für Online-Shops - 
             von der Produktpräsentation bis zur Zahlungsabwicklung. Ihr Shop wird nicht nur schön aussehen, 
-            sondern auch <span className="font-bold text-blue-300">maximale Umsätze</span> generieren.
+            sondern auch maximale Umsätze generieren.
           </p>
         </motion.div>
 
@@ -219,12 +159,8 @@ export default function ShopifySection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      x: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                    className="group p-4 bg-white/90 backdrop-blur-sm rounded-xl border border-white/40 hover:bg-blue-50 hover:border-blue-400 hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+                    
+                    className="group p-4 bg-white/90 backdrop-blur-sm rounded-xl border border-white/40 hover:border-blue-400 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     <div className="flex items-start">
                       <span className="text-2xl mr-3 group-hover:scale-110 transition-transform duration-300">{icon}</span>
@@ -257,12 +193,8 @@ export default function ShopifySection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      x: -10,
-                      transition: { duration: 0.2 }
-                    }}
-                    className="group flex items-center justify-between p-3 bg-white/90 backdrop-blur-sm rounded-lg border border-white/40 hover:bg-indigo-50 hover:border-indigo-400 hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+            
+                    className="group flex items-center justify-between p-3 bg-white/90 backdrop-blur-sm rounded-lg border border-white/40 hover:border-indigo-400 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     <div className="flex items-center">
                       <span className="text-xl mr-3 group-hover:scale-110 transition-transform duration-300">{icon}</span>

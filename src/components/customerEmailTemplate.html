@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommezzo - Ihre Anfrage Bestätigung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+            font-size: 16px;
+        }
+        
+        .email-container {
+            max-width: 90%;
+            width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 3rem 2.5rem;
+        }
+        
+        .greeting {
+            font-size: 1.125rem;
+            margin-bottom: 1.5625rem;
+            color: #1e293b;
+        }
+        
+        .intro {
+            font-size: 1rem;
+            margin-bottom: 2.1875rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 1rem;
+            padding: 1.875rem;
+            margin-bottom: 2.1875rem;
+            border: 0.125rem solid #10b981;
+            box-shadow: 0 0.25rem 1.25rem rgba(16, 185, 129, 0.15);
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #065f46;
+            margin-bottom: 0.75rem;
+        }
+        
+        .success-text {
+            font-size: 1rem;
+            color: #047857;
+            line-height: 1.6;
+        }
+        
+        .section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 1rem;
+            padding: 1.875rem;
+            margin-bottom: 1.875rem;
+            border: 0.0625rem solid #e2e8f0;
+            box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+        }
+        
+        .section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section h3 span {
+            font-size: 1.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 0.0625rem solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        
+        .info-item:hover {
+            box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+            transform: translateY(-0.0625rem);
+        }
+        
+        .info-label {
+            font-size: 0.6875rem;
+            color: #64748b;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.0625rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-value {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        
+        .appointment-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 1rem;
+            padding: 1.875rem;
+            margin-bottom: 1.875rem;
+            border: 0.125rem solid #f59e0b;
+            box-shadow: 0 0.25rem 1.25rem rgba(245, 158, 11, 0.15);
+        }
+        
+        .appointment-id {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 1.5625rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 0.25rem 0.75rem rgba(245, 158, 11, 0.3);
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0.25rem 1rem rgba(245, 158, 11, 0.3);
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.5rem 1.5rem rgba(245, 158, 11, 0.4);
+        }
+        
+        .next-steps {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 1rem;
+            padding: 1.875rem;
+            border-left: 0.3125rem solid #0891b2;
+            box-shadow: 0 0.25rem 1.25rem rgba(8, 145, 178, 0.1);
+        }
+        
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.25rem;
+        }
+        
+        .steps-list li {
+            background: white;
+            padding: 0.9375rem 1.25rem;
+            margin-bottom: 0.625rem;
+            border-radius: 0.5rem;
+            border-left: 0.25rem solid #0891b2;
+            font-weight: 500;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .step-number {
+            background: #0891b2;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 1rem;
+            padding: 1.5625rem;
+            border-left: 0.3125rem solid #0891b2;
+            box-shadow: 0 0.25rem 1.25rem rgba(8, 145, 178, 0.1);
+        }
+        
+        .contact-info a {
+            color: #0891b2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.9375rem;
+            font-weight: 700;
+        }
+        
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .timestamp {
+            font-size: 0.8125rem;
+            opacity: 0.7;
+            margin-top: 1.25rem;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 768px) {
+            .email-container {
+                max-width: 95%;
+                width: 100%;
+            }
+            
+            .header {
+                padding: 2.5rem 1.25rem;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 1.875rem 1.25rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.125rem;
+            }
+            
+            .section-title span {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .email-container {
+                max-width: 98%;
+                border-radius: 0.5rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .section,
+            .appointment-section,
+            .success-message {
+                padding: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎉 Vielen Dank für Ihre Anfrage!</h1>
+            <p>Wir haben Ihre Anfrage erfolgreich erhalten</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <p class="greeting">Hallo {{customer_name}},</p>
+            
+            <p class="intro">vielen Dank für Ihr Interesse an unseren Dienstleistungen. Wir haben Ihre Anfrage erfolgreich erhalten und werden uns innerhalb von 24 Stunden bei Ihnen melden.</p>
+            
+            
+            
+            <!-- Form Summary -->
+            <div class="section">
+                <h3>
+                    <span>📋</span>
+                    Ihre Anfrage - Übersicht
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Projektart</div>
+                        <div class="info-value">{{project_type}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Budget</div>
+                        <div class="info-value">{{budget}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Zeitplan</div>
+                        <div class="info-value">{{timeline}}</div>
+                    </div>
+                    <div class="info-item" style="grid-column: 1 / -1;">
+                        <div class="info-label">Ihre Nachricht</div>
+                        <div class="info-value">{{message}}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>
+                    <span>📞</span>
+                    Nächste Schritte
+                </h3>
+                <p style="margin-bottom: 1.25rem; color: #475569;">Falls Sie einen Termin für einen Videoanruf vereinbart haben, erhalten Sie die Terminbestätigung in Kürze.</p>
+                
+                <ul class="steps-list">
+                    <li>
+                        <div class="step-number">1</div>
+                        <span>Detaillierte Projektanalyse</span>
+                    </li>
+                    <li>
+                        <div class="step-number">2</div>
+                        <span>Maßgeschneidertes Angebot</span>
+                    </li>
+                    <li>
+                        <div class="step-number">3</div>
+                        <span>Klare Zeitplanung</span>
+                    </li>
+                    <li>
+                        <div class="step-number">4</div>
+                        <span>Professionelle Beratung</span>
+                    </li>
+                </ul>
+                
+                <div class="contact-info" style="margin-top: 1.875rem;">
+                    <p style="margin-bottom: 0.625rem;"><strong>Falls Sie Fragen haben, erreichen Sie uns unter:</strong></p>
+                    <p>📧 <a href="mailto:service@ecommezzo.com">service@ecommezzo.com</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Ecommezzo</h3>
+            <p>Ihr Partner für erfolgreiche Online-Projekte</p>
+            <p>📧 service@ecommezzo.com</p>
+            <div class="timestamp">
+                Anfrage eingegangen am {{submission_date}} um {{submission_time}}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Email template değişkenlerini al
+        const appointmentDate = '{{appointment_date}}';
+        const appointmentTime = '{{appointment_time}}';
+        const appointmentId = '{{appointment_id}}';
+        const calendarLink = '{{calendar_link}}';
+
+        
+        // Sayfa yüklendiğinde çalışacak fonksiyon
+        document.addEventListener('DOMContentLoaded', function() {
+            // Randevu bölümünü kontrol et ve göster/gizle
+            const appointmentSection = document.getElementById('appointmentSection');
+            
+            if (appointmentDate && appointmentDate !== 'Kein Termin gewünscht' && appointmentDate !== '') {
+                appointmentSection.style.display = 'block';
+                
+                // Randevu bilgilerini güncelle
+                document.getElementById('appointmentDate').textContent = appointmentDate;
+                document.getElementById('appointmentTime').textContent = appointmentTime;
+                document.getElementById('appointmentId').textContent = `Termin ID: ${appointmentId}`;
+            } else {
+                appointmentSection.style.display = 'none';
+            }
+            
+            // Calendar link'i varsa butonu güncelle
+            if (calendarLink && calendarLink !== '') {
+                const calendarButton = document.getElementById('calendarButton');
+                if (calendarButton) {
+                    calendarButton.href = calendarLink;
+                }
+            }
+            
+
+        });
+    </script>
+</body>
+</html>
