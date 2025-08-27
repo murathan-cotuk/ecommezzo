@@ -171,8 +171,8 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <button className="px-3 py-4 border-5 border-teal-500 bg-teal-400 text-cyan-950 hover:bg-teal-600 hover:text-cyan-950 transition-all duration-300 rounded-md font-bold shadow-lg hover:shadow-xl">
-                Termin Buchen
+                <button className="px-3 py-3 border-5 border-teal-500 bg-teal-400 text-cyan-950 hover:bg-teal-200 hover:text-cyan-950 transition-all duration-300 rounded-md font-bold shadow-lg hover:shadow-xl">
+                Kontakt
               </button>
               </motion.a>
             </div>
