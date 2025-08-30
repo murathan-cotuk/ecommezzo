@@ -3,34 +3,12 @@ import { motion } from "framer-motion";
 
 export default function CTASection() {
   return (
-    <section className="py-32 px-6 bg-white relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-      >
-        <div className="absolute top-20 left-20 w-40 h-40 bg-orange-100/60 rounded-full"></div>
-        <div className="absolute bottom-40 right-20 w-32 h-32 bg-yellow-100/50 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-orange-50/40 rounded-full"></div>
-      </motion.div>
+    <section className="py-16 px-6 bg-white relative overflow-hidden">
+     
+      
 
       {/* Floating Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-          rotate: [0, 180, 360],
-        }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-      >
-        <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-orange-200/30 rounded-full"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-12 h-12 bg-yellow-200/25 rounded-full"></div>
-      </motion.div>
+      
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -73,10 +51,7 @@ export default function CTASection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Nachdem wir Ihnen unsere Expertise in <span className="font-bold text-orange-600">Shopify-Entwicklung</span>, 
-            <span className="font-bold text-yellow-600"> WordPress-Lösungen</span> und 
-            <span className="font-bold text-gray-800"> SEO-Optimierung</span> vorgestellt haben, 
-            laden wir Sie ein, den nächsten Schritt zu wagen. Lassen Sie uns in einem 
+            Lassen Sie uns in einem 
             <span className="font-bold text-orange-600"> kostenlosen Strategiegespräch</span> Ihre Vision besprechen 
             und gemeinsam eine <span className="font-bold text-yellow-600">maßgeschneiderte Lösung</span> entwickeln, 
             die Ihr Unternehmen nachhaltig voranbringt.
@@ -135,7 +110,7 @@ export default function CTASection() {
             viewport={{ once: true }}
           >
             <motion.a
-              href="/termin-buchen"
+              href="/kontakt"
               animate={{
                 scale: [1, 1.02, 1],
                 boxShadow: [
@@ -169,7 +144,7 @@ export default function CTASection() {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               />
               
-              <span className="relative z-10 mr-3 font-extrabold tracking-wide">Jetzt Termin buchen</span>
+              <span className="relative z-10 mr-3 font-extrabold tracking-wide">Kontakt</span>
               <motion.span
                 className="relative z-10 text-2xl"
                 animate={{ 

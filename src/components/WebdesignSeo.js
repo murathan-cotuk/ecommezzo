@@ -4,20 +4,9 @@ import { ShoppingBagIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24
 
 export default function SeoSection() {
   return (
-    <section id="seo" className="bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 py-32 px-6 relative overflow-hidden">
+    <section id="seo" className="bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 py-16 px-6 relative overflow-hidden">
                  {/* Subtle Animated Background Elements */}
-         <motion.div
-           className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
-           animate={{
-             rotate: [0, 360],
-             scale: [1, 1.02, 1],
-           }}
-           transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-         >
-           <div className="absolute top-20 left-20 w-32 h-32 bg-blue-100/30 rounded-full"></div>
-           <div className="absolute top-40 right-32 w-24 h-24 bg-indigo-100/25 rounded-full"></div>
-           <div className="absolute bottom-32 left-32 w-40 h-40 bg-purple-100/20 rounded-full"></div>
-         </motion.div>
+         
 
                  {/* Floating Search Elements */}
          <motion.div
@@ -174,7 +163,7 @@ export default function SeoSection() {
               {/* Left Side - Analytics */}
               <div>
                 <h4 className="text-xl font-semibold mb-8 text-blue-600 flex items-center">
-                  <span className="w-10 h-10 bg-blue-500 rounded-full mr-4 flex items-center justify-center text-white text-lg font-bold">📈</span>
+                  <span className="w-10 h-10 bg-blue-500 rounded-full mr-4 flex items-center justify-center text-grau text-lg font-bold">📈</span>
                   Analytics & Tracking
                 </h4>
                 <div className="space-y-6">
@@ -184,21 +173,21 @@ export default function SeoSection() {
                       desc: "Vollständige Website-Analyse und Tracking",
                       icon: "📊",
                       features: ["User Behavior", "Conversion Tracking", "Real-time Data"],
-                      color: "blue"
+                      color: "indigo"
                     },
                     { 
                       title: "Google Search Console", 
                       desc: "Überwachung der Google-Sichtbarkeit",
                       icon: "🔍",
                       features: ["Search Performance", "Indexing Status", "Core Web Vitals"],
-                      color: "purple"
+                      color: "indigo"
                     },
                     { 
                       title: "Google Ads Integration", 
                       desc: "PPC-Kampagnen und Conversion-Optimierung",
                       icon: "💰",
                       features: ["Ad Performance", "ROI Tracking", "Keyword Optimization"],
-                      color: "green"
+                      color: "indigo"
                     }
                   ].map(({ title, desc, icon, features, color }, index) => (
                     <motion.div 
@@ -210,15 +199,11 @@ export default function SeoSection() {
                       className="group"
                     >
                                              <motion.div 
-                         className="flex items-start p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 cursor-pointer"
-                         whileHover={{ 
-                           x: 5,
-                           transition: { duration: 0.15 }
-                         }}
+                         className="flex items-start p-4 bg-gray-50 rounded-xl border border-gray-200 transition-all duration-200"
                        >
-                         <span className="text-2xl mr-4 group-hover:scale-105 transition-transform duration-200">{icon}</span>
+                         <span className="text-2xl mr-4 transition-transform duration-200">{icon}</span>
                         <div className="flex-1">
-                                                     <h5 className="font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-200">{title}</h5>
+                                                     <h5 className="font-bold text-gray-800 transition-colors duration-200">{title}</h5>
                           <p className="text-sm text-gray-600 mt-1">{desc}</p>
                           <div className="flex flex-wrap gap-2 mt-3">
                             {features.map((feature, i) => (
@@ -237,7 +222,7 @@ export default function SeoSection() {
               {/* Right Side - SEO Tools */}
               <div>
                 <h4 className="text-xl font-semibold mb-8 text-purple-600 flex items-center">
-                  <span className="w-10 h-10 bg-purple-500 rounded-full mr-4 flex items-center justify-center text-white text-lg font-bold">⚡</span>
+                  <span className="w-10 h-10 bg-purple-500 rounded-full mr-4 flex items-center justify-center text-grau text-lg font-bold">⚡</span>
                   SEO Tools & Optimization
                 </h4>
                 <div className="space-y-6">
@@ -254,14 +239,14 @@ export default function SeoSection() {
                       desc: "Optimierung für lokale Suchergebnisse",
                       icon: "📍",
                       features: ["Google My Business", "Local Citations", "Review Management"],
-                      color: "blue"
+                      color: "indigo"
                     },
                     { 
                       title: "Content Optimization", 
                       desc: "SEO-optimierte Content-Erstellung",
                       icon: "✍️",
                       features: ["Keyword Integration", "Meta Descriptions", "Internal Linking"],
-                      color: "purple"
+                      color: "indigo"
                     }
                   ].map(({ title, desc, icon, features, color }, index) => (
                     <motion.div 
@@ -273,15 +258,11 @@ export default function SeoSection() {
                       className="group"
                     >
                                              <motion.div 
-                         className="flex items-start p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-all duration-200 cursor-pointer"
-                         whileHover={{ 
-                           x: -5,
-                           transition: { duration: 0.15 }
-                         }}
+                         className="flex items-start p-4 bg-gray-50 rounded-xl border border-gray-200 transition-all duration-200"
                        >
-                         <span className="text-2xl mr-4 group-hover:scale-105 transition-transform duration-200">{icon}</span>
+                         <span className="text-2xl mr-4 transition-transform duration-200">{icon}</span>
                         <div className="flex-1">
-                                                     <h5 className="font-bold text-gray-800 group-hover:text-purple-600 transition-colors duration-200">{title}</h5>
+                                                     <h5 className="font-bold text-gray-800 transition-colors duration-200">{title}</h5>
                           <p className="text-sm text-gray-600 mt-1">{desc}</p>
                           <div className="flex flex-wrap gap-2 mt-3">
                             {features.map((feature, i) => (

@@ -108,7 +108,7 @@ export default function Accordion() {
 
                     {/* Buton sadece 2. öğede gösterilecek */}
                     {detail.button && (
-                      <a href="/termin-buchen">
+                      <a href="/kontakt">
                         <button className="mt-4 px-5 py-3 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600 transition">
                           Termin buchen
                         </button>

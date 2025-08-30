@@ -4,20 +4,9 @@ import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
 export default function WordPressSection() {
   return (
-    <section id="wordpress" className="bg-white py-32 px-6 relative overflow-hidden">
+    <section id="wordpress" className="bg-white py-16 px-6 relative overflow-hidden">
       {/* 4.1. Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          rotate: [0, -360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-      >
-        <div className="absolute top-20 right-20 w-40 h-40 bg-orange-200 rounded-full opacity-20"></div>
-        <div className="absolute bottom-40 left-20 w-32 h-32 bg-orange-300 rounded-full opacity-15"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-orange-100 rounded-full opacity-10"></div>
-      </motion.div>
+      
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* 4.2. Hero Section */}
@@ -168,17 +157,12 @@ export default function WordPressSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      x: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                    className="group p-4 bg-white rounded-xl border border-orange-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                    className="group p-4 bg-white rounded-xl border border-orange-200 transition-all duration-300"
                   >
                     <div className="flex items-start">
-                      <span className="text-2xl mr-3 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+                      <span className="text-2xl mr-3 transition-transform duration-300">{icon}</span>
                       <div className="flex-1">
-                        <h5 className="font-bold text-gray-800 group-hover:text-orange-600 transition-colors duration-300">{title}</h5>
+                        <h5 className="font-bold text-gray-800 transition-colors duration-300">{title}</h5>
                         <p className="text-sm text-gray-600 mt-1">{desc}</p>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {features.map((feature, i) => (
@@ -225,17 +209,12 @@ export default function WordPressSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      x: -10,
-                      transition: { duration: 0.2 }
-                    }}
-                    className="group p-4 bg-white rounded-xl border border-red-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                    className="group p-4 bg-white rounded-xl border border-red-200 transition-all duration-300"
                   >
                     <div className="flex items-start">
-                      <span className="text-2xl mr-3 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+                      <span className="text-2xl mr-3 transition-transform duration-300">{icon}</span>
                       <div className="flex-1">
-                        <h5 className="font-bold text-gray-800 group-hover:text-red-600 transition-colors duration-300">{title}</h5>
+                        <h5 className="font-bold text-gray-800 transition-colors duration-300">{title}</h5>
                         <p className="text-sm text-gray-600 mt-1">{desc}</p>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {features.map((feature, i) => (

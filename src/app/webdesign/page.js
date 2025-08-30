@@ -220,7 +220,7 @@ export default function Webdesign() {
                 Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
               </p>
               <a
-                href="/termin-buchen"
+                href="/kontakt"
                 className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
               >
                 <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -374,7 +374,7 @@ export default function Webdesign() {
       <WordpressSection />
       <SeoSection />
       <ResponsiveSection />
-      <ReferenzSection />
+      {/* <ReferenzSection /> */}
       <CTASection />      
 
       

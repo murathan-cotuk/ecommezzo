@@ -4,7 +4,7 @@ import { ShoppingBagIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24
 
 export default function ShopifySection() {
   return (
-    <section id="shopify" className="bg-gradient-to-br from-emerald-800 via-slate-900 to-green-900 py-32 px-6 relative overflow-hidden">
+    <section id="shopify" className="bg-gradient-to-br from-emerald-800 via-slate-900 to-green-900 py-16 px-6 relative overflow-hidden">
 
       {/* 3.3. Pulsing Elements */}
       <motion.div

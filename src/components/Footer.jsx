@@ -43,7 +43,7 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-bold mb-4">Kontakt</h3>
               <ul className="space-y-1">
-                <li><a href="/termin-buchen" className="text-gray-400 hover:text-white">Termin Buchen</a></li>
+                <li><a href="/kontakt" className="text-gray-400 hover:text-white">Kontakt</a></li>
                 <li><a href="mailto:service@ecommezzo.com" className="text-gray-400 hover:text-white">service@ecommezzo.com</a></li>
               </ul>
             </div>

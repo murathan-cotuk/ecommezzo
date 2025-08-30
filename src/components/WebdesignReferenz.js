@@ -48,7 +48,7 @@ export default function ReferenzSection() {
               <span className="text-3xl">🏆</span>
             </div>
           </motion.div>
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-5xl h-20 font-bold mb-2 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
             Erfolgreiche Projekte & Referenzen
           </h2>
           <p className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-600">

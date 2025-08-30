@@ -7,7 +7,7 @@ export default function ResponsiveSection() {
   const [activeDevice, setActiveDevice] = useState('mobile');
 
   return (
-    <section className="py-32 px-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+    <section className="py-16 px-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
       <div className="w-full relative z-10">
         {/* Hero Section */}
         <motion.div 

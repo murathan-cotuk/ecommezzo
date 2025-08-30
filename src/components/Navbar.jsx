@@ -166,7 +166,7 @@ export default function Navbar() {
               
             
               <motion.a 
-                href="/termin-buchen"
+                href="/kontakt"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
