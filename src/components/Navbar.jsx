@@ -1,12 +1,14 @@
 "use client";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef} from "react";
+import { usePathname } from 'next/navigation';
 import SplashScreen from './SplashScreen';
 
 export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,7 +92,11 @@ export default function Navbar() {
             <div className="flex items-center space-x-8 text-md justify-between ml-20">
               <motion.a 
                 href="/webdesign" 
-                className="hover:text-cyan-600 font-bold relative"
+                className={`font-bold relative ${
+                  pathname === '/webdesign' 
+                    ? 'text-teal-400' 
+                    : 'hover:text-teal-200'
+                }`}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
@@ -98,7 +104,11 @@ export default function Navbar() {
               </motion.a>
               <motion.a 
                 href="/marketing" 
-                className="hover:text-cyan-600 font-bold relative"
+                className={`font-bold relative ${
+                  pathname === '/marketing' 
+                    ? 'text-teal-400' 
+                    : 'hover:text-teal-200'
+                }`}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
@@ -114,7 +124,11 @@ export default function Navbar() {
               </motion.a>*/}
               <motion.a 
                 href="/marktplatz" 
-                className="hover:text-cyan-600 font-bold relative"
+                className={`font-bold relative ${
+                  pathname === '/marktplatz' 
+                    ? 'text-teal-400' 
+                    : 'hover:text-teal-200'
+                }`}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               > 

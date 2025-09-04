@@ -81,145 +81,44 @@ export default function Marktplatz() {
           animation: scroll-up 20s linear infinite;
         }
       `}</style>
-      {/* 1. Hero Section - Website Banner Style */}
-      <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
-        
-        {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
-        <div className="absolute left-0 top-0 w-full h-full flex">
-          
-          {/* Parça 1 - En Sol (Aşağı Kayma) - 0% Opacity */}
-          <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-0">
-            <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-              {[
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 1" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 2" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 3" },
-              ].map((img, i) => (
-                <div key={i} className="w-full h-full p-2">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              ))}
+      {/* 1. Hero */}
+      <main className="relative z-10">
+          <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
+            
+            {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
+            <div className="absolute left-0 top-0 w-full h-full flex">
+              
+              
+
             </div>
-          </div>
 
-          {/* Parça 2 - Sol (Yukarı-Aşağı) - 25% Opacity */}
-          <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-25">
-            <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-              {[
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 4" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 5" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 6" },
-              ].map((img, i) => (
-                <div key={i} className="w-full h-full p-2">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              ))}
+            {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
+            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>
+
+            {/* Metin ve Buton - Sol Taraf */}
+            <div className="w-1/2 pl-40 pt-20 z-20">
+              <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+                Professionelles Webdesign für Ihren Erfolg
+              </h1>
+              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
+                Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
+              </p>
+              <a
+                href="/kontakt"
+                className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+              >
+                <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Jetzt kostenloses Beratungsgespräch vereinbaren
+                <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
             </div>
-          </div>
 
-          {/* Parça 3 - Orta (Aşağı-Yukarı) - 50% Opacity */}
-          <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-50">
-            <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-              {[
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 7" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 8" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 9" },
-              ].map((img, i) => (
-                <div key={i} className="w-full h-full p-2">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Parça 4 - Sağ (Yukarı-Aşağı) - 75% Opacity */}
-          <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-75">
-            <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-              {[
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 10" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 11" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 12" },
-              ].map((img, i) => (
-                <div key={i} className="w-full h-full p-2">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Parça 5 - En Sağ (Aşağı Kayma) - 100% Opacity */}
-          <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-100">
-            <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-              {[
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 13" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 14" },
-                { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Marktplatz 15" },
-              ].map((img, i) => (
-                <div key={i} className="w-full h-full p-2">
-                  <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-
-        {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
-        <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>
-
-        {/* Metin ve Buton - Sol Taraf */}
-        <div className="w-1/2 pl-40 pt-20 z-20">
-          <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-            Professionelles Marktplatz Management
-          </h1>
-          <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
-            Amazon, Otto, eBay, Zalando und viele weitere Marktplätze - Maximieren Sie Ihre Verkäufe mit professionellem Marktplatz-Management.
-          </p>
-          <a
-            href="/kontakt"
-            className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
-          >
-            <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            Jetzt kostenloses Beratungsgespräch vereinbaren
-            <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
-
-      </section>
+          </section>
+        </main>
 
       {/* 2. Services Section */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
