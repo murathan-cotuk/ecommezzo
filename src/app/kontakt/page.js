@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import KontaktForm from '../../components/KontaktForm';
+import ContactIconsBannerWrapper from '../../components/ContactIconsBannerWrapper';
 
 export default function Kontakt() {
   const scrollToForm = () => {
@@ -14,131 +15,8 @@ export default function Kontakt() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-950 to-gray-950">
       <main className="relative z-10">
-          <section className="w-full h-[500px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
-            
-            {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
-            <div className="absolute left-0 top-0 w-full h-full flex">
-              
-              {/* Parça 1 - En Sol (Aşağı Kayma) - 0% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-0">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 1" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 2" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 3" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 2 - Sol (Yukarı-Aşağı) - 25% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-25">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 4" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 5" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 6" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 3 - Orta (Aşağı-Yukarı) - 50% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-50">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 7" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 8" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 9" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 4 - Sağ (Yukarı-Aşağı) - 75% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-75">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 10" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 11" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 12" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 5 - En Sağ (Aşağı Kayma) - 100% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-100">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 13" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 14" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 15" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>
-
-            {/* Metin ve Buton - Sol Taraf */}
-            <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-                Kontakt
-              </h1>
-              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
-              </p>
-            </div>
-
-          </section>
+          {/* Animated Contact Icons Banner */}
+          <ContactIconsBannerWrapper />
         </main>
 
 
@@ -177,7 +55,7 @@ export default function Kontakt() {
                     <div>
                       <h4 className="font-semibold text-gray-900">E-Mail</h4>
                       <a href="mailto:service@ecommezzo.com" className="text-cyan-600 hover:text-cyan-700 text-sm">
-                        service@ecommezzo.com
+                        To Ecommezzo
                       </a>
                     </div>
                   </div>

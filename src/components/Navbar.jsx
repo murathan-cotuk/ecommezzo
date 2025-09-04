@@ -104,30 +104,30 @@ export default function Navbar() {
               >
                 Marketing
               </motion.a>
-              <motion.a 
+               {/* <motion.a 
                 href="/web-analytics" 
                 className="hover:text-cyan-600 font-bold relative"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 Web Analytics
-              </motion.a>
+              </motion.a>*/}
               <motion.a 
                 href="/marktplatz" 
                 className="hover:text-cyan-600 font-bold relative"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
-              >
+              > 
                 Marktplatz
               </motion.a>
-              <motion.a 
+              {/*<motion.a 
                 href="/about-us" 
                 className="hover:text-cyan-600 font-bold relative"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 About Us
-              </motion.a>
+              </motion.a>*/}
             </div>
             <div className="flex items-center space-x-8 text-md justify-between">
             
