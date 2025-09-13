@@ -9,6 +9,7 @@ import SeoSection from '@/components/WebdesignSeo';
 import ResponsiveSection from '@/components/WebdesignResponsive';
 import ReferenzSection from '@/components/WebdesignReferenz';
 import CTASection from '@/components/WebdesignCTA';
+import Portfolio from '@/components/Portfolio';
 
 export default function Webdesign() {
   const [activeDevice, setActiveDevice] = useState('mobile');
@@ -374,7 +375,8 @@ export default function Webdesign() {
       <WordpressSection />
       <SeoSection />
       <ResponsiveSection />
-      {/* <ReferenzSection /> */}
+      {/*<ReferenzSection />*/}
+      <Portfolio />
       <CTASection />      
 
       

@@ -85,24 +85,12 @@ export default function Marktplatz() {
       <main className="relative z-10">
           <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
             
-            {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
-            <div className="absolute left-0 top-0 w-full h-full flex">
-              
-              
-
-            </div>
-
-            {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>
-
-            {/* Metin ve Buton - Sol Taraf */}
+            {/* Sol Taraf - Metin ve Buton */}
             <div className="w-1/2 pl-40 pt-20 z-20">
               <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-                Professionelles Webdesign für Ihren Erfolg
+                Marktplatz Marketing das Ihre Verkäufe steigert
               </h1>
-              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
-                Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
-              </p>
+              
               <a
                 href="/kontakt"
                 className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
@@ -115,6 +103,18 @@ export default function Marktplatz() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
+            </div>
+
+            {/* Sağ Taraf - Marktplatz Görseli */}
+            <div className="w-1/3 h-full ml-20 relative">
+              <img 
+                src="/Marktplatz1.png" 
+                alt="Marktplatz Marketing Services - Professionelle Amazon, eBay, Otto und Zalando Marketing-Lösungen für Ihren Erfolg"
+                className="w-full h-full max-w-4xl object-contain"
+                style={{ 
+                  background: 'transparent'
+                }}
+              />
             </div>
 
           </section>
@@ -132,9 +132,96 @@ export default function Marktplatz() {
           <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             Unsere Marktplatz Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Von Amazon bis Zalando - professionelle Betreuung auf allen wichtigen Marktplätzen
           </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
+                    <span className="text-2xl">🛒</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">Marktplatz-Experten</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Als spezialisierte Marktplatz Marketing Agentur verstehen wir die einzigartigen Herausforderungen 
+                  von Amazon, eBay, Otto und Zalando.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
+                    <span className="text-2xl">📈</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">3,8x ROAS</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Mit über 5 Jahren Erfahrung im Marktplatz Marketing steigern wir die Verkäufe unserer Kunden 
+                  durchschnittlich um das 3,8-fache.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
+                    <span className="text-2xl">🌍</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800">Internationale Expansion</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Von Deutschland bis USA - wir helfen Ihnen dabei, neue Märkte zu erschließen und 
+                  Ihr Geschäft global zu skalieren.
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-gray-50 to-orange-50 p-8 rounded-2xl border border-gray-200"
+            >
+              <div className="flex items-start">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                  <span className="text-3xl">💡</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">Marktplatz Marketing ist mehr als nur Listing-Optimierung</h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                    Es geht darum, die richtige Plattform zur richtigen Zeit mit der richtigen Strategie zu erreichen. 
+                    Wir verstehen die Komplexität jedes Marktplatzes und entwickeln maßgeschneiderte Lösungen für maximale Sichtbarkeit.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">Amazon PPC</span>
+                    <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">eBay Marketing</span>
+                    <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">Otto Partner</span>
+                    <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Zalando Partner</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -274,9 +361,100 @@ export default function Marktplatz() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl font-bold mb-6 text-gray-800">Warum Ecommezzo für Marktplätze?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Wir sind nicht nur eine Marketing-Agentur - wir sind Ihr strategischer Partner für nachhaltiges Marktplatz-Wachstum
             </p>
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 mb-12">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100"
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mr-4">
+                      <span className="text-2xl">🎯</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800">Marktplatz-Spezialisten</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Unser Team aus zertifizierten Amazon, eBay, Otto und Zalando Experten arbeitet täglich daran, 
+                    Ihre Marktplatz-Präsenz zu optimieren und Ihre Verkäufe zu maximieren.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Amazon PPC</span>
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">eBay Marketing</span>
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Otto Partner</span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100"
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4">
+                      <span className="text-2xl">📊</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800">92% Langzeitpartner</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Wir messen unseren Erfolg an Ihrem Marktplatz-Wachstum - deshalb sind 92% unserer Kunden langfristige Partner. 
+                    Datengetriebene Entscheidungen und kontinuierliche Optimierung sind unser Erfolgsrezept.
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-16 h-2 bg-gray-200 rounded-full mr-3">
+                      <div className="w-15 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+                    </div>
+                    <span className="text-sm font-medium text-blue-600">92% Kundenzufriedenheit</span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100"
+              >
+                <div className="flex items-start">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                    <span className="text-3xl">🌍</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Internationale Marktplatz-Expansion</h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                      Von Amazon Deutschland bis Amazon USA, von eBay bis Alibaba - wir kennen alle wichtigen Marktplätze 
+                      und deren spezifischen Anforderungen. Unser ganzheitlicher Ansatz sorgt für konsistente Ergebnisse auf allen Plattformen.
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center p-4 bg-white rounded-xl border border-green-100">
+                        <div className="text-2xl mb-2">🛒</div>
+                        <div className="text-sm font-medium text-gray-700">Amazon</div>
+                      </div>
+                      <div className="text-center p-4 bg-white rounded-xl border border-green-100">
+                        <div className="text-2xl mb-2">🏪</div>
+                        <div className="text-sm font-medium text-gray-700">eBay</div>
+                      </div>
+                      <div className="text-center p-4 bg-white rounded-xl border border-green-100">
+                        <div className="text-2xl mb-2">👔</div>
+                        <div className="text-sm font-medium text-gray-700">Otto</div>
+                      </div>
+                      <div className="text-center p-4 bg-white rounded-xl border border-green-100">
+                        <div className="text-2xl mb-2">👗</div>
+                        <div className="text-sm font-medium text-gray-700">Zalando</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -389,8 +567,15 @@ export default function Marktplatz() {
       </section>
 
       {/* 6. Ultimate CTA Section */}
-      <section className="relative py-32 px-6 bg-white">
-        <div className="relative z-10 max-w-6xl mx-auto text-left">
+      <section className="relative py-32 px-6 bg-gradient-to-br from-gray-50 via-orange-50 to-red-50 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-orange-200 to-red-200 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-green-200 to-emerald-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -413,17 +598,83 @@ export default function Marktplatz() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="text-2xl md:text-3xl mb-16 text-gray-800 max-w-4xl leading-relaxed"
+              className="text-2xl md:text-3xl mb-12 text-gray-800 max-w-4xl mx-auto leading-relaxed"
             >
               Verwandeln Sie Ihre Marktplatz-Träume in Realität. 
               <span className="text-orange-600 font-semibold"> Jetzt ist der Moment</span> für exponentielles Marktplatz-Wachstum.
             </motion.p>
 
-            {/* CTA Button */}
+            {/* SEO Content Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto"
+            >
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-orange-100 shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Schnelle Umsetzung</h3>
+                <p className="text-gray-600 text-sm">Von der Marktplatz-Strategie bis zur Kampagne in nur 48 Stunden</p>
+              </div>
+              
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-blue-100 shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">📊</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Messbare Ergebnisse</h3>
+                <p className="text-gray-600 text-sm">Durchschnittlich 3,8x ROAS und 280% Conversion-Steigerung</p>
+              </div>
+              
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-green-100 shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🤝</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Langfristige Partnerschaft</h3>
+                <p className="text-gray-600 text-sm">92% unserer Kunden bleiben langfristig bei uns</p>
+              </div>
+            </motion.div>
+
+            {/* SEO Benefits Text */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-white/90 to-orange-50/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 shadow-xl mb-12 max-w-4xl mx-auto"
+            >
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Warum jetzt auf Marktplätzen handeln?</h3>
+              <div className="grid md:grid-cols-2 gap-6 text-left">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mr-3 text-orange-600 text-sm">1</span>
+                    Marktplatz-Boom nutzen
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Über 60% aller Online-Käufe finden auf Marktplätzen statt. Jeder Tag ohne professionelles Marktplatz-Marketing 
+                    kostet Sie potenzielle Kunden und Marktanteile.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mr-3 text-orange-600 text-sm">2</span>
+                    Konkurrenzvorteil sichern
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Während andere noch planen, starten Sie durch. Mit unseren bewährten Marktplatz-Strategien 
+                    überholen Sie die Konkurrenz in kürzester Zeit.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
               viewport={{ once: true }}
               className="mb-1"
             >
@@ -434,11 +685,37 @@ export default function Marktplatz() {
                 onClick={() => window.location.href = '/kontakt'}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative z-10">
-                  Kostenlose Marktplatz-Analyse
+                <span className="relative z-10 flex items-center gap-3">
+                  Jetzt kontaktieren
+                  <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </span>
               </motion.button>
             </motion.div>
+
+            {/* Trust Indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-12 flex flex-wrap justify-center items-center gap-8 text-gray-500"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span className="text-sm">Kostenlose Marktplatz-Analyse</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span className="text-sm">Keine langfristigen Verträge</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span className="text-sm">Messbare Marktplatz-Ergebnisse</span>
+              </div>
+            </motion.div>
+            
           </motion.div>
         </div>
       </section>

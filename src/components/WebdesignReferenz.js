@@ -12,20 +12,9 @@ export default function ReferenzSection() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-gray-50 via-white to-cyan-50 relative overflow-hidden">
+    <section className="py-24 px-6 bg-gradient-to-br from-white via-white to-white relative overflow-hidden">
       {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-      >
-        <div className="absolute top-20 left-20 w-32 h-32 bg-cyan-200/20 rounded-full"></div>
-        <div className="absolute bottom-40 right-20 w-24 h-24 bg-blue-200/15 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-purple-200/10 rounded-full"></div>
-      </motion.div>
+      
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Hero Section */}
@@ -48,7 +37,7 @@ export default function ReferenzSection() {
               <span className="text-3xl">🏆</span>
             </div>
           </motion.div>
-          <h2 className="text-5xl h-20 font-bold mb-2 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-5xl h-20 font-bold mb-2 bg-gradient-to-r from-[#1f3576] to-green-600 bg-clip-text text-transparent">
             Erfolgreiche Projekte & Referenzen
           </h2>
           <p className="text-xl max-w-3xl mx-auto leading-relaxed text-gray-600">
@@ -59,6 +48,7 @@ export default function ReferenzSection() {
         </motion.div>
 
         {/* Enhanced Logo Marquee - Full Width */}
+        
         <div className="relative mb-16 -mx-6">
           <motion.div 
             className="bg-white/80 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-gray-100 mx-6"
@@ -303,7 +293,7 @@ export default function ReferenzSection() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div>        
       </div>
     </section>
   );
