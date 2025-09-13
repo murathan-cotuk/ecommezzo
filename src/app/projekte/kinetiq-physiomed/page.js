@@ -14,7 +14,7 @@ export default function KinetiqPhysioMed() {
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="w-full h-[800px] bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-900 flex items-center relative">
+      <section className="w-full h-[800px] bg-gradient-to-br from-[#008080] via-[#008080] to-[#008080] flex items-center relative">
         
         {/* Sol Taraf - Metin */}
         <div className="w-2/3 pl-32 pr-36 relative z-10">
@@ -162,7 +162,7 @@ export default function KinetiqPhysioMed() {
       </section>
 
       {/* 3. Mobile Screenshots Section */}
-      <section className="py-10 px-6" style={{ backgroundColor: '#008080' }}>
+      <section className="py-10 px-6 bg-[#008080]">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
