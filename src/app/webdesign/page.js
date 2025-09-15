@@ -10,6 +10,7 @@ import ResponsiveSection from '@/components/WebdesignResponsive';
 import ReferenzSection from '@/components/WebdesignReferenz';
 import CTASection from '@/components/WebdesignCTA';
 import Portfolio from '@/components/Portfolio';
+import ShopRelaunch from '@/components/ShopRelaunch';
 
 export default function Webdesign() {
   const [activeDevice, setActiveDevice] = useState('mobile');
@@ -97,13 +98,13 @@ export default function Webdesign() {
 
         {/* 1. Hero */}
         <main className="relative z-10">
-          <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
+          <section className="w-full h-[800px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/WebdesignHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             
             {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
-            <div className="absolute left-0 top-0 w-full h-full flex">
+            {/*<div className="absolute left-0 top-0 w-full h-full flex">
               
               {/* Parça 1 - En Sol (Aşağı Kayma) - 0% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-0">
+              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-0">
                 <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
                   {[
                     { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 1" },
@@ -124,7 +125,7 @@ export default function Webdesign() {
               </div>
 
               {/* Parça 2 - Sol (Yukarı-Aşağı) - 25% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-25">
+              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-25">
                 <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
                   {[
                     { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 4" },
@@ -145,7 +146,7 @@ export default function Webdesign() {
               </div>
 
               {/* Parça 3 - Orta (Aşağı-Yukarı) - 50% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-50">
+              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-50">
                 <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
                   {[
                     { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 7" },
@@ -166,7 +167,7 @@ export default function Webdesign() {
               </div>
 
               {/* Parça 4 - Sağ (Yukarı-Aşağı) - 75% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-75">
+              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-75">
                 <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
                   {[
                     { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 10" },
@@ -187,7 +188,7 @@ export default function Webdesign() {
               </div>
 
               {/* Parça 5 - En Sağ (Aşağı Kayma) - 100% Opacity */}
-              <div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-100">
+              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-100">
                 <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
                   {[
                     { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 13" },
@@ -210,11 +211,11 @@ export default function Webdesign() {
             </div>
 
             {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>
+            {/*<div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>*/}
 
             {/* Metin ve Buton - Sol Taraf */}
             <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-[#c499ba] to-[#986f8e] bg-clip-text text-transparent">
                 Professionelles Webdesign für Ihren Erfolg
               </h1>
               <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
@@ -222,11 +223,9 @@ export default function Webdesign() {
               </p>
               <a
                 href="/kontakt"
-                className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+                className="px-8 py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
               >
-                <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                
                 Jetzt kostenloses Beratungsgespräch vereinbaren
                 <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -241,38 +240,7 @@ export default function Webdesign() {
 
       <section className="py-24 px-6 bg-gradient-to-br from-white via-teal-50 to-indigo-50 relative overflow-hidden">
         {/* Arka plan soyut şekil animasyonu */}
-        <motion.div
-          className="absolute top-0 left-0 w-full h-full pointer-events-none"
-          animate={{
-            rotate: [0, 10, -10, 0],
-            scale: [1, 1.05, 0.95, 1],
-            opacity: [0.1, 0.15, 0.1],
-          }}
-          transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-        >
-          <svg
-            width="400"
-            height="400"
-            viewBox="0 0 400 400"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto"
-          >
-            <circle cx="200" cy="200" r="150" stroke="url(#grad1)" strokeWidth="3" />
-            <circle cx="200" cy="200" r="120" stroke="url(#grad2)" strokeWidth="1.5" />
-            <defs>
-              <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#14B8A6" />
-                <stop offset="100%" stopColor="#A78BFA" />
-              </linearGradient>
-              <linearGradient id="grad2" x1="0" y1="1" x2="1" y2="0">
-                <stop offset="0%" stopColor="#A78BFA" />
-                <stop offset="100%" stopColor="#14B8A6" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </motion.div>
-
+        
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: -25 }}
@@ -375,6 +343,7 @@ export default function Webdesign() {
       <WordpressSection />
       <SeoSection />
       <ResponsiveSection />
+      <ShopRelaunch />
       {/*<ReferenzSection />*/}
       <Portfolio />
       <CTASection />      

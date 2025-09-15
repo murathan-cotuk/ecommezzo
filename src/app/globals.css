@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    font-family: var(--font-roboto), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
 @keyframes blob {
   0%, 100% {
     transform: translate(0px, 0px) scale(1);

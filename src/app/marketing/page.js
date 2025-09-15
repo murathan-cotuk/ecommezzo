@@ -106,16 +106,14 @@ export default function Marketing() {
             
             {/* Sol Taraf - Metin ve Buton */}
             <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-7xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
                 E-Commerce Marketing das Ihre Verkäufe steigert
               </h1>
               <a
                 href="/kontakt"
                 className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
               >
-                <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                
                 Jetzt kostenloses Beratungsgespräch vereinbaren
                 <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -276,16 +274,24 @@ export default function Marketing() {
               features: ["ROAS Tracking", "Conversion Analytics", "A/B Testing", "Performance Reports"],
               image: "/marketing-analytics.jpg"
             },
+            
             {
-              icon: "🤖",
-              title: "Automatisierung & CRM",
-              description: "Automatisieren Sie Ihre Verkaufsprozesse mit E-Mail-Marketing, Retargeting und Kundensegmentierung.",
-              features: ["Email Marketing", "Retargeting", "Customer Segmentation", "Sales Funnel"],
-              image: "/marketing-automation.jpg"
+              icon: "🎯",
+              title: "Zielgruppenanalyse & Targeting",
+              description: "Identifizieren Sie Ihre perfekte Zielgruppe. Erstellen Sie präzise Buyer Personas und optimieren Sie Ihre Marketing-Strategien für maximale Conversion.",
+              features: ["Buyer Personas", "Marktanalyse", "Zielgruppen-Segmentierung", "Customer Journey Mapping"],
+              image: "/marketing-targeting.jpg"
             }
           ].map((service, index) => (
             <motion.div
               key={index}
+              id={
+                index === 0 ? "seo" : 
+                index === 1 ? "social-media" : 
+                index === 2 ? "amazon-ppc" : 
+                index === 5 ? "target-audience" : 
+                undefined
+              }
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}

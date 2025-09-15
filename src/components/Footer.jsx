@@ -21,8 +21,7 @@ export default function Footer() {
               <h3 className="text-lg font-bold mb-4">DIENSTLEISTUNGEN</h3>
               <ul className="space-y-1">
                 <li><a href="/webdesign" className="text-gray-400 hover:text-white">Website | Onlineshop</a></li>
-                <li><a href="/marketing" className="text-gray-400 hover:text-white">Shop-Relaunch</a></li>
-                <li><a href="/web-analytics" className="text-gray-400 hover:text-white">Web Analytics</a></li>
+                <li><a href="/webdesign#shoprelaunch" className="text-gray-400 hover:text-white">Shop-Relaunch</a></li>
                 <li><a href="/marktplatz" className="text-gray-400 hover:text-white">Marktplatz</a></li>
                 <li><a href="/conversion" className="text-gray-400 hover:text-white">Conversion Rate Rechner</a></li>
               </ul>
@@ -32,10 +31,10 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-bold mb-4">MARKETING</h3>
               <ul className="space-y-1">
-                <li><a href="/seo" className="text-gray-400 hover:text-white">Suchmaschinenoptimierung (SEO)</a></li>
-                <li><a href="/social-media" className="text-gray-400 hover:text-white">Social Media</a></li>
-                <li><a href="/amazon-ppc" className="text-gray-400 hover:text-white">Amazon PPC</a></li>
-                <li><a href="/target-audience" className="text-gray-400 hover:text-white">Bestimmung der Zielgruppe</a></li>
+                <li><a href="/marketing#seo" className="text-gray-400 hover:text-white">Suchmaschinenoptimierung (SEO)</a></li>
+                <li><a href="/marketing#social-media" className="text-gray-400 hover:text-white">Social Media</a></li>
+                <li><a href="/marketing#amazon-ppc" className="text-gray-400 hover:text-white">Amazon PPC</a></li>
+                <li><a href="/marketing#target-audience" className="text-gray-400 hover:text-white">Bestimmung der Zielgruppe</a></li>
               </ul>
             </div>
             
