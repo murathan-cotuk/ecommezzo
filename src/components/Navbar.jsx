@@ -15,7 +15,7 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
       
       // Show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentScrollY > lastScrollY && currentScrollY > 1) {
         // Scrolling down and past 100px
         setIsVisible(false);
       } else {
@@ -24,7 +24,7 @@ export default function Navbar() {
       }
       
       // Update background based on scroll position
-      if (currentScrollY > 50) {
+      if (currentScrollY > 750) {
         setScrolling(true);
       } else {
         setScrolling(false);
@@ -185,7 +185,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
-                <button className="px-3 py-3 border-5 border-teal-500 bg-teal-400 text-cyan-950 hover:bg-teal-200 hover:text-cyan-950 transition-all duration-300 rounded-md font-bold shadow-lg hover:shadow-xl">
+                <button className="px-5 py-3 border-5 border-teal-500 bg-[#a9e9c2] text-cyan-950 hover:bg-[#d2fae2] hover:text-cyan-950 transition-all duration-300 rounded-md font-bold shadow-lg hover:shadow-xl">
                 Kontakt
               </button>
               </motion.a>

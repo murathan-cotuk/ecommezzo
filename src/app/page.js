@@ -1,9 +1,10 @@
 "use client";
 
 import Accordion from "@/components/Accordion";
-import App from "@/components/App";
 import SplashScreen from "@/components/SplashScreen";
-import ThreeDBannerWrapper from "@/components/ThreeDBannerWrapper";
+import CodeAnimation from "@/components/CodeAnimation";
+import Home1 from "@/components/Home1";
+
 
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
     <div className="bg-gray-50 min-h-screen relative">
 
       {/* Splash Screen en başta ve ekranı kaplasın */}
-      <SplashScreen />
+      {/*<SplashScreen />*/}
 
       {/* Geri kalan içerik */}
       <main className="relative z-10">
@@ -22,27 +23,43 @@ export default function Home() {
               Keine Lust mehr auf E-Commerce-Agenturen und Coaches, die nicht halten, was sie versprechen?
               Wir sind die Shopify Experts an deiner Seite.
             </p>
-            <a href="/datenschutz">
-              <button className="px-6 py-5 border-2 border-teal-400 bg-teal-500 text-cyan-950 hover:bg-teal-600 transition-all duration-300 rounded-md font-bold mr-5">
-                Shopaufbau
-              </button>
-            </a>
-            <a href="/datenschutz">
-              <button className="px-6 py-5 border-2 border-teal-500 text-teal-500 hover:bg-indigo-100 transition-all duration-300 rounded-md font-bold">
-                Shop Optimieren
+            <a href="/kontakt">
+              <button className="px-6 py-5 border-5 border-teal-400 bg-[#a9e9c2] text-cyan-950 hover:bg-[#d2fae2] hover:animate-pulse transition-all duration-300 rounded-md font-bold mr-5 animate-small-bounce">
+                Kontakt Aufnehmen
               </button>
             </a>
           </div>
+          <div className="absolute left-40 bottom-10 flex items-center gap-4">
+            <img src="/shopify-partner.png" alt="ShopifyPartners" className="w-[200px] h-auto" />
+            <img src="/wordpress_partner.png" alt="WordpressPartners" className="w-[75px] h-auto" />
+          </div>
 
-          <div className="absolute right-0 bottom-0 w-1/2 h-auto">
-            <img src="/Hero.png" alt="Hero" className="w-[800px] h-auto" />
+          <div className="absolute right-0 top-[98px] w-1/2 h-[calc(100%-98px)]">
+            <CodeAnimation />
           </div>
         </section>
 
+        <Home1 />
+
         <Accordion />
-        <App />
-        <ThreeDBannerWrapper />
+        
+        
       </main>
+      
+      <style jsx>{`
+        @keyframes small-bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+        
+        .animate-small-bounce {
+          animation: small-bounce 2s infinite;
+        }
+      `}</style>
     </div>
   );
 }
