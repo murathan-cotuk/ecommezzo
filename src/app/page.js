@@ -4,6 +4,7 @@ import Accordion from "@/components/Accordion";
 import SplashScreen from "@/components/SplashScreen";
 import CodeAnimation from "@/components/CodeAnimation";
 import Home1 from "@/components/Home1";
+import Home2 from "@/components/Home2";
 
 
 
@@ -40,9 +41,8 @@ export default function Home() {
         </section>
 
         <Home1 />
-
-        <Accordion />
         
+        <Home2 />
         
       </main>
       

@@ -81,19 +81,23 @@ export default function Marktplatz() {
           animation: scroll-up 20s linear infinite;
         }
       `}</style>
+      
       {/* 1. Hero */}
       <main className="relative z-10">
-          <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
+          <section className="w-full h-[900px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/MarktplatzHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+          
             
-            {/* Sol Taraf - Metin ve Buton */}
+            {/* Metin ve Buton - Sol Taraf */}
             <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-                Marktplatz Verwaltung das Ihre Verkäufe steigert
+              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-[#0dc7ee] to-[#2cbdef] bg-clip-text text-transparent">
+              Marktplatz Verwaltung das Ihre Verkäufe steigert
               </h1>
-              
+              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
+                Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
+              </p>
               <a
                 href="/kontakt"
-                className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+                className="px-8 py-6 bg-gradient-to-r from-[#83c5dc] to-[#2998be] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#476b78] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
               >
                 
                 Jetzt kostenloses Beratungsgespräch vereinbaren
@@ -103,17 +107,7 @@ export default function Marktplatz() {
               </a>
             </div>
 
-            {/* Sağ Taraf - Marktplatz Görseli */}
-            <div className="w-1/3 h-full ml-20 relative">
-              <img 
-                src="/Marktplatz1.png" 
-                alt="Marktplatz Marketing Services - Professionelle Amazon, eBay, Otto und Zalando Marketing-Lösungen für Ihren Erfolg"
-                className="w-full h-full max-w-4xl object-contain"
-                style={{ 
-                  background: 'transparent'
-                }}
-              />
-            </div>
+            
 
           </section>
         </main>

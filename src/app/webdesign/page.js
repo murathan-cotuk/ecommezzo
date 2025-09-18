@@ -98,7 +98,7 @@ export default function Webdesign() {
 
         {/* 1. Hero */}
         <main className="relative z-10">
-          <section className="w-full h-[800px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/WebdesignHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+          <section className="w-full h-[900px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/WebdesignHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             
             {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
             {/*<div className="absolute left-0 top-0 w-full h-full flex">

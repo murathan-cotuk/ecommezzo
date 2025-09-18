@@ -102,16 +102,21 @@ export default function Marketing() {
       `}</style>
       {/* 1. Hero */}
       <main className="relative z-10">
-          <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
+          <section className="w-full h-[900px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/MarketingHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+          
             
-            {/* Sol Taraf - Metin ve Buton */}
-            <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-                E-Commerce Marketing das Ihre Verkäufe steigert
+          
+            {/* Metin ve Buton - Sag Taraf */}
+            <div className="w-1/2 ml-auto pr-10 pt-20 z-20">
+              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-[#beceaf] to-[#c3dcb1] bg-clip-text text-transparent">
+              E-Commerce Marketing das Ihre Verkäufe steigert
               </h1>
+              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
+                Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
+              </p>
               <a
                 href="/kontakt"
-                className="px-8 py-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-teal-500/25 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+                className="px-8 py-6 bg-gradient-to-r from-[#c3dcb1] to-[#6f935f] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#708163] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
               >
                 
                 Jetzt kostenloses Beratungsgespräch vereinbaren
@@ -121,17 +126,7 @@ export default function Marketing() {
               </a>
             </div>
 
-            {/* Sağ Taraf - Marketing Görseli */}
-            <div className="w-1/2 h-full flex items-center justify-center relative">
-              <img 
-                src="/Marketing1.png" 
-                alt="E-Commerce Marketing Services - Professionelle Online-Marketing-Lösungen für Ihren Erfolg"
-                className="w-full h-full max-w-4xl object-contain"
-                style={{ 
-                  background: 'transparent'
-                }}
-              />
-            </div>
+            
 
           </section>
         </main>
