@@ -6,6 +6,14 @@
   * {
     font-family: var(--font-roboto), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
 }
 @keyframes blob {
   0%, 100% {
@@ -17,6 +25,19 @@
   66% {
     transform: translate(-20px, 30px) scale(0.9);
   }
+}
+
+@keyframes small-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-small-bounce {
+  animation: small-bounce 2s infinite;
 }
 
 .animate-blob {

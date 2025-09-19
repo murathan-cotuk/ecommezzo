@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function Home1() {
-  const [activeAccordion, setActiveAccordion] = useState(0);
+  const [activeAccordion, setActiveAccordion] = useState(-1);
   const [showGraph, setShowGraph] = useState(false);
 
   const webdesignComponents = [
@@ -218,97 +218,155 @@ export default function Home1() {
           </div>
         </div>
 
-        {/* Alt Kısım - Yatay Satış Artış Grafik Animasyonu */}
+        {/* Alt Kısım - Profesyonel Satış Grafiği */}
         <div className="w-full">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Verkaufsentwicklung</h2>
-            <p className="text-gray-600">1 Jahr mit Ecommezzo - Durchschnittliche Steigerung</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Verkaufsentwicklung</h2>
+            <p className="text-gray-600 text-lg">1 Jahr mit Ecommezzo - Durchschnittliche Steigerung</p>
+            <div className="flex justify-center items-center mt-4 space-x-8">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">+247% Umsatzsteigerung</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">+156% Conversion Rate</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">+89% Traffic Zuwachs</span>
+              </div>
+            </div>
           </div>
           
-          <div className="w-full h-96 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
+          <div className="w-full h-[500px] bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-gray-700 relative overflow-hidden">
+            {/* Dekoratif Elementler */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
+            
             <div className="relative h-full">
-              {/* Y Ekseni - Daha Profesyonel */}
-              <div className="absolute left-0 top-0 h-full w-16 flex flex-col justify-between text-gray-400 text-sm font-mono">
-                <span>€200K</span>
-                <span>€150K</span>
-                <span>€100K</span>
-                <span>€50K</span>
-                <span>€0</span>
+              {/* Y Ekseni - Profesyonel */}
+              <div className="absolute left-0 top-0 h-full w-20 flex flex-col justify-between text-gray-300 text-sm font-mono">
+                <span className={`text-green-400 font-semibold transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '1.5s'}}>€250K</span>
+                <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '1.2s'}}>€200K</span>
+                <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '0.9s'}}>€150K</span>
+                <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '0.6s'}}>€100K</span>
+                <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '0.3s'}}>€50K</span>
+                <span className={`text-gray-500 transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '0s'}}>€0</span>
               </div>
               
-              {/* Grid Çizgileri - Daha İnce */}
-              <div className="absolute left-16 right-0 h-full">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <div key={i} className="absolute w-full border-t border-gray-700/50" style={{top: `${i * 25}%`}}></div>
+              {/* X Ekseni - Aylar */}
+              <div className="absolute bottom-0 left-20 right-0 h-12 flex justify-between items-end text-gray-400 text-xs font-mono px-4">
+                <span>Jan</span>
+                <span>Feb</span>
+                <span>Mär</span>
+                <span>Apr</span>
+                <span>Mai</span>
+                <span>Jun</span>
+                <span>Jul</span>
+                <span>Aug</span>
+                <span>Sep</span>
+                <span>Okt</span>
+                <span>Nov</span>
+                <span>Dez</span>
+              </div>
+              
+              {/* Grid Çizgileri - Profesyonel */}
+              <div className="absolute left-20 right-0 top-0 h-full pb-12">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <div key={i} className="absolute w-full border-t border-gray-700/40" style={{top: `${i * 20}%`}}></div>
                 ))}
-                {/* Dikey grid çizgileri */}
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                  <div key={i} className="absolute h-full border-l border-gray-700/30" style={{left: `${i * 10}%`}}></div>
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
+                  <div key={i} className="absolute h-full border-l border-gray-700/30" style={{left: `${i * 8.33}%`}}></div>
                 ))}
               </div>
               
-              {/* Profesyonel Borsa Grafiği */}
-              <div className="absolute left-16 right-0 top-0 h-full">
-                <svg className="w-full h-full" viewBox="0 0 1000 300">
-                  {/* Ana satış çizgisi - 0'dan başlayan */}
+              {/* Profesyonel Grafik */}
+              <div className="absolute left-20 right-0 top-0 h-full pb-12">
+                <svg className="w-full h-full" viewBox="0 0 1000 400">
+                  {/* Ana satış çizgisi - Gerçekçi veri */}
                   <path
-                    d="M 0 300 L 50 280 L 100 260 L 150 240 L 200 220 L 250 200 L 300 180 L 350 160 L 400 140 L 450 120 L 500 100 L 550 80 L 600 60 L 650 50 L 700 40 L 750 30 L 800 25 L 850 20 L 900 15 L 950 12 L 1000 10"
-                    stroke="url(#stockGradient)"
-                    strokeWidth="3"
+                    d="M 0 380 L 83 360 L 166 340 L 250 300 L 333 250 L 416 200 L 500 150 L 583 120 L 666 90 L 750 60 L 833 40 L 916 25 L 1000 15"
+                    stroke="url(#professionalGradient)"
+                    strokeWidth="4"
                     fill="none"
                     className={`animate-draw-line ${showGraph ? 'opacity-100' : 'opacity-0'}`}
+                    filter="url(#glow)"
+                    style={{opacity: showGraph ? 1 : 0}}
                   />
                   
                   {/* Alt alan doldurma */}
                   <path
-                    d="M 0 300 L 50 280 L 100 260 L 150 240 L 200 220 L 250 200 L 300 180 L 350 160 L 400 140 L 450 120 L 500 100 L 550 80 L 600 60 L 650 50 L 700 40 L 750 30 L 800 25 L 850 20 L 900 15 L 950 12 L 1000 10 L 1000 300 L 0 300 Z"
+                    d="M 0 380 L 83 360 L 166 340 L 250 300 L 333 250 L 416 200 L 500 150 L 583 120 L 666 90 L 750 60 L 833 40 L 916 25 L 1000 15 L 1000 380 L 0 380 Z"
                     fill="url(#areaGradient)"
-                    opacity="0.3"
+                    opacity="0.4"
                     className={`animate-draw-area ${showGraph ? 'opacity-100' : 'opacity-0'}`}
+                    style={{opacity: showGraph ? 0.4 : 0}}
                   />
                   
-                  {/* Gradient tanımları */}
+                  {/* Gradient ve Efekt Tanımları */}
                   <defs>
-                    <linearGradient id="stockGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="25%" stopColor="#06b6d4" />
-                      <stop offset="50%" stopColor="#8b5cf6" />
-                      <stop offset="75%" stopColor="#f59e0b" />
-                      <stop offset="100%" stopColor="#ef4444" />
+                      <stop offset="20%" stopColor="#06b6d4" />
+                      <stop offset="40%" stopColor="#8b5cf6" />
+                      <stop offset="60%" stopColor="#f59e0b" />
+                      <stop offset="80%" stopColor="#ef4444" />
+                      <stop offset="100%" stopColor="#ec4899" />
                     </linearGradient>
                     <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" />
+                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.6" />
+                      <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.3" />
                       <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
                     </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge> 
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
                   </defs>
                   
-                  {/* Profesyonel noktalar */}
-                  {showGraph && (
-                    <>
-                      <circle cx="0" cy="300" r="3" fill="#10b981" className="animate-pulse">
-                        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="250" cy="200" r="3" fill="#06b6d4" className="animate-pulse" style={{animationDelay: '0.5s'}}>
-                        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="500" cy="100" r="3" fill="#8b5cf6" className="animate-pulse" style={{animationDelay: '1s'}}>
-                        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="750" cy="30" r="3" fill="#f59e0b" className="animate-pulse" style={{animationDelay: '1.5s'}}>
-                        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="1000" cy="10" r="4" fill="#ef4444" className="animate-pulse" style={{animationDelay: '2s'}}>
-                        <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                    </>
-                  )}
+                  {/* Profesyonel Noktalar */}
+                  <circle cx="0" cy="380" r="4" fill="#10b981" className={`animate-pulse transition-opacity duration-500 ${showGraph ? 'opacity-100' : 'opacity-0'}`} style={{transitionDelay: '1.5s'}}>
+                    <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="250" cy="300" r="4" fill="#06b6d4" className={`animate-pulse transition-opacity duration-500 ${showGraph ? 'opacity-100' : 'opacity-0'}`} style={{animationDelay: '0.3s', transitionDelay: '2s'}}>
+                    <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="500" cy="150" r="4" fill="#8b5cf6" className={`animate-pulse transition-opacity duration-500 ${showGraph ? 'opacity-100' : 'opacity-0'}`} style={{animationDelay: '0.6s', transitionDelay: '2.5s'}}>
+                    <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="750" cy="60" r="4" fill="#f59e0b" className={`animate-pulse transition-opacity duration-500 ${showGraph ? 'opacity-100' : 'opacity-0'}`} style={{animationDelay: '0.9s', transitionDelay: '3s'}}>
+                    <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="1000" cy="15" r="5" fill="#ef4444" className={`animate-pulse transition-opacity duration-500 ${showGraph ? 'opacity-100' : 'opacity-0'}`} style={{animationDelay: '1.2s', transitionDelay: '3.5s'}}>
+                    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+                  </circle>
                 </svg>
               </div>
               
-              {/* Profesyonel Başlık */}
-              <div className="absolute top-4 left-20">
-                <div className="text-white text-lg font-semibold">Verkaufsentwicklung</div>
-                <div className="text-gray-400 text-sm">Live Performance</div>
+              {/* Profesyonel Başlık ve İstatistikler */}
+              <div className="absolute top-6 left-24">
+                <div className="text-white text-xl font-bold mb-2">Live Performance Dashboard</div>
+                <div className="text-gray-400 text-sm">Real-time Verkaufsdaten</div>
+              </div>
+              
+              {/* Sağ üst köşe istatistikleri */}
+              <div className="absolute top-6 right-6 space-y-3">
+                <div className="bg-green-500/20 backdrop-blur-sm rounded-lg p-3 border border-green-500/30">
+                  <div className="text-green-400 text-sm font-semibold">+247%</div>
+                  <div className="text-gray-300 text-xs">Umsatzsteigerung</div>
+                </div>
+                <div className="bg-blue-500/20 backdrop-blur-sm rounded-lg p-3 border border-blue-500/30">
+                  <div className="text-blue-400 text-sm font-semibold">+156%</div>
+                  <div className="text-gray-300 text-xs">Conversion Rate</div>
+                </div>
+                <div className="bg-purple-500/20 backdrop-blur-sm rounded-lg p-3 border border-purple-500/30">
+                  <div className="text-purple-400 text-sm font-semibold">+89%</div>
+                  <div className="text-gray-300 text-xs">Traffic Zuwachs</div>
+                </div>
               </div>
             </div>
           </div>
@@ -319,16 +377,23 @@ export default function Home1() {
         @keyframes draw-line {
           0% {
             stroke-dasharray: 0 1000;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
           }
           100% {
             stroke-dasharray: 1000 0;
+            opacity: 1;
           }
         }
 
         .animate-draw-line {
           stroke-dasharray: 1000;
           stroke-dashoffset: 1000;
-          animation: draw-line 8s ease-in-out forwards;
+          opacity: 0;
+          animation: draw-line 6s ease-in-out forwards;
+          animation-delay: 0.5s;
         }
 
         @keyframes draw-area {
@@ -336,12 +401,13 @@ export default function Home1() {
             opacity: 0;
           }
           100% {
-            opacity: 0.3;
+            opacity: 0.4;
           }
         }
 
         .animate-draw-area {
-          animation: draw-area 8s ease-in-out forwards;
+          opacity: 0;
+          animation: draw-area 4s ease-in-out forwards;
           animation-delay: 2s;
         }
       `}</style>

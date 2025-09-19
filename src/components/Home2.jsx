@@ -1,134 +1,198 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Home2() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sectionRef = useRef(null);
+  const maxSlides = 3;
+  const isInSection = useRef(false);
 
-  const serviceCards = [
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (!sectionRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInView = rect.top <= 0 && rect.bottom > 0;
+      
+      if (isInView) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isAnimating) return;
+        
+        const deltaY = e.deltaY;
+        
+        if (deltaY > 0 && currentSlide < maxSlides - 1) {
+          // Scroll down - next slide
+          setIsAnimating(true);
+          setCurrentSlide(prev => prev + 1);
+          setTimeout(() => setIsAnimating(false), 700);
+        } else if (deltaY < 0 && currentSlide > 0) {
+          // Scroll up - previous slide
+          setIsAnimating(true);
+          setCurrentSlide(prev => prev - 1);
+          setTimeout(() => setIsAnimating(false), 700);
+        } else if (deltaY > 0 && currentSlide === maxSlides - 1) {
+          // Last slide, allow normal scroll
+          isInSection.current = false;
+          const nextSection = sectionRef.current.nextElementSibling;
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (deltaY < 0 && currentSlide === 0) {
+          // First slide, allow normal scroll up
+          isInSection.current = false;
+          const prevSection = sectionRef.current.previousElementSibling;
+          if (prevSection) {
+            prevSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+        
+        return false;
+      }
+    };
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInView = rect.top <= 0 && rect.bottom > 0;
+      
+      if (isInView && !isInSection.current) {
+        isInSection.current = true;
+        setCurrentSlide(0);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentSlide, isAnimating, maxSlides]);
+
+  const slides = [
     {
       id: 1,
-      title: "E-Commerce Entwicklung",
-      description: "Professionelle Online-Shops mit Shopify, WooCommerce und Custom-Lösungen",
-      icon: "🛒",
-      color: "from-blue-500 to-cyan-500"
+      title: "E-Commerce",
+      subtitle: "Wachstum & Erfolg",
+      heading: "Ihr Erfolg ist",
+      highlight: "unser Ziel",
+      description: "Mit über 5 Jahren Erfahrung in der E-Commerce-Branche helfen wir Unternehmen dabei, ihre Online-Präsenz zu optimieren und nachhaltiges Wachstum zu erzielen. Von der Strategieentwicklung bis zur Umsetzung begleiten wir Sie durch jeden Schritt.",
+      button1: "Jetzt starten",
+      button2: "Mehr erfahren",
+      gradient: "from-yellow-300 to-orange-300"
     },
     {
       id: 2,
       title: "Digital Marketing",
-      description: "SEO, Google Ads, Social Media Marketing und Conversion-Optimierung",
-      icon: "📈",
-      color: "from-green-500 to-emerald-500"
+      subtitle: "Reichweite & Conversion",
+      heading: "Maximale",
+      highlight: "Reichweite",
+      description: "Durch gezieltes Digital Marketing erreichen wir Ihre Zielgruppe effektiv. SEO, Social Media, Google Ads und Content Marketing sorgen für nachhaltiges Wachstum und messbare Ergebnisse in der digitalen Landschaft.",
+      button1: "Marketing starten",
+      button2: "Strategie ansehen",
+      gradient: "from-cyan-300 to-blue-300"
     },
     {
       id: 3,
-      title: "Webdesign & UX",
-      description: "Moderne, responsive Websites mit Fokus auf Benutzerfreundlichkeit",
-      icon: "🎨",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      id: 4,
-      title: "Marktplatz Integration",
-      description: "Amazon, eBay, Etsy und andere Plattformen für maximale Reichweite",
-      icon: "🏪",
-      color: "from-orange-500 to-red-500"
+      title: "Web Design",
+      subtitle: "Kreativität & Funktionalität",
+      heading: "Einzigartige",
+      highlight: "Websites",
+      description: "Wir erstellen moderne, responsive Websites, die nicht nur gut aussehen, sondern auch Ihre Geschäftsziele erreichen. Von der Konzeption bis zur Umsetzung - wir machen Ihre Vision zur Realität.",
+      button1: "Projekt starten",
+      button2: "Portfolio ansehen",
+      gradient: "from-purple-300 to-pink-300"
     }
   ];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Sol Taraf - SEO Metni */}
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Warum Ecommezzo Ihre Erfolgsgeschichte schreibt
-            </h2>
-            
-            <div className="prose prose-lg text-gray-700 leading-relaxed">
-              <p className="mb-4">
-                In der dynamischen Welt des E-Commerce sind wir mehr als nur eine Agentur – wir sind Ihre strategischen Partner für nachhaltigen Online-Erfolg. Mit über 5 Jahren Erfahrung in der digitalen Transformation von Unternehmen haben wir uns darauf spezialisiert, komplexe E-Commerce-Herausforderungen in messbare Erfolge zu verwandeln.
-              </p>
-              
-              <p className="mb-4">
-                Unser Expertenteam kombiniert technische Exzellenz mit tiefgreifendem Marktverständnis, um maßgeschneiderte Lösungen zu entwickeln, die nicht nur Ihre Verkäufe steigern, sondern auch Ihre Markenidentität stärken. Von der initialen Strategieentwicklung bis zur kontinuierlichen Optimierung begleiten wir Sie durch jeden Schritt Ihrer digitalen Reise.
-              </p>
-              
-              <p className="mb-4">
-                Wir verstehen, dass jeder Online-Shop einzigartig ist. Deshalb setzen wir auf individuelle Ansätze, die speziell auf Ihre Zielgruppe, Ihr Produktportfolio und Ihre Geschäftsziele zugeschnitten sind. Unsere Shopify-Expertise, kombiniert mit modernsten Webdesign-Prinzipien und datengetriebenen Marketing-Strategien, sorgt dafür, dass Ihr Online-Shop nicht nur funktional, sondern auch konversionsoptimiert ist.
-              </p>
-              
-              <p className="mb-4">
-                Unser Erfolg misst sich an Ihrem Erfolg. Mit durchschnittlichen Conversion-Rate-Steigerungen von 40% und ROI-Verbesserungen von über 200% haben wir bereits über 150 Unternehmen dabei geholfen, ihre Online-Präsenz zu revolutionieren. Von Start-ups bis hin zu etablierten Marken – wir schaffen die technische Infrastruktur und das Marketing-Ökosystem, das Ihr Unternehmen braucht, um in der digitalen Landschaft zu dominieren.
-              </p>
-              
-              <p>
-                Vertrauen Sie auf unsere bewährten Methoden, innovative Technologien und unerschütterliche Hingabe an Qualität. Lassen Sie uns gemeinsam Ihre Vision in die Realität umsetzen und Ihr Unternehmen an die Spitze des digitalen Handels führen.
-              </p>
-            </div>
-          </div>
-
-          {/* Sağ Taraf - Havada Uçan Kartlar */}
-          <div className="relative h-96">
-            <div className="grid grid-cols-2 gap-6 h-full">
-              {serviceCards.map((card, index) => (
-                <div
-                  key={card.id}
-                  className={`relative cursor-pointer transition-all duration-500 transform ${
-                    hoveredCard === card.id 
-                      ? 'scale-110 rotate-3 translate-y-[-20px] shadow-2xl' 
-                      : 'hover:scale-105 hover:rotate-1 hover:translate-y-[-10px]'
-                  }`}
-                  style={{
-                    transform: hoveredCard === card.id 
-                      ? 'scale(1.1) rotate(3deg) translateY(-20px)' 
-                      : hoveredCard === null 
-                        ? `translateY(${index * 5}px) rotate(${index * 2}deg)` 
-                        : 'scale(1.05) rotate(1deg) translateY(-10px)',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    zIndex: hoveredCard === card.id ? 20 : 10 - index
-                  }}
-                  onMouseEnter={() => setHoveredCard(card.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  <div className={`bg-gradient-to-br ${card.color} p-6 rounded-2xl shadow-xl h-full flex flex-col justify-between text-white relative overflow-hidden`}>
-                    
-                    {/* Hover Efekti - Parçacık Animasyonu */}
-                    {hoveredCard === card.id && (
-                      <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute top-2 left-2 w-2 h-2 bg-white rounded-full animate-ping"></div>
-                        <div className="absolute top-4 right-3 w-1 h-1 bg-white rounded-full animate-ping" style={{animationDelay: '0.2s'}}></div>
-                        <div className="absolute bottom-3 left-4 w-1.5 h-1.5 bg-white rounded-full animate-ping" style={{animationDelay: '0.4s'}}></div>
-                        <div className="absolute bottom-2 right-2 w-1 h-1 bg-white rounded-full animate-ping" style={{animationDelay: '0.6s'}}></div>
-                      </div>
-                    )}
-                    
-                    <div className="relative z-10">
-                      <div className="text-4xl mb-4">{card.icon}</div>
-                      <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-                      <p className="text-sm opacity-90 leading-relaxed">{card.description}</p>
-                    </div>
-                    
-                    {/* Alt kısım - Ok işareti */}
-                    <div className="relative z-10 flex justify-end">
-                      <div className={`w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-all duration-300 ${
-                        hoveredCard === card.id ? 'bg-white/30 scale-110' : ''
-                      }`}>
-                        <span className="text-white text-sm">→</span>
-                      </div>
-                    </div>
-                  </div>
+    <section 
+      ref={sectionRef}
+      className="w-full h-screen bg-green-600 relative overflow-hidden"
+    >
+      {/* Slide Container with Smooth Animation */}
+      <div className="flex h-full transition-transform duration-700 ease-in-out" 
+           style={{ 
+             transform: `translateX(-${currentSlide * 100}%)`
+           }}>
+        
+        {slides.map((slide, index) => (
+          <div 
+            key={slide.id} 
+            className="w-full h-full flex-shrink-0 flex items-center justify-center px-6"
+          >
+            <div className="max-w-7xl mx-auto flex items-center">
+              {/* Sol Taraf - 600x600 Görsel */}
+              <div className="w-[600px] h-[600px] flex-shrink-0 bg-white/20 rounded-3xl flex items-center justify-center backdrop-blur-sm border-4 border-white/30 relative overflow-hidden">
+                <img 
+                  src="/KinetiqPhysioMed/KinetiqPhysiomed.jpg" 
+                  alt={slide.title}
+                  className="w-full h-full object-cover rounded-3xl"
+                />
+                <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-center text-white relative z-10">
+                  <h3 className="text-3xl font-bold mb-2">{slide.title}</h3>
+                  <p className="text-xl opacity-90">{slide.subtitle}</p>
                 </div>
-              ))}
+              </div>
+
+              {/* Sağ Taraf - Başlık, Metin, Buton */}
+              <div className="flex-1 pl-16 max-w-lg">
+                <h2 className="text-5xl font-bold text-white mb-8 leading-tight">
+                  {slide.heading}
+                  <span className={`block bg-gradient-to-r ${slide.gradient} bg-clip-text text-transparent`}>
+                    {slide.highlight}
+                  </span>
+                </h2>
+                <p className="text-xl text-white/90 leading-relaxed mb-8">
+                  {slide.description}
+                </p>
+                <div className="flex space-x-4">
+                  <button className="bg-white text-green-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                    {slide.button1}
+                  </button>
+                  <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-green-600 transition-all duration-300 transform hover:-translate-y-1">
+                    {slide.button2}
+                  </button>
+                </div>
+              </div>
             </div>
-            
-            {/* Arka Plan Dekoratif Elementler */}
-            <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-cyan-200 to-blue-200 rounded-full opacity-20 animate-pulse"></div>
-            <div className="absolute -bottom-5 -left-5 w-16 h-16 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
           </div>
-        </div>
+        ))}
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+        {slides.map((_, index) => (
+          <div
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide ? 'bg-white' : 'bg-white/30'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Progress Bar */}
+      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-64 h-1 bg-white/20 rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-white/70 rounded-full transition-all duration-800 ease-in-out"
+          style={{ width: `${((currentSlide + 1) / maxSlides) * 100}%` }}
+        />
+      </div>
+
+      {/* Arka Plan Dekoratif Elementler */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute top-20 left-20 w-32 h-32 border-2 border-white/20 rounded-full"></div>
+        <div className="absolute top-40 right-32 w-24 h-24 border-2 border-white/20 rounded-full"></div>
+        <div className="absolute bottom-32 left-40 w-28 h-28 border-2 border-white/20 rounded-full"></div>
+        <div className="absolute bottom-20 right-20 w-36 h-36 border-2 border-white/20 rounded-full"></div>
       </div>
     </section>
   );

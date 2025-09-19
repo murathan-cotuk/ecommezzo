@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import Accordion from "@/components/Accordion";
@@ -5,12 +7,13 @@ import SplashScreen from "@/components/SplashScreen";
 import CodeAnimation from "@/components/CodeAnimation";
 import Home1 from "@/components/Home1";
 import Home2 from "@/components/Home2";
-
+import HomeLast from "@/components/HomeLast";
 
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 min-h-screen relative">
+      
+      <div className="bg-gray-50 min-h-screen relative">
 
       {/* Splash Screen en başta ve ekranı kaplasın */}
       {/*<SplashScreen />*/}
@@ -41,25 +44,11 @@ export default function Home() {
         </section>
 
         <Home1 />
-        
         <Home2 />
+        <HomeLast />
         
       </main>
       
-      <style jsx>{`
-        @keyframes small-bounce {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
-        }
-        
-        .animate-small-bounce {
-          animation: small-bounce 2s infinite;
-        }
-      `}</style>
-    </div>
+      </div>
   );
 }

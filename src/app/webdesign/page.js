@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import { ShoppingBagIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24/outline";
@@ -11,6 +12,8 @@ import ReferenzSection from '@/components/WebdesignReferenz';
 import CTASection from '@/components/WebdesignCTA';
 import Portfolio from '@/components/Portfolio';
 import ShopRelaunch from '@/components/ShopRelaunch';
+
+
 
 export default function Webdesign() {
   const [activeDevice, setActiveDevice] = useState('mobile');

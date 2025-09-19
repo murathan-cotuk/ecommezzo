@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from "framer-motion";
 import ConversionRateCalculator from '../../components/ConversionRateCalculator';
 import { ChartBarIcon, ArrowTrendingUpIcon, LightBulbIcon } from '@heroicons/react/24/outline';
