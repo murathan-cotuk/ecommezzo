@@ -42,7 +42,7 @@ export default function Webdesign() {
            scroll-behavior: smooth;
          }
          
-         #shopify, #wordpress, #seo {
+         #shopify, #wordpress, #seo, #responsive {
            scroll-margin-top: 100px;
          }
          
@@ -348,7 +348,7 @@ export default function Webdesign() {
       <ResponsiveSection />
       <ShopRelaunch />
       {/*<ReferenzSection />*/}
-      <Portfolio />
+      {/*<Portfolio />*/}
       <CTASection />      
 
       

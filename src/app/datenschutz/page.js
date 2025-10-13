@@ -8,13 +8,32 @@ export default function Datenschutz() {
       </section>
   
       <div className="max-w-4xl mx-auto px-6 py-16">
+        {/* Hinweis zur Unternehmensgründung (analog Impressum) */}
+        <section className="mb-12">
+          <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold text-yellow-900 mb-3">Hinweis: Unternehmensgründung</h2>
+            <p className="text-yellow-900 leading-relaxed mb-4">
+              Das Unternehmen Ecommezzo GmbH befindet sich derzeit in der Gründungsphase. Bis zum Abschluss der Eintragung im Handelsregister wird die Tätigkeit von
+              <span className="font-semibold"> Murathan Cotuk</span>, Einzelunternehmer (Gründer), verantwortet.
+            </p>
+            <div className="text-yellow-900 leading-relaxed">
+              <p className="mb-1"><span className="font-semibold">Anbieter (vorläufig):</span> Ecommezzo (in Gründung)</p>
+              <p className="mb-1"><span className="font-semibold">Verantwortlich:</span> Murathan Cotuk</p>
+              <p className="mb-1"><span className="font-semibold">Adresse:</span> Robert-Koch-Str. 17, 41564 Kaarst, Deutschland</p>
+              <p className="mb-1"><span className="font-semibold">Telefon:</span> +49 160 463 2233</p>
+              <p className="mb-1"><span className="font-semibold">E-Mail:</span> service@ecommezzo.com</p>
+              <p className=""><span className="font-semibold">Website:</span> www.ecommezzo.com</p>
+            </div>
+          </div>
+        </section>
+
           
         {/* Einleitung */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">1. Einleitung</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-          Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat einen besonders hohen Stellenwert für die Geschäftsleitung der Ecommezzo GmbH. 
-            Eine Nutzung der Internetseiten der Ecommezzo GmbH ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich.
+          Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat einen besonders hohen Stellenwert für die Geschäftsleitung der Ecommezzo (in Gründung). 
+            Eine Nutzung der Internetseiten der Ecommezzo (in Gründung) ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
             Sofern eine betroffene Person besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte jedoch eine Verarbeitung 
@@ -28,15 +47,16 @@ export default function Datenschutz() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">2. Verantwortlicher</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
-              <strong>Ecommezzo GmbH</strong>
+              <strong>Ecommezzo (in Gründung)</strong>
             </p>
             <p className="text-gray-700 leading-relaxed mb-2">
-              Musterstraße 123<br />
-              12345 Musterstadt<br />
+              Robert-Koch-Str. 17<br />
+              41564 Kaarst<br />
               Deutschland
             </p>
             <p className="text-gray-700 leading-relaxed mb-2">
-              Telefon: +49 (0) 123 456789<br />
+              Verantwortlich: Murathan Cotuk<br />
+              Telefon: +49 160 463 2233<br />
               E-Mail: service@ecommezzo.com
             </p>
           </div>
@@ -146,10 +166,10 @@ export default function Datenschutz() {
               <strong>E-Mail:</strong> service@ecommezzo.com
             </p>
             <p className="text-gray-700 leading-relaxed mb-2">
-              <strong>Telefon:</strong> +49 (0) 123 456789
+              <strong>Telefon:</strong> +49 160 463 2233
             </p>
             <p className="text-gray-700 leading-relaxed">
-              <strong>Adresse:</strong> Ecommezzo GmbH, Musterstraße 123, 12345 Musterstadt
+              <strong>Adresse:</strong> Ecommezzo (in Gründung), Robert-Koch-Str. 17, 41564 Kaarst
             </p>
           </div>
         </section>

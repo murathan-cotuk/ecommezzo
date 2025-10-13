@@ -10,6 +10,9 @@ import Home1 from "@/components/Home1";
 import Home2 from "@/components/Home2";
 import Home3 from "@/components/Home3";
 import HomeLast from "@/components/HomeLast";
+import Compare from "@/components/Compare";
+import ReferenzSection from '@/components/WebdesignReferenz';
+import Portfolio from '@/components/Portfolio';
 
 
 export default function Home() {
@@ -46,9 +49,12 @@ export default function Home() {
         </section>
 
         <Home1 />
-        <Home2 />
+         {/*<Home2 />*/}
+        {/*<Portfolio />*/}
         <Home3 />
         <ConversionRateCalculator />
+        <Compare />
+        {/*<ReferenzSection />*/}
         <HomeLast />
         
       </main>

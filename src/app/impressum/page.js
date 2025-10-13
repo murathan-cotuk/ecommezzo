@@ -8,9 +8,86 @@ export default function Impressum() {
       </section>
 
       <div className="max-w-4xl mx-auto px-6 py-16">
+        {/* Hinweis zur Unternehmensgründung */}
+        <section className="mb-12">
+          <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-lg">
+            <h2 className="text-2xl font-bold text-yellow-900 mb-3">Hinweis: Unternehmensgründung</h2>
+            <p className="text-yellow-900 leading-relaxed">
+              Dieses Impressum bleibt bestehen. Das Unternehmen Ecommezzo GmbH befindet sich derzeit in der
+              Gründungsphase. Bis zum Abschluss der Eintragung im Handelsregister wird die Tätigkeit von
+              Murathan Cotuk, Einzelunternehmer (Gründer) verantwortet.
+            </p>
+          </div>
+        </section>
+
+        {/* Vorläufiges Impressum gemäß Ihrer Angaben */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Impressum (vorläufig)</h2>
+          <div className="bg-gray-50 p-6 rounded-lg space-y-4 text-gray-700 leading-relaxed">
+            <p className="font-semibold">Angaben gemäß § 5 TMG</p>
+
+            <div>
+              <p className="font-semibold">Anbieter:</p>
+              <p>Ecommezzo (in Gründung)</p>
+              <p>Murathan Cotuk</p>
+              <p>Robert-Koch-Str. 17</p>
+              <p>41564, Kaarst</p>
+              <p>Deutschland</p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Kontakt:</p>
+              <p>E-Mail: service@ecommezzo.com</p>
+              <p>Website: www.ecommezzo.com</p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Hinweis zur Unternehmensgründung:</p>
+              <p>
+                Das Unternehmen Ecommezzo GmbH befindet sich derzeit in der Gründungsphase. Bis zum Abschluss der
+                Eintragung im Handelsregister wird die Tätigkeit von Murathan Cotuk, Einzelunternehmer (Gründer)
+                verantwortet.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Haftungsausschluss:</p>
+              <p>
+                Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit
+                und Aktualität der Inhalte übernehmen wir jedoch keine Gewähr. Als Diensteanbieter sind wir gemäß § 7 Abs.1
+                TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Haftung für Links:</p>
+              <p>
+                Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
+                Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Urheberrecht:</p>
+              <p>
+                Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Eine
+                Vervielfältigung oder Verwendung ist nur mit ausdrücklicher Zustimmung des Urhebers gestattet.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Bildnachweise:</p>
+              <p>Unsplash.com, Pexels.com, Eigene Fotografien</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Stand dieses Impressums: 13.10.2025</p>
+            </div>
+          </div>
+        </section>
         
         {/* Anbieter */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Anbieter</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
@@ -27,10 +104,10 @@ export default function Impressum() {
               <strong>Steuernummer:</strong> 123/456/78901
             </p>
           </div>
-    </section>
+    </section>*/}
 
         {/* Geschäftsführung */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Geschäftsführung</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
@@ -45,7 +122,7 @@ export default function Impressum() {
         </section>
 
         {/* Kontakt */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Kontakt</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
@@ -58,7 +135,7 @@ export default function Impressum() {
         </section>
 
         {/* Aufsichtsbehörde */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Aufsichtsbehörde</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
@@ -71,7 +148,7 @@ export default function Impressum() {
         </section>
 
         {/* Berufsbezeichnung */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Die Berufsbezeichnung "Webdesigner" und "Online-Marketing-Spezialist" wurde in Deutschland verliehen.
@@ -86,7 +163,7 @@ export default function Impressum() {
         </section>
 
         {/* Verantwortlich für den Inhalt */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="text-gray-700 leading-relaxed mb-2">
@@ -100,7 +177,7 @@ export default function Impressum() {
         </section>
 
         {/* Haftungsausschluss */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Haftungsausschluss</h2>
           
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Haftung für Inhalte</h3>
@@ -120,7 +197,7 @@ export default function Impressum() {
         </section>
 
         {/* Streitschlichtung */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Streitschlichtung</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
@@ -135,7 +212,7 @@ export default function Impressum() {
         </section>
 
         {/* Bildnachweis */}
-        <section className="mb-12">
+        {/*<section className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Bildnachweis</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Die auf dieser Website verwendeten Bilder stammen aus folgenden Quellen:
@@ -148,11 +225,11 @@ export default function Impressum() {
         </section>
 
         {/* Stand */}
-        <section className="text-center">
+        {/*<section className="text-center">
           <p className="text-gray-500 text-sm">
             Stand dieses Impressums: {new Date().toLocaleDateString('de-DE')}
           </p>
-        </section>
+        </section>*/}
       </div>
     </div>
     );

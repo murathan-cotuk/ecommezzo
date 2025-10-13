@@ -8,27 +8,27 @@ export default function Home3() {
 
   const testimonials = [
     {
-      name: "Sarah Müller",
-      company: "TechStart GmbH",
-      role: "CEO",
-      content: "Ecommezzo hat unseren Online-Shop komplett transformiert. Die Verkäufe sind um 340% gestiegen!",
-      avatar: "/Ecommezzo-Logo.png",
+      name: "Rene G.",
+      company: "KINETIQ Physiomed",
+      role: "Co-Founder",
+      content: "Ecommezzo hat unsere Website komplett transformiert. Unsere Conversion-Rate ist um 120% gestiegen!",
+      avatar: "/KinetiqPhysioMed/Kinetiq-Logo.png",
       rating: 5
     },
     {
-      name: "Michael Weber",
-      company: "Fashion Forward",
+      name: "Önder G.",
+      company: "Megaman Fashion",
       role: "Marketing Director",
       content: "Professionelle Betreuung von Anfang bis Ende. Unser Shopify Shop läuft perfekt!",
-      avatar: "/Ecommezzo-Logo.png",
+      avatar: "/Megaman/Megaman-Logo.png",
       rating: 5
     },
     {
-      name: "Anna Schmidt",
-      company: "Digital Solutions",
-      role: "Founder",
+      name: "Anna S.",
+      company: "Moongirl Lingerie",
+      role: "Digital Solutions",
       content: "Die beste E-Commerce Agentur, mit der wir je gearbeitet haben. Absolute Empfehlung!",
-      avatar: "/Ecommezzo-Logo.png",
+      avatar: "Moongirl/Moongirl-Logo.jpg",
       rating: 5
     }
   ];
@@ -138,24 +138,6 @@ export default function Home3() {
                 }`}
               />
             ))}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className={`text-center mt-20 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h3 className="text-3xl font-bold text-gray-800 mb-6">
-            Werden Sie unser nächster Erfolg!
-          </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Lassen Sie uns gemeinsam Ihr E-Commerce Business auf das nächste Level bringen.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-pink-400 to-purple-400 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-pink-500 hover:to-purple-500 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl">
-              Kostenlose Beratung
-            </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1">
-              Portfolio ansehen
-            </button>
           </div>
         </div>
       </div>
