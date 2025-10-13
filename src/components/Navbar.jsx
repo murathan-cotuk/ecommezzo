@@ -2,7 +2,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef} from "react";
 import { usePathname } from 'next/navigation';
-import SplashScreen from './SplashScreen';
 
 export default function Navbar() {
   const [scrolling, setScrolling] = useState(false);

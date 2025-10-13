@@ -5,7 +5,6 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loader from "@/components/Loader";
-import SplashScreen from '../components/SplashScreen';
 import StyledComponentsRegistry from '../lib/registry';
 
 

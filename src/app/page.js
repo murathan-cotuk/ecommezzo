@@ -2,8 +2,6 @@
 
 "use client";
 
-import Accordion from "@/components/Accordion";
-import SplashScreen from "@/components/SplashScreen";
 import CodeAnimation from "@/components/CodeAnimation";
 import ConversionRateCalculator from "@/components/ConversionRateCalculator";
 import Home1 from "@/components/Home1";
@@ -13,6 +11,7 @@ import HomeLast from "@/components/HomeLast";
 import Compare from "@/components/Compare";
 import ReferenzSection from '@/components/WebdesignReferenz';
 import Portfolio from '@/components/Portfolio';
+import GraffitiScroll from '@/components/GraffitiScroll';
 
 
 export default function Home() {
@@ -52,8 +51,9 @@ export default function Home() {
          {/*<Home2 />*/}
         {/*<Portfolio />*/}
         <Home3 />
+        <GraffitiScroll />
         <ConversionRateCalculator />
-        <Compare />
+        {/*<Compare />*/}
         {/*<ReferenzSection />*/}
         <HomeLast />
         
