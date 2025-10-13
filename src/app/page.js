@@ -27,7 +27,7 @@ export default function Home() {
       <main className="relative z-10">
         <section className="w-full h-[800px] bg-gradient-to-t from-cyan-950 to-gray-950 text-white flex items-center px-6 relative overflow-hidden">
           <div className="w-1/2 pl-40 pt-20 z-10">
-            <h1 className="text-7xl font-bold text-left pb-10">Mehr als nur eine Agentur</h1>
+            <h1 className="text-7xl font-bold text-left pb-10">MMehr als nur eine Agentur</h1>
             <p className="text-lg mt-4 max-w-xl text-left pb-20">
               Keine Lust mehr auf E-Commerce-Agenturen und Coaches, die nicht halten, was sie versprechen?
               Wir sind die Shopify Experts an deiner Seite.
