@@ -8,23 +8,24 @@ export default function Conversion() {
     return (
     <div className="text-gray-900 bg-[#fff6e3]">
          {/* Hero Section */}
-      <section className="w-full h-[800px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/ConversionHeader.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
-      <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-[#4c7266] via-[#3ca384] to-[#649385] bg-clip-text text-transparent">
+      <section className="w-full min-h-[100vh] sm:h-[800px] text-white flex flex-col lg:flex-row items-center px-4 sm:px-6 relative overflow-hidden" style={{backgroundImage: 'url(/ConversionHeader.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+      <div className="w-full lg:w-1/2 pl-0 lg:pl-40 pt-20 pb-10 lg:pb-20 z-20 text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold pb-6 lg:pb-10 bg-gradient-to-r from-[#4c7266] via-[#3ca384] to-[#649385] bg-clip-text text-transparent">
               Conversion Rate Rechner
         </h1>
-              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-white leading-relaxed">
+              <p className="text-base sm:text-lg mt-4 max-w-xl mx-auto lg:mx-0 pb-10 lg:pb-20 text-white leading-relaxed">
                 Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
               </p>
               <a
                 href="/kontakt"
-                className="px-8 py-6 bg-gradient-to-r from-[#3ca384] to-[#649385] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#97cabb] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+                className="block w-fit mx-auto lg:mx-0"
               >
-                
-                Jetzt kostenloses Beratungsgespräch vereinbaren
-                <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#3ca384] to-[#649385] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#97cabb] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
+                  Jetzt kostenloses Beratungsgespräch vereinbaren
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
               </a>
             </div>
       </section>

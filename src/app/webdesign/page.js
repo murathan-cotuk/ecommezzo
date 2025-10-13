@@ -101,138 +101,26 @@ export default function Webdesign() {
 
         {/* 1. Hero */}
         <main className="relative z-10">
-          <section className="w-full h-[900px] text-white flex items-center px-6 relative overflow-hidden" style={{backgroundImage: 'url(/WebdesignHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+          <section className="w-full min-h-[100vh] sm:h-[900px] text-white flex flex-col lg:flex-row items-center px-4 sm:px-6 relative overflow-hidden" style={{backgroundImage: 'url(/WebdesignHero.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             
-            {/* 5 Eşit Parçalı Mobil Website Görselleri - Arka Plan */}
-            {/*<div className="absolute left-0 top-0 w-full h-full flex">
-              
-              {/* Parça 1 - En Sol (Aşağı Kayma) - 0% Opacity */}
-              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-0">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 1" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 2" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 3" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 2 - Sol (Yukarı-Aşağı) - 25% Opacity */}
-              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-25">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 4" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 5" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 6" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 3 - Orta (Aşağı-Yukarı) - 50% Opacity */}
-              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-50">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 7" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 8" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 9" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 4 - Sağ (Yukarı-Aşağı) - 75% Opacity */}
-              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-75">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-up">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 10" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 11" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 12" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Parça 5 - En Sağ (Aşağı Kayma) - 100% Opacity */}
-              {/*<div className="w-1/5 h-full relative overflow-hidden flex items-center justify-center opacity-100">
-                <div className="absolute top-0 left-0 w-full h-full animate-scroll-down">
-                  {[
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 13" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 14" },
-                    { src: "/Pinqponq_Homepage_Banner_tiny.webp", alt: "Website 15" },
-                  ].map((img, i) => (
-                    <div key={i} className="w-full h-full p-2">
-                      <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                        <img
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full h-full object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Degrade Kaplama - Kayan Görsellerin Üstünde */}
-            {/*<div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-gray-950 via-gray-950/50 to-gray-400/40 z-20"></div>*/}
-
-            {/* Metin ve Buton - Sol Taraf */}
-            <div className="w-1/2 pl-40 pt-20 z-20">
-              <h1 className="text-6xl font-bold text-left pb-10 bg-gradient-to-r from-white via-[#c499ba] to-[#986f8e] bg-clip-text text-transparent">
+            {/* Metin ve Buton - Mobil Uyumlu */}
+            <div className="w-full lg:w-1/2 pl-0 lg:pl-40 pt-20 pb-10 lg:pb-20 z-20 text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold pb-6 lg:pb-10 bg-gradient-to-r from-white via-[#c499ba] to-[#986f8e] bg-clip-text text-transparent">
                 Professionelles Webdesign für Ihren Erfolg
               </h1>
-              <p className="text-lg mt-4 max-w-xl text-left pb-20 text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg mt-4 max-w-xl mx-auto lg:mx-0 pb-10 lg:pb-20 text-gray-300 leading-relaxed">
                 Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.
               </p>
               <a
                 href="/kontakt"
-                className="px-8 py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-lg"
+                className="block w-fit mx-auto lg:mx-0"
               >
-                
-                Jetzt kostenloses Beratungsgespräch vereinbaren
-                <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
+                  Jetzt kostenloses Beratungsgespräch vereinbaren
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
               </a>
             </div>
 
