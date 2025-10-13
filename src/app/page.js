@@ -29,8 +29,8 @@ export default function Home() {
           <div className="w-1/2 pl-40 pt-20 z-10">
             <h1 className="text-7xl font-bold text-left pb-10">Dein E-Commerce Agentur</h1>
             <p className="text-lg mt-4 max-w-xl text-left pb-20">
-              Keine Lust mehr auf E-Commerce-Agenturen und Coaches, die nicht halten, was sie versprechen?
-              Wir sind die Shopify Experts an deiner Seite.
+            Mit Ecommezzo sind Sie nur einen Schritt davon entfernt, 
+            Ihre Website und alle E-Commerce-Prozesse picobello zu machen.
             </p>
             <a href="/kontakt">
               <button className="px-6 py-5 border-5 border-teal-400 bg-[#a9e9c2] text-cyan-950 hover:bg-[#d2fae2] hover:animate-pulse transition-all duration-300 rounded-md font-bold mr-5 animate-small-bounce">

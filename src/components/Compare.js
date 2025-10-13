@@ -73,25 +73,40 @@ export default function Compare() {
             role="region"
             aria-label="Vorher/Nachher Vergleich: Vernachlässigt vs. Optimiert"
           >
-            {/* Left side image (shows only left of the bar) */}
-            <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${sliderPos}%` }}>
-              <img
-                src="/KinetiqPhysioMed/Kinetiq2.jpg"
-                alt="Vernachlässigter Shop"
-                className="w-full h-full object-cover"
-                style={{ transform: 'none', transition: 'none' }}
-              />
+            {/* Both images at full size; revealed via clip-path relative to handle */}
+            {/* Left (Basis) shows only area LEFT of the divider */}
+            <img
+              src="/KinetiqPhysioMed/Kinetiq2.jpg"
+              alt="Basis Shop"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                clipPath: `polygon(0% 0%, ${sliderPos}% 0%, ${sliderPos}% 100%, 0% 100%)`
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                clipPath: `polygon(0% 0%, ${sliderPos}% 0%, ${sliderPos}% 100%, 0% 100%)`
+              }}
+            >
               <div className="absolute inset-0 bg-gray-900/20" />
             </div>
 
-            {/* Right side image (shows only right of the bar) */}
-            <div className="absolute inset-y-0 right-0 overflow-hidden" style={{ width: `${100 - sliderPos}%` }}>
-              <img
-                src="/KinetiqPhysioMed/Kinetiq1.jpg"
-                alt="Optimierter Shop"
-                className="w-full h-full object-cover"
-                style={{ transform: 'none', transition: 'none' }}
-              />
+            {/* Right (Optimiert) shows only area RIGHT of the divider */}
+            <img
+              src="/KinetiqPhysioMed/Kinetiq1.jpg"
+              alt="Optimierter Shop"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                clipPath: `polygon(${sliderPos}% 0%, 100% 0%, 100% 100%, ${sliderPos}% 100%)`
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                clipPath: `polygon(${sliderPos}% 0%, 100% 0%, 100% 100%, ${sliderPos}% 100%)`
+              }}
+            >
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-indigo-500/10" />
             </div>
 
