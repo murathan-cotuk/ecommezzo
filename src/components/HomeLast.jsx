@@ -6,13 +6,13 @@ export default function HomeLast() {
   return (
     <>
       {/* Full-Width Banner */}
-      <section className="w-full bg-slate-800 py-8 sm:py-10">
+      {/*<section className="w-full bg-slate-800 py-8 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-5">
           <h2 className="font-bold text-white text-center leading-tight whitespace-nowrap" style={{fontSize: 'clamp(1.5rem, 4vw, 3rem)'}}>
           Wie Ecommezzo Ihre Erfolgsgeschichte mitschreibt
           </h2>
         </div>
-      </section>
+      </section>*/}
 
       {/* Content Section */}
       <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white">
