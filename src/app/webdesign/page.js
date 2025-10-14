@@ -67,10 +67,10 @@ export default function Webdesign() {
         /* Mobile hero adjustments to mirror homepage behavior */
         @media (max-width: 1024px) {
           main > section:first-of-type {
-            min-height: 100vh;
+            min-height: clamp(260px, 62vw, 560px); /* scale with visual aspect */
             height: auto;
-            padding-top: 98px; /* keep under navbar */
-            padding-bottom: 48px;
+            padding-top: 0;
+            padding-bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -134,9 +134,10 @@ export default function Webdesign() {
             z-index: 1;
             pointer-events: none;
           }
-          /* Lift text a bit for better balance */
+          /* Text starts a bit below navbar */
           main > section:first-of-type > div:nth-of-type(1) {
-            transform: translateY(-64px);
+            transform: none;
+            padding-top: 98px;
           }
         }
          @keyframes scroll {

@@ -33,10 +33,10 @@ export default function Conversion() {
         /* Mobile hero adjustments to mirror homepage behavior */
         @media (max-width: 1024px) {
           section:first-of-type {
-            min-height: 100vh;
+            min-height: clamp(260px, 62vw, 560px);
             height: auto;
-            padding-top: 98px; /* under navbar */
-            padding-bottom: 48px;
+            padding-top: 0;
+            padding-bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,7 +75,8 @@ export default function Conversion() {
             pointer-events: none;
           }
           section:first-of-type > div:nth-of-type(1) {
-            transform: translateY(-64px);
+            transform: none;
+            padding-top: 98px;
           }
         }
       `}</style>
