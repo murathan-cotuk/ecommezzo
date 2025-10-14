@@ -122,37 +122,20 @@ export default function Home() {
               display: flex;
               align-items: center; /* items-center */
               justify-content: center;
+              /* Static visual on phones: centered and fully visible */
+              background-image: url('/Hero2.png');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain; /* ensure full image fits, not cropped */
             }
 
             main > section:first-of-type > div:nth-of-type(1) h1 {
               line-height: 1.15;
             }
 
-            /* Re-enable animation layer as centered background on phones */
+            /* Hide animation on phones; use static background instead */
             main > section:first-of-type > div:nth-of-type(3) {
-              position: absolute !important;
-              inset: 0 !important;
-              width: 100% !important;
-              height: 100% !important;
-              display: grid !important;
-              place-items: center;
-              overflow: hidden;
-              z-index: 0;
-              pointer-events: none;
-            }
-
-            /* Scale inner visual proportionally on phones */
-            main > section:first-of-type > div:nth-of-type(3) > *,
-            main > section:first-of-type > div:nth-of-type(3) img,
-            main > section:first-of-type > div:nth-of-type(3) video,
-            main > section:first-of-type > div:nth-of-type(3) canvas,
-            main > section:first-of-type > div:nth-of-type(3) svg {
-              width: auto !important;
-              height: auto !important;
-              max-width: min(100%, 580px) !important;
-              max-height: 45vh !important;
-              object-fit: contain;
-              margin: 0 auto;
+              display: none !important;
             }
 
             /* Center-fit scaling on phones */
