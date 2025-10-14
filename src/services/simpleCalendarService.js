@@ -144,7 +144,7 @@ const calculateTimeSlotStatus = (allTimeSlots, events, date) => {
 // Hafta sonu kontrolü
 const isWeekend = (date) => {
   const day = date.getDay();
-  return day === 0 || day === 6; // Samstag (6) ve Sonntag (0)
+  return day === 0 || day === 6; // Sonntag (0) ve Samstag (6)
 };
 
 // Fallback: Simüle edilmiş müsait zaman dilimleri

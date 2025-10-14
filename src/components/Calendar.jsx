@@ -55,7 +55,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
 
   const isWeekend = (date) => {
     const day = date.getDay();
-    return day === 0 || day === 6; // Samstag (6) ve Sonntag (0)
+    return day === 0 || day === 6; // Sonntag (0) ve Samstag (6)
   };
 
   // Tüm zaman dilimleri
@@ -97,9 +97,12 @@ export default function Calendar({ onTimeSelect, onClose }) {
           const dateStr = date.toISOString().split('T')[0];
           
           // Çalışma saatlerini belirle
-          const workingHours = isWeekend(date) 
-            ? ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'] // Hafta sonu: 09:00-14:00
-            : ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']; // Hafta içi: 18:00-22:00
+          const dayNumber = date.getDay();
+          
+          // Manuel kontrol - hangi günler hafta sonu
+          const workingHours = (dayNumber === 0 || dayNumber === 6) 
+            ? ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'] // Hafta sonu
+            : ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']; // Hafta içi
           
           const timeSlotStatus = {};
           workingHours.forEach(timeSlot => {
