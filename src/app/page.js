@@ -122,11 +122,19 @@ export default function Home() {
               display: flex;
               align-items: center; /* items-center */
               justify-content: center;
-              /* Static visual on phones: centered and fully visible */
+            }
+
+            /* Keep gradient background and layer the mobile image above it */
+            main > section:first-of-type::before {
+              content: "";
+              position: absolute;
+              inset: 0;
               background-image: url('/Hero2.png');
               background-repeat: no-repeat;
               background-position: center;
-              background-size: contain; /* ensure full image fits, not cropped */
+              background-size: contain;
+              z-index: 0; /* below text and logos, above gradient */
+              pointer-events: none;
             }
 
             main > section:first-of-type > div:nth-of-type(1) h1 {
