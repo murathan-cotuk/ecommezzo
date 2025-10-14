@@ -48,6 +48,68 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Mobile & tablet specific overrides for the hero section (non-destructive) */}
+        <style jsx global>{`
+          /* Target the first hero section on the homepage */
+          @media (max-width: 1024px) {
+            main > section:first-of-type {
+              min-height: 80vh; /* reduce excessive height on smaller screens */
+              height: auto;
+              padding-top: 24px; /* tighten vertical spacing */
+              padding-bottom: 24px;
+              display: flex;
+              justify-content: center; /* center content vertically within available space */
+            }
+
+            /* Text container: bring it closer to center and keep left alignment */
+            main > section:first-of-type > div:nth-of-type(1) {
+              padding-top: 24px;
+              padding-bottom: 16px;
+              margin-left: auto;
+              margin-right: auto;
+              max-width: 680px;
+              text-align: left;
+            }
+
+            /* Partner logos: keep them visible but not too close to edges */
+            main > section:first-of-type > div:nth-of-type(2) {
+              left: 16px;
+              bottom: 16px;
+            }
+
+            /* CodeAnimation container: ensure it's visible and fully shown */
+            main > section:first-of-type > div:nth-of-type(3) {
+              position: relative !important; /* override absolute positioning */
+              top: 0 !important;
+              right: 0 !important;
+              width: 100% !important;
+              height: auto !important;
+              min-height: 320px; /* ensure enough room for the visual */
+              display: block !important; /* override hidden on mobile */
+              overflow: visible;
+              aspect-ratio: 16 / 9; /* show the full visual without cropping */
+            }
+          }
+
+          /* Fine-tune phones specifically */
+          @media (max-width: 640px) {
+            main > section:first-of-type {
+              min-height: 75vh;
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+
+            main > section:first-of-type > div:nth-of-type(1) h1 {
+              line-height: 1.15;
+            }
+
+            main > section:first-of-type > div:nth-of-type(3) {
+              min-height: 280px;
+              aspect-ratio: 16 / 10;
+            }
+          }
+        `}</style>
+
         <Home1 />
          {/*<Home2 />*/}
         {/*<Portfolio />*/}

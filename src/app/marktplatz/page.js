@@ -232,7 +232,7 @@ export default function Marktplatz() {
             },
             {
               icon: "💼",
-              title: "eBay & Kleinanzeigen",
+              title: "eBay",
               description: "Maximieren Sie Ihre Reichweite auf eBay und eBay Kleinanzeigen mit strategischem Management.",
               features: ["eBay Stores", "Auktionen", "Kleinanzeigen", "B2B-Verkäufe"],
               platforms: ["eBay.de", "eBay.com", "eBay Kleinanzeigen"]
