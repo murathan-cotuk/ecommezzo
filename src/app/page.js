@@ -29,7 +29,7 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold pb-6 lg:pb-10">Dein E-Commerce Agentur</h1>
             <p className="text-base sm:text-lg mt-4 max-w-xl mx-auto lg:mx-0 pb-10 lg:pb-20">
             Mit Ecommezzo sind Sie nur einen Schritt davon entfernt, 
-            Ihre Website und alle E-Commerce-Prozesse picobello zu machen.
+            Ihre Website und alle E-Commerce-Prozesse picobello zu machen!
             </p>
             <a href="/kontakt" className="block w-fit mx-auto lg:mx-0">
               <button className="px-4 sm:px-6 py-3 sm:py-5 border-5 border-teal-400 bg-[#a9e9c2] text-cyan-950 hover:bg-[#d2fae2] hover:animate-pulse transition-all duration-300 rounded-md font-bold mr-0 lg:mr-5 animate-small-bounce text-sm sm:text-base">
