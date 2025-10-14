@@ -3,8 +3,8 @@ export default function Datenschutz() {
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
       <section className="w-full min-h-[200px] sm:h-[300px] bg-gradient-to-t from-[#3e304c] to-[#c499ba] text-white flex flex-col items-center justify-center text-center px-4 sm:px-6 py-8 sm:py-0">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Datenschutzerklärung</h1>
-        <p className="text-base sm:text-lg lg:text-xl mt-3 sm:mt-4 opacity-90">Schutz Ihrer persönlichen Daten</p>
+        <h1 className="mt-8 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Datenschutzerklärung</h1>
+        
       </section>
   
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">

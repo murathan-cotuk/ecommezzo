@@ -33,7 +33,7 @@ export default function ConversionRateCalculator() {
   };
 
   const getRateMessage = (rate) => {
-    if (rate >= 3) return 'Ausgezeichnet! Ihre Conversion Rate liegt über dem Branchendurchschnitt.';
+    if (rate >= 3) return 'Ausgezeichnet! Ihre Conversion Rate liegt über dem Durchschnitt.';
     if (rate >= 2) return 'Gut! Ihre Conversion Rate ist durchschnittlich. Es gibt noch Optimierungspotenzial.';
     if (rate >= 1) return 'Verbesserungswürdig. Ihre Conversion Rate liegt unter dem Durchschnitt.';
     return 'Kritisch. Ihre Conversion Rate ist sehr niedrig und benötigt dringend Optimierung.';
@@ -159,7 +159,7 @@ export default function ConversionRateCalculator() {
                         {getRateMessage(conversionRate)}
                       </p>
                       <p className="text-gray-600 text-sm">
-                        Branchendurchschnitt: 2-3% | Spitzenwerte: 5%+
+                        Durchschnitt: 2-3% | Spitzenwerte: 5%+
                       </p>
                     </div>
 

@@ -132,6 +132,23 @@ export default function Home() {
               min-height: 280px;
               aspect-ratio: 16 / 10;
               max-height: 40vh; /* a bit smaller on phones to prevent cropping */
+              display: grid !important; /* robust centering */
+              place-items: center; /* always items-center */
+            }
+
+            /* Inner visual should be centered, proportional and behind text */
+            main > section:first-of-type > div:nth-of-type(3) > *,
+            main > section:first-of-type > div:nth-of-type(3) img,
+            main > section:first-of-type > div:nth-of-type(3) video,
+            main > section:first-of-type > div:nth-of-type(3) canvas,
+            main > section:first-of-type > div:nth-of-type(3) svg {
+              width: auto !important;
+              height: auto !important;
+              max-width: 100% !important;
+              max-height: 100% !important;
+              object-fit: contain;
+              margin: 0 auto;
+              z-index: inherit !important; /* keep behind text/button */
             }
 
             /* On phones, lift the text a bit more than on tablet */
