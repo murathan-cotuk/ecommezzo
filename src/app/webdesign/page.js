@@ -67,7 +67,7 @@ export default function Webdesign() {
         /* Mobile hero adjustments to mirror homepage behavior */
         @media (max-width: 1024px) {
           main > section:first-of-type {
-            min-height: clamp(260px, 62vw, 560px); /* scale with visual aspect */
+            min-height: clamp(200px, 50vw, 450px); /* match visual height exactly */
             height: auto;
             padding-top: 0;
             padding-bottom: 0;

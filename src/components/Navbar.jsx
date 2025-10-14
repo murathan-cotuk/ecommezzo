@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef} from "react";
 import { usePathname } from 'next/navigation';
 
@@ -183,7 +183,7 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <motion.div
-            className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md shadow-xl border-t border-gray-100/50 ${
+            className={`lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-md shadow-xl border-t border-gray-700/50 rounded-b-2xl ${
               isMobileMenuOpen ? 'block' : 'hidden'
             }`}
             initial={{ opacity: 0, y: -20 }}
@@ -199,7 +199,7 @@ export default function Navbar() {
                 className={`block text-lg font-bold py-2 ${
                   pathname === '/webdesign' 
                     ? 'text-teal-400' 
-                    : 'text-cyan-950 hover:text-teal-400'
+                    : 'text-white hover:text-teal-400'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 whileHover={{ x: 5 }}
@@ -212,7 +212,7 @@ export default function Navbar() {
                 className={`block text-lg font-bold py-2 ${
                   pathname === '/marketing' 
                     ? 'text-teal-400' 
-                    : 'text-cyan-950 hover:text-teal-400'
+                    : 'text-white hover:text-teal-400'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 whileHover={{ x: 5 }}
@@ -225,7 +225,7 @@ export default function Navbar() {
                 className={`block text-lg font-bold py-2 ${
                   pathname === '/marktplatz' 
                     ? 'text-teal-400' 
-                    : 'text-cyan-950 hover:text-teal-400'
+                    : 'text-white hover:text-teal-400'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 whileHover={{ x: 5 }}
@@ -234,12 +234,12 @@ export default function Navbar() {
                 Marktplatz
               </motion.a>
               
-              <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
+              <div className="flex items-center space-x-4 pt-4 border-t border-gray-700">
                 <motion.a 
                   href="https://www.instagram.com/ecommezzo/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-cyan-950 hover:text-teal-400"
+                  className="text-white hover:text-teal-400"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -252,7 +252,7 @@ export default function Navbar() {
                   href="https://tr.linkedin.com/company/ecommezzo" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-cyan-950 hover:text-teal-400"
+                  className="text-white hover:text-teal-400"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 >

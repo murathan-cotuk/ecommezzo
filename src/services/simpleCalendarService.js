@@ -65,17 +65,11 @@ const parseICalDate = (dateString) => {
 // Takvim olaylarını işle ve müsait zaman dilimlerini hesapla
 const processCalendarEvents = (events, startDate, endDate) => {
   const availableSlots = {};
-  const timeSlots = generateTimeSlots();
+  const allTimeSlots = generateAllTimeSlots();
   
   // Her gün için müsait zaman dilimlerini hesapla
   for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
     const dateStr = date.toISOString().split('T')[0];
-    
-    // Hafta sonu kontrolü
-    if (isWeekend(date)) {
-      availableSlots[dateStr] = [];
-      continue;
-    }
     
     // O günün olaylarını filtrele
     const dayEvents = events.filter(event => {
@@ -83,66 +77,93 @@ const processCalendarEvents = (events, startDate, endDate) => {
       return eventDate.toDateString() === date.toDateString();
     });
     
-    // Müsait zaman dilimlerini hesapla
-    const availableTimes = calculateAvailableTimes(timeSlots, dayEvents);
-    availableSlots[dateStr] = availableTimes;
+    // Tüm zaman dilimlerini göster, ancak durumlarını belirle
+    const timeSlotStatus = calculateTimeSlotStatus(allTimeSlots, dayEvents, date);
+    availableSlots[dateStr] = timeSlotStatus;
   }
   
   return availableSlots;
 };
 
-// Zaman dilimlerini oluştur
-const generateTimeSlots = () => {
+// Zaman dilimlerini oluştur - Tüm günler için tam saat listesi
+const generateAllTimeSlots = () => {
   return [
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
-    '16:00', '16:30', '17:00', '17:30'
+    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30',
+    '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+    '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30',
+    '21:00', '21:30', '22:00'
   ];
 };
 
-// Müsait zaman dilimlerini hesapla
-const calculateAvailableTimes = (timeSlots, events) => {
-  const availableTimes = [...timeSlots];
+// Hafta içi çalışma saatleri (18:00 - 22:00)
+const generateWeekdayTimeSlots = () => {
+  return [
+    '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+  ];
+};
+
+// Hafta sonu çalışma saatleri (09:00 - 14:00)
+const generateWeekendTimeSlots = () => {
+  return [
+    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30',
+    '13:00', '13:30', '14:00'
+  ];
+};
+
+// Zaman dilimi durumlarını hesapla (sadece çalışma saatleri)
+const calculateTimeSlotStatus = (allTimeSlots, events, date) => {
+  const timeSlotStatus = {};
   
-  events.forEach(event => {
-    const startTime = new Date(event.start);
-    const endTime = new Date(event.end);
+  // Çalışma saatlerini belirle
+  const workingHours = isWeekend(date) ? generateWeekendTimeSlots() : generateWeekdayTimeSlots();
+  
+  // Sadece çalışma saatlerini işle
+  workingHours.forEach(timeSlot => {
+    const slotTime = new Date(date);
+    const [hours, minutes] = timeSlot.split(':');
+    slotTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
     
-    // Çakışan zaman dilimlerini kaldır
-    for (let i = availableTimes.length - 1; i >= 0; i--) {
-      const slotTime = new Date();
-      const [hours, minutes] = availableTimes[i].split(':');
-      slotTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-      
-      if (slotTime >= startTime && slotTime < endTime) {
-        availableTimes.splice(i, 1);
-      }
+    // Bu zaman diliminde randevu var mı kontrol et
+    const isBooked = events.some(event => {
+      const eventStart = new Date(event.start);
+      const eventEnd = new Date(event.end);
+      return slotTime >= eventStart && slotTime < eventEnd;
+    });
+    
+    // Durumu belirle - sadece müsait veya dolu
+    if (isBooked) {
+      timeSlotStatus[timeSlot] = 'booked'; // Dolu randevu - gösterilmez
+    } else {
+      timeSlotStatus[timeSlot] = 'available'; // Müsait
     }
   });
   
-  return availableTimes;
+  return timeSlotStatus;
 };
 
 // Hafta sonu kontrolü
 const isWeekend = (date) => {
   const day = date.getDay();
-  return day === 0 || day === 6;
+  return day === 0 || day === 6; // Samstag (6) ve Sonntag (0)
 };
 
 // Fallback: Simüle edilmiş müsait zaman dilimleri
 const generateFallbackSlots = (startDate, endDate) => {
   const availableSlots = {};
-  const timeSlots = generateTimeSlots();
   
   for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
     const dateStr = date.toISOString().split('T')[0];
     
-    if (!isWeekend(date)) {
-      // %70 müsaitlik oranı
-      availableSlots[dateStr] = timeSlots.filter(() => Math.random() > 0.3);
-    } else {
-      availableSlots[dateStr] = [];
-    }
+    // Çalışma saatlerini belirle
+    const workingHours = isWeekend(date) ? generateWeekendTimeSlots() : generateWeekdayTimeSlots();
+    
+    const timeSlotStatus = {};
+    workingHours.forEach(timeSlot => {
+      // Tüm çalışma saatleri müsait olarak işaretle (rastgele dolu randevu yok)
+      timeSlotStatus[timeSlot] = 'available';
+    });
+    
+    availableSlots[dateStr] = timeSlotStatus;
   }
   
   return availableSlots;

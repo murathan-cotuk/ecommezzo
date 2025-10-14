@@ -55,15 +55,15 @@ export default function Calendar({ onTimeSelect, onClose }) {
 
   const isWeekend = (date) => {
     const day = date.getDay();
-    return day === 0 || day === 6; // Pazar veya Cumartesi
+    return day === 0 || day === 6; // Samstag (6) ve Sonntag (0)
   };
 
-  // Mevcut zaman dilimleri (gerçek uygulamada API'den gelecek)
-  const timeSlots = [
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
-    '16:00', '16:30', '17:00', '17:30', '18:00', '18:30',
-    '19:00', '19:30', '20:00', '20:30'
+  // Tüm zaman dilimleri
+  const allTimeSlots = [
+    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30',
+    '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+    '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30',
+    '21:00', '21:30', '22:00'
   ];
 
   // Müsait zaman dilimlerini al
@@ -93,10 +93,21 @@ export default function Calendar({ onTimeSelect, onClose }) {
         const date = new Date(today);
         date.setDate(today.getDate() + i);
         
-        if (!isWeekend(date) && !isPast(date)) {
+        if (!isPast(date)) {
           const dateStr = date.toISOString().split('T')[0];
-          const availableTimes = timeSlots.filter(() => Math.random() > 0.3); // %70 müsaitlik
-          slots[dateStr] = availableTimes;
+          
+          // Çalışma saatlerini belirle
+          const workingHours = isWeekend(date) 
+            ? ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'] // Hafta sonu: 09:00-14:00
+            : ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']; // Hafta içi: 18:00-22:00
+          
+          const timeSlotStatus = {};
+          workingHours.forEach(timeSlot => {
+            // Tüm çalışma saatleri müsait olarak işaretle (rastgele dolu randevu yok)
+            timeSlotStatus[timeSlot] = 'available';
+          });
+          
+          slots[dateStr] = timeSlotStatus;
         }
       }
       
@@ -107,7 +118,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
   }, []);
 
   const handleDateSelect = (date) => {
-    if (!isPast(date) && !isWeekend(date)) {
+    if (!isPast(date)) {
       setSelectedDate(date);
       setSelectedTime(null);
     }
@@ -197,7 +208,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
 
             {/* Hafta başlıkları */}
             <div className="grid grid-cols-7 gap-1 mb-2">
-              {['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'].map(day => (
+              {['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'].map(day => (
                 <div key={day} className="text-center text-sm font-medium text-gray-600 py-2">
                   {day}
                 </div>
@@ -212,22 +223,22 @@ export default function Calendar({ onTimeSelect, onClose }) {
                 }
 
                 const dateStr = day.toISOString().split('T')[0];
-                const isAvailable = availableSlots[dateStr] && availableSlots[dateStr].length > 0;
+                const daySlots = availableSlots[dateStr];
+                const hasAvailableSlots = daySlots && Object.values(daySlots).some(status => status === 'available');
                 const isSelected = selectedDate && selectedDate.toDateString() === day.toDateString();
                 const isPastDate = isPast(day);
-                const isWeekendDate = isWeekend(day);
 
                 return (
                   <button
                     key={index}
                     onClick={() => handleDateSelect(day)}
-                    disabled={isPastDate || isWeekendDate || !isAvailable}
+                    disabled={isPastDate}
                     className={`h-12 rounded-lg text-sm font-medium transition-all duration-200 ${
                       isSelected
                         ? 'bg-cyan-500 text-white'
-                        : isPastDate || isWeekendDate
+                        : isPastDate
                         ? 'text-gray-300 cursor-not-allowed'
-                        : isAvailable
+                        : hasAvailableSlots
                         ? 'hover:bg-cyan-100 text-gray-800'
                         : 'text-gray-400 cursor-not-allowed'
                     } ${isToday(day) ? 'ring-2 ring-cyan-300' : ''}`}
@@ -244,23 +255,25 @@ export default function Calendar({ onTimeSelect, onClose }) {
             {selectedDate ? (
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                  Verfügbare Zeiten für {formatDate(selectedDate)}
+                  für {formatDate(selectedDate)}
                 </h3>
                 
                 <div className="grid grid-cols-2 gap-3 max-h-80 overflow-y-auto">
-                  {availableSlots[selectedDate.toISOString().split('T')[0]]?.map(time => (
-                    <button
-                      key={time}
-                      onClick={() => handleTimeSelect(time)}
-                      className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                        selectedTime === time
-                          ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
-                          : 'border-gray-200 hover:border-cyan-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+                  {Object.entries(availableSlots[selectedDate.toISOString().split('T')[0]] || {})
+                    .filter(([time, status]) => status === 'available')
+                    .map(([time, status]) => (
+                      <button
+                        key={time}
+                        onClick={() => handleTimeSelect(time)}
+                        className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                          selectedTime === time
+                            ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
+                            : 'border-gray-200 hover:border-cyan-300 hover:bg-gray-50 text-gray-800'
+                        }`}
+                      >
+                        {time}
+                      </button>
+                    ))}
                 </div>
 
                 {selectedTime && (
