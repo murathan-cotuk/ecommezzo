@@ -55,7 +55,7 @@ export default function Webdesign() {
          .logo-track {
            display: flex;
            width: max-content;
-           animation: scroll 60s linear infinite;
+           animation: scroll 90s linear infinite;
          }
          .logo-item {
            position: relative;
@@ -146,7 +146,7 @@ export default function Webdesign() {
          }
          
          .device-view {
-           transition: all 0.5s ease-in-out;
+           transition: all 0.3s ease-in-out;
          }
          
          #device-display[data-active-device="mobile"] .mobile-view {
@@ -191,9 +191,9 @@ export default function Webdesign() {
                 href="/kontakt"
                 className="block w-fit mx-auto lg:mx-0"
               >
-                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
+                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-shadow duration-300 inline-flex items-center gap-3 text-sm sm:text-lg">
                   Kontakt Aufnehmen
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
@@ -209,33 +209,16 @@ export default function Webdesign() {
         {/* Arka plan soyut şekil animasyonu */}
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: -25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-5xl font-extrabold mb-6 text-gray-900 tracking-tight"
-          >
+          <h2 className="text-5xl font-extrabold mb-6 text-gray-900 tracking-tight">
             Unsere Leistungen im Überblick{" "}
-            <motion.span
-              initial={{ rotate: 0 }}
-              animate={{ rotate: [0, 20, -20, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="inline-block text-teal-500 origin-center"
-            >
+            <span className="inline-block text-teal-500">
               🚀
-            </motion.span>
-          </motion.h2>
+            </span>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto mb-20 text-gray-700 text-xl font-semibold"
-          >
+          <p className="max-w-3xl mx-auto mb-20 text-gray-700 text-xl font-semibold">
             Alles, was Ihr Online-Business braucht – maßgeschneiderte Shops, leistungsstarke Websites, unschlagbare SEO und Full-Service Betreuung.
-          </motion.p>
+          </p>
 
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -270,16 +253,12 @@ export default function Webdesign() {
                 buttonLink: "#seo",
               },
             ].map(({ icon: Icon, title, desc, points, hoverBg, hoverText, iconColor, buttonLink }, i) => (
-              <motion.div
+              <div
                 key={title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white border border-gray-100 shadow-lg p-10 rounded-2xl hover:shadow-3xl hover:-translate-y-3 transition-all duration-400 group relative cursor-pointer"
+                className="bg-white border border-gray-100 shadow-lg p-10 rounded-2xl hover:shadow-xl transition-shadow duration-300 group relative cursor-pointer"
               >
                 <div className="flex justify-center mb-7">
-                  <Icon className={`h-20 w-20 ${iconColor} group-hover:scale-125 group-hover:rotate-12 transition-transform duration-400`} />
+                  <Icon className={`h-20 w-20 ${iconColor} group-hover:scale-105 transition-transform duration-300`} />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">{title}</h3>
                 <p className="text-gray-600 mb-6">{desc}</p>
@@ -291,16 +270,16 @@ export default function Webdesign() {
                     </li>
                   ))}
                 </ul>
-                <div className="group-hover:opacity-100 opacity-0 transition-opacity duration-300 absolute inset-0 bg-white bg-opacity-95 flex items-center justify-center rounded-2xl pointer-events-none">
+                <div className="group-hover:opacity-100 opacity-0 transition-opacity duration-500 absolute inset-0 bg-white bg-opacity-95 flex items-center justify-center rounded-2xl pointer-events-none">
                   <p className="text-center text-gray-700 px-6">{hoverText}</p>
                 </div>
                 <button
                   onClick={() => scrollToSection(buttonLink?.replace('#', '') || '')}
-                  className="mt-6 bg-teal-500 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-teal-600 active:scale-95 transition-transform duration-200 relative z-10"
+                  className="mt-6 bg-teal-500 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-teal-600 transition-colors duration-300 relative z-10"
                 >
                   Mehr erfahren
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
