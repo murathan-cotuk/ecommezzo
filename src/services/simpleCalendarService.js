@@ -4,18 +4,41 @@ const ICAL_FEED_URL = 'https://calendar.google.com/calendar/ical/c_f619335b0ebdf
 // Müsait zaman dilimlerini al
 export const getAvailableSlots = async (startDate, endDate) => {
   try {
-    const response = await fetch(ICAL_FEED_URL);
+    // CORS ve network hatalarını yakalamak için timeout ekle
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 saniye timeout
+    
+    const response = await fetch(ICAL_FEED_URL, {
+      signal: controller.signal,
+      headers: {
+        'Accept': 'text/calendar, text/plain, */*'
+      }
+    });
+    
+    clearTimeout(timeoutId);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch iCal feed');
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
     
     const icalData = await response.text();
+    
+    if (!icalData || icalData.trim().length === 0) {
+      throw new Error('Empty iCal data received');
+    }
+    
     const events = parseICalData(icalData);
     
     return processCalendarEvents(events, startDate, endDate);
   } catch (error) {
-    console.error('Error fetching iCal data:', error);
+    if (error.name === 'AbortError') {
+      console.warn('iCal feed request timed out, using fallback slots');
+    } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      console.warn('Network error fetching iCal feed, using fallback slots');
+    } else {
+      console.warn('Error fetching iCal data, using fallback slots:', error.message);
+    }
+    
     // Fallback: Simüle edilmiş müsait zaman dilimleri
     return generateFallbackSlots(startDate, endDate);
   }

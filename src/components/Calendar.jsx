@@ -6,8 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Calendar({ onTimeSelect, onClose }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(null);
   const [availableSlots, setAvailableSlots] = useState({});
+  const [isClient, setIsClient] = useState(false);
 
   // Takvim için gerekli fonksiyonlar
   const getDaysInMonth = (date) => {
@@ -66,8 +67,16 @@ export default function Calendar({ onTimeSelect, onClose }) {
     '21:00', '21:30', '22:00'
   ];
 
+  // Client-side kontrolü ve currentMonth'u initialize et
+  useEffect(() => {
+    setIsClient(true);
+    setCurrentMonth(new Date());
+  }, []);
+
   // Müsait zaman dilimlerini al
   useEffect(() => {
+    if (!isClient) return;
+    
     const fetchAvailableSlots = async () => {
       try {
         const { getAvailableSlots } = await import('../services/simpleCalendarService');
@@ -78,47 +87,63 @@ export default function Calendar({ onTimeSelect, onClose }) {
         const slots = await getAvailableSlots(today, endDate);
         setAvailableSlots(slots);
       } catch (error) {
-        console.error('Error fetching available slots:', error);
+        console.warn('Calendar service unavailable, using fallback slots:', error.message);
         // Fallback: Simüle edilmiş müsait zaman dilimleri
         generateFallbackSlots();
       }
     };
 
     const generateFallbackSlots = () => {
-      const slots = {};
-      const today = new Date();
-      
-      // Gelecek 30 gün için rastgele müsait zaman dilimleri
-      for (let i = 0; i < 30; i++) {
-        const date = new Date(today);
-        date.setDate(today.getDate() + i);
+      try {
+        const slots = {};
+        const today = new Date();
         
-        if (!isPast(date)) {
-          const dateStr = date.toISOString().split('T')[0];
+        // Gelecek 30 gün için müsait zaman dilimleri
+        for (let i = 0; i < 30; i++) {
+          const date = new Date(today);
+          date.setDate(today.getDate() + i);
           
-          // Çalışma saatlerini belirle
-          const dayNumber = date.getDay();
-          
-          // Manuel kontrol - hangi günler hafta sonu
-          const workingHours = (dayNumber === 0 || dayNumber === 6) 
-            ? ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'] // Hafta sonu
-            : ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']; // Hafta içi
-          
-          const timeSlotStatus = {};
-          workingHours.forEach(timeSlot => {
-            // Tüm çalışma saatleri müsait olarak işaretle (rastgele dolu randevu yok)
-            timeSlotStatus[timeSlot] = 'available';
-          });
-          
-          slots[dateStr] = timeSlotStatus;
+          if (!isPast(date)) {
+            const dateStr = date.toISOString().split('T')[0];
+            
+            // Çalışma saatlerini belirle
+            const dayNumber = date.getDay();
+            
+            // Manuel kontrol - hangi günler hafta sonu
+            const workingHours = (dayNumber === 0 || dayNumber === 6) 
+              ? ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'] // Hafta sonu
+              : ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']; // Hafta içi
+            
+            const timeSlotStatus = {};
+            workingHours.forEach(timeSlot => {
+              // Tüm çalışma saatleri müsait olarak işaretle
+              timeSlotStatus[timeSlot] = 'available';
+            });
+            
+            slots[dateStr] = timeSlotStatus;
+          }
         }
+        
+        setAvailableSlots(slots);
+      } catch (fallbackError) {
+        console.error('Error generating fallback slots:', fallbackError);
+        // En basit fallback - sadece bugün için birkaç saat
+        const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
+        setAvailableSlots({
+          [todayStr]: {
+            '18:00': 'available',
+            '18:30': 'available',
+            '19:00': 'available',
+            '19:30': 'available',
+            '20:00': 'available'
+          }
+        });
       }
-      
-      setAvailableSlots(slots);
     };
 
     fetchAvailableSlots();
-  }, []);
+  }, [isClient]);
 
   const handleDateSelect = (date) => {
     if (!isPast(date)) {
@@ -158,6 +183,22 @@ export default function Calendar({ onTimeSelect, onClose }) {
   const prevMonth = () => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
   };
+
+  // Client-side render kontrolü
+  if (!isClient || !currentMonth) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-center h-96">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
+              <p className="text-gray-600">Kalender wird geladen...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const days = getDaysInMonth(currentMonth);
   const monthName = currentMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });

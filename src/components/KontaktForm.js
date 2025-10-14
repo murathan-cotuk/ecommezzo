@@ -35,7 +35,7 @@ export default function KontaktForm() {
 
   // Teşekkür sayfasında 5 saniye sonra ana sayfaya yönlendirme
   useEffect(() => {
-    if (currentStep === 5) {
+    if (currentStep === questions.length + 1) {
       const timer = setInterval(() => {
         setCountdown((prev) => {
           if (prev <= 1) {
@@ -120,7 +120,7 @@ export default function KontaktForm() {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      setCurrentStep(4); // İletişim formuna geç
+      setCurrentStep(questions.length); // İletişim formuna geç
     }
   };
 
@@ -208,7 +208,7 @@ export default function KontaktForm() {
       const result = await sendEmail(formData, appointmentData);
       
       if (result.success) {
-        setCurrentStep(5); // Teşekkür sayfasına geç
+        setCurrentStep(questions.length + 1); // Teşekkür sayfasına geç
       } else {
         alert(result.message);
       }
@@ -229,7 +229,7 @@ export default function KontaktForm() {
     setShowCalendar(false);
   };
 
-  const progress = ((currentStep + 1) / 6) * 100; // 6 adım: 4 soru + iletişim + teşekkür
+  const progress = ((currentStep + 1) / (questions.length + 2)) * 100; // questions.length + iletişim + teşekkür
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -260,7 +260,7 @@ export default function KontaktForm() {
             transition={{ duration: 0.3 }}
           >
             {/* Soru Adımları */}
-            {currentStep < 4 && (
+            {currentStep < questions.length && (
               <div className="text-center space-y-8">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                   {questions[currentStep].question}
@@ -321,7 +321,7 @@ export default function KontaktForm() {
             )}
 
             {/* İletişim Formu */}
-            {currentStep === 4 && (
+            {currentStep === questions.length && (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
                   Ihre Kontaktdaten
@@ -501,7 +501,7 @@ export default function KontaktForm() {
             )}
 
             {/* Teşekkür Sayfası */}
-            {currentStep === 5 && (
+            {currentStep === questions.length + 1 && (
               <div className="text-center space-y-6">
                 <div className="text-6xl mb-4">🎉</div>
                 <h2 className="text-3xl font-bold text-gray-800">
