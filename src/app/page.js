@@ -72,44 +72,41 @@ export default function Home() {
               text-align: center;
             }
 
-            /* Partner logos: keep them visible but not too close to edges */
+            /* Partner logos: fixed bottom-left and above background */
             main > section:first-of-type > div:nth-of-type(2) {
               left: 16px;
               bottom: 16px;
+              position: absolute;
+              z-index: 3;
             }
 
-            /* CodeAnimation container: ensure it's visible, centered and behind text slightly */
+            /* Background visual layer: absolute, centered, non-interactive */
             main > section:first-of-type > div:nth-of-type(3) {
-              position: relative !important; /* override absolute positioning */
-              top: 0 !important;
-              right: 0 !important;
+              position: absolute !important;
+              inset: 0 !important; /* fill section */
               width: 100% !important;
-              height: auto !important;
-              min-height: 320px; /* ensure enough room for the visual */
-              display: flex !important; /* override hidden on mobile */
-              align-items: center;
-              justify-content: center;
-              overflow: visible;
-              aspect-ratio: 16 / 9; /* show the full visual without cropping */
-              max-height: 50vh; /* keep it inside viewport on tablets */
-              z-index: 1; /* sit behind the text/button */
-              margin-top: -8px; /* slight overlap so button appears a tick in front */
+              height: 100% !important;
+              display: grid !important;
+              place-items: center;
+              overflow: hidden; /* contain visuals */
+              z-index: 0; /* stay behind text and logos */
+              pointer-events: none; /* never block clicks */
             }
 
-            /* Ensure inner animation scales to fit and never overflows */
+            /* Center-fit scaling for any inner visual (animation/image) */
             main > section:first-of-type > div:nth-of-type(3) canvas,
             main > section:first-of-type > div:nth-of-type(3) svg,
             main > section:first-of-type > div:nth-of-type(3) img,
             main > section:first-of-type > div:nth-of-type(3) video,
             main > section:first-of-type > div:nth-of-type(3) > * {
-              width: 100% !important;
-              height: 100% !important;
-              max-width: 100% !important;
-              max-height: 100% !important;
+              width: auto !important;
+              height: auto !important;
+              max-width: min(100%, 900px) !important; /* cap width on tablets */
+              max-height: 70vh !important; /* keep inside viewport */
               object-fit: contain;
             }
 
-            /* Text container should sit above animation */
+            /* Text container above background visual */
             main > section:first-of-type > div:nth-of-type(1) {
               position: relative;
               z-index: 2;
@@ -122,21 +119,26 @@ export default function Home() {
               min-height: 75vh;
               padding-top: 98px; /* ensure content always below fixed navbar on phones */
               padding-bottom: 20px;
+              display: flex;
+              align-items: center; /* items-center */
+              justify-content: center;
+              /* Static background image on phones */
+              background-image: url('/Hero2.png');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
             }
 
             main > section:first-of-type > div:nth-of-type(1) h1 {
               line-height: 1.15;
             }
 
+            /* Hide animation layer entirely on phones; use static BG instead */
             main > section:first-of-type > div:nth-of-type(3) {
-              min-height: 280px;
-              aspect-ratio: 16 / 10;
-              max-height: 40vh; /* a bit smaller on phones to prevent cropping */
-              display: grid !important; /* robust centering */
-              place-items: center; /* always items-center */
+              display: none !important;
             }
 
-            /* Inner visual should be centered, proportional and behind text */
+            /* Center-fit scaling on phones */
             main > section:first-of-type > div:nth-of-type(3) > *,
             main > section:first-of-type > div:nth-of-type(3) img,
             main > section:first-of-type > div:nth-of-type(3) video,
@@ -144,11 +146,10 @@ export default function Home() {
             main > section:first-of-type > div:nth-of-type(3) svg {
               width: auto !important;
               height: auto !important;
-              max-width: 100% !important;
-              max-height: 100% !important;
+              max-width: min(100%, 580px) !important; /* common mobile cap */
+              max-height: 45vh !important; /* avoid covering logos */
               object-fit: contain;
               margin: 0 auto;
-              z-index: inherit !important; /* keep behind text/button */
             }
 
             /* On phones, lift the text a bit more than on tablet */

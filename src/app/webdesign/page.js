@@ -116,7 +116,7 @@ export default function Webdesign() {
                 className="block w-fit mx-auto lg:mx-0"
               >
                 <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c499ba] to-[#3e304c] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#726083] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
-                  Jetzt kostenloses Beratungsgespräch vereinbaren
+                  Kontakt Aufnehmen
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
