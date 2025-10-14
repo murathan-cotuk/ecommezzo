@@ -151,14 +151,14 @@ export default function Marketing() {
               max-width: 680px;
             }
 
-            /* Right-half background on tablets */
+            /* Left-half background on tablets */
             main > section:first-of-type::before {
               content: "";
               position: absolute;
               inset: 0;
               background-image: url('/MarketingHero.png');
               background-repeat: no-repeat;
-              background-position: right center;
+              background-position: left center;
               background-size: 200% auto; /* show right half */
               z-index: 0;
               pointer-events: none;
@@ -184,7 +184,7 @@ export default function Marketing() {
               inset: 0;
               background-image: url('/MarketingHero.png');
               background-repeat: no-repeat;
-              background-position: right 60%;
+              background-position: left 60%;
               background-size: 200% auto; /* show right half */
               z-index: 0;
               pointer-events: none;
