@@ -181,7 +181,7 @@ export default function Home() {
          {/*<Home2 />*/}
         {/*<Portfolio />*/}
         <Home3 />
-        <GraffitiScroll />
+        {/*<GraffitiScroll />*/}
         <ConversionRateCalculator />
         {/*<Compare />*/}
         {/*<ReferenzSection />*/}
