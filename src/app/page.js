@@ -56,7 +56,7 @@ export default function Home() {
         <ConversionRateCalculator />
         {/*<Compare />*/}
         {/*<ReferenzSection />*/}
-        <HomeLast />
+        {/*<HomeLast />*/}
         
       </main>
       
