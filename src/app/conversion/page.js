@@ -29,6 +29,56 @@ export default function Conversion() {
               </a>
             </div>
       </section>
+      <style jsx global>{`
+        /* Mobile hero adjustments to mirror homepage behavior */
+        @media (max-width: 1024px) {
+          section:first-of-type {
+            min-height: 100vh;
+            height: auto;
+            padding-top: 98px; /* under navbar */
+            padding-bottom: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none !important;
+            position: relative;
+          }
+
+          section:first-of-type > div:nth-of-type(1) {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 680px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          section:first-of-type::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('/ConversionHeader.png');
+            background-repeat: no-repeat;
+            background-position: right 60%;
+            background-size: 200% auto; /* show right half */
+            z-index: 0;
+            pointer-events: none;
+          }
+          section:first-of-type::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 27, 32, 0.42);
+            z-index: 1;
+            pointer-events: none;
+          }
+          section:first-of-type > div:nth-of-type(1) {
+            transform: translateY(-64px);
+          }
+        }
+      `}</style>
 
       {/* Calculator Component */}
       <ConversionRateCalculator />

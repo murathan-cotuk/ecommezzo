@@ -131,9 +131,19 @@ export default function Home() {
               inset: 0;
               background-image: url('/Hero2.png');
               background-repeat: no-repeat;
-              background-position: center;
+              background-position: center 90%;
               background-size: contain;
               z-index: 0; /* below text and logos, above gradient */
+              pointer-events: none;
+            }
+
+            /* Subtle dark overlay for better readability */
+            main > section:first-of-type::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background: rgba(19, 27, 32, 0.42);
+              z-index: 1; /* above image, below text */
               pointer-events: none;
             }
 
@@ -162,7 +172,7 @@ export default function Home() {
 
             /* On phones, lift the text a bit more than on tablet */
             main > section:first-of-type > div:nth-of-type(1) {
-              transform: translateY(-8px);
+              transform: translateY(-64px);
             }
           }
         `}</style>

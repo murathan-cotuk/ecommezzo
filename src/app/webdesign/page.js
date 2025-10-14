@@ -64,6 +64,81 @@ export default function Webdesign() {
            margin: 0 40px;
            flex-shrink: 0;
          }
+        /* Mobile hero adjustments to mirror homepage behavior */
+        @media (max-width: 1024px) {
+          main > section:first-of-type {
+            min-height: 100vh;
+            height: auto;
+            padding-top: 98px; /* keep under navbar */
+            padding-bottom: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none !important; /* disable inline cover bg */
+            position: relative;
+          }
+
+          /* Ensure text/button sits above overlays */
+          main > section:first-of-type > div:nth-of-type(1) {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 680px;
+          }
+          /* Right-half background on tablets as well */
+          main > section:first-of-type::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('/WebdesignHero.png');
+            background-repeat: no-repeat;
+            background-position: right center; /* anchor to right */
+            background-size: 200% auto; /* show right 50% */
+            z-index: 0;
+            pointer-events: none;
+          }
+          main > section:first-of-type::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 27, 32, 0.42);
+            z-index: 1;
+            pointer-events: none;
+          }
+        }
+
+        @media (max-width: 640px) {
+          /* Remove inline BG (cover) and replace with center-fit image layer */
+          main > section:first-of-type {
+            background: none !important;
+            position: relative;
+          }
+          main > section:first-of-type::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('/WebdesignHero.png');
+            background-repeat: no-repeat;
+            background-position: right 60%;
+            background-size: 200% auto; /* show right half */
+            z-index: 0;
+            pointer-events: none;
+          }
+          main > section:first-of-type::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 27, 32, 0.42);
+            z-index: 1;
+            pointer-events: none;
+          }
+          /* Lift text a bit for better balance */
+          main > section:first-of-type > div:nth-of-type(1) {
+            transform: translateY(-64px);
+          }
+        }
          @keyframes scroll {
            0% { transform: translateX(0); }
            100% { transform: translateX(-50%); }
