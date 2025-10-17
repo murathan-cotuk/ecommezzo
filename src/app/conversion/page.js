@@ -7,8 +7,86 @@ import { ChartBarIcon, ArrowTrendingUpIcon, LightBulbIcon } from '@heroicons/rea
 export default function Conversion() {
     return (
     <div className="text-gray-900 bg-[#fff6e3]">
+      <style jsx global>{`
+        /* Mobile hero adjustments - SADECE HERO SECTION */
+        @media (max-width: 1024px) {
+          .hero-section-mobile {
+            min-height: clamp(260px, 62vw, 560px) !important;
+            height: auto !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: none !important;
+            position: relative !important;
+          }
+
+          /* Ensure text/button sits above overlays */
+          .hero-section-mobile > div:nth-of-type(1) {
+            position: relative !important;
+            z-index: 2 !important;
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            max-width: 680px !important;
+          }
+          /* Right-half background on tablets as well */
+          .hero-section-mobile::before {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background-image: url('/ConversionHeader.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: right center !important;
+            background-size: 200% auto !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+          }
+          .hero-section-mobile::after {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: rgba(19, 27, 32, 0.42) !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          /* Remove inline BG (cover) and replace with center-fit image layer */
+          .hero-section-mobile {
+            background: none !important;
+            position: relative !important;
+          }
+          .hero-section-mobile::before {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background-image: url('/ConversionHeader.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: right 60% !important;
+            background-size: 200% auto !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+          }
+          .hero-section-mobile::after {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: rgba(19, 27, 32, 0.42) !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
+          }
+          .hero-section-mobile > div:nth-of-type(1) {
+            transform: none !important;
+            padding-top: 98px !important;
+          }
+        }
+      `}</style>
+      
          {/* Hero Section */}
-      <section className="w-full min-h-[100vh] sm:h-[800px] text-white flex flex-col lg:flex-row items-center px-4 sm:px-6 relative overflow-hidden" style={{backgroundImage: 'url(/ConversionHeader.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
+      <section className="hero-section-mobile w-full min-h-[100vh] sm:h-[800px] text-white flex flex-col lg:flex-row items-center px-4 sm:px-6 relative overflow-hidden" style={{backgroundImage: 'url(/ConversionHeader.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
       <div className="w-full lg:w-1/2 pl-0 lg:pl-40 pt-20 pb-10 lg:pb-20 z-20 text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold pb-6 lg:pb-10 bg-gradient-to-r from-[#4c7266] via-[#3ca384] to-[#649385] bg-clip-text text-transparent">
               Conversion Rate Rechner
@@ -29,81 +107,8 @@ export default function Conversion() {
               </a>
             </div>
       </section>
-      <style jsx global>{`
-        /* Mobile hero adjustments to mirror homepage behavior */
-        @media (max-width: 1024px) {
-          section:first-of-type {
-            min-height: clamp(260px, 62vw, 560px);
-            height: auto;
-            padding-top: 0;
-            padding-bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none !important;
-            position: relative;
-          }
-
-          section:first-of-type > div:nth-of-type(1) {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 680px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          section:first-of-type::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('/ConversionHeader.png');
-            background-repeat: no-repeat;
-            background-position: right 60%;
-            background-size: 200% auto; /* show right half */
-            z-index: 0;
-            pointer-events: none;
-          }
-          section:first-of-type::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(19, 27, 32, 0.42);
-            z-index: 1;
-            pointer-events: none;
-          }
-          section:first-of-type > div:nth-of-type(1) {
-            transform: none;
-            padding-top: 98px;
-          }
-        }
-        /* Mobile: Prevent hero banner image from bleeding into content section */
-        @media (max-width: 768px) {
-          section:first-of-type {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-          }
-          
-          .max-w-7xl.mx-auto.px-6.py-20 {
-            background: #f9cd69 !important;
-            position: relative;
-            z-index: 10;
-            margin-top: -1px;
-            border-top: 1px solid #f9cd69;
-          }
-          
-          /* Ensure content is centered on mobile */
-          .md\\:hidden {
-            width: 100% !important;
-            max-width: 320px !important;
-            margin: 0 auto !important;
-            padding: 0 16px !important;
-          }
-        }
-      `}</style>
+      
+       
 
       {/* Calculator Component */}
       <ConversionRateCalculator />
@@ -122,9 +127,10 @@ export default function Conversion() {
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-[#255547]">
             Was ist eine Conversion Rate?
           </h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Desktop Layout */}
+          <div className="hidden md:grid md:grid-cols-2 gap-12 items-center">
             {/* Desktop: Sol taraf - Açıklama ve Formel */}
-            <div className="hidden md:block">
+            <div>
               <p className="text-lg text-black leading-relaxed mb-6">
                 Die Conversion Rate (Konversionsrate) ist eine der wichtigsten Kennzahlen im Online-Marketing. 
                 Sie zeigt das Verhältnis zwischen Website-Besuchern und gewünschten Zielhandlungen an.
@@ -142,7 +148,7 @@ export default function Conversion() {
             </div>
             
             {/* Desktop: Sağ taraf - Beispielrechnung */}
-            <div className="hidden md:block bg-gray-50 rounded-2xl p-8">
+            <div className="bg-gray-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 text-gray-900">Beispielrechnung</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-4 bg-white rounded-lg">
@@ -159,42 +165,44 @@ export default function Conversion() {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Mobile: Kompakt ortalanmış sıralama */}
-            <div className="md:hidden w-full max-w-xs mx-auto text-center space-y-4">
-              <p className="text-sm text-black leading-relaxed">
+          {/* Mobile Layout - Tamamen Ayrı */}
+          <div className="md:hidden w-full max-w-md mx-auto px-4 space-y-6">
+            <div className="text-center space-y-4">
+              <p className="text-base text-black leading-relaxed">
                 Die Conversion Rate (Konversionsrate) ist eine der wichtigsten Kennzahlen im Online-Marketing. 
                 Sie zeigt das Verhältnis zwischen Website-Besuchern und gewünschten Zielhandlungen an.
               </p>
-              <p className="text-sm text-black leading-relaxed">
+              <p className="text-base text-black leading-relaxed">
                 Einfach ausgedrückt: Wie viele Ihrer Besucher werden zu Kunden? Diese Metrik ist entscheidend 
                 für den Erfolg Ihrer Online-Präsenz und hilft dabei, Optimierungspotenziale zu identifizieren.
               </p>
-              
-              <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="text-lg font-bold mb-3 text-gray-900">Beispielrechnung</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center p-2 bg-white rounded-lg">
-                    <span className="font-semibold text-xs">Sitzungen:</span>
-                    <span className="text-[#c499ba] font-bold text-xs">30.000</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-white rounded-lg">
-                    <span className="font-semibold text-xs">Conversions:</span>
-                    <span className="text-[#c499ba] font-bold text-xs">900</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-lg text-white">
-                    <span className="font-semibold text-xs">Conversion Rate:</span>
-                    <span className="font-bold text-sm">3%</span>
-                  </div>
+            </div>
+            
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 text-center">Beispielrechnung</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <span className="font-semibold text-sm text-gray-700">Sitzungen:</span>
+                  <span className="text-[#c499ba] font-bold text-base">30.000</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <span className="font-semibold text-sm text-gray-700">Conversions:</span>
+                  <span className="text-[#c499ba] font-bold text-base">900</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-lg text-white">
+                  <span className="font-semibold text-sm">Conversion Rate:</span>
+                  <span className="font-bold text-lg">3%</span>
                 </div>
               </div>
-              
-              <div className="bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-xl p-4 text-white">
-                <h3 className="text-lg font-bold mb-2">Die Formel</h3>
-                <p className="text-sm">
-                  <strong>Conversions ÷ Sitzungen × 100% = Conversion Rate</strong>
-                </p>
-              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-2xl p-6 text-white shadow-lg">
+              <h3 className="text-xl font-bold mb-3 text-center">Die Formel</h3>
+              <p className="text-base text-center">
+                <strong>Conversions ÷ Sitzungen × 100% = Conversion Rate</strong>
+              </p>
             </div>
           </div>
         </motion.section>
