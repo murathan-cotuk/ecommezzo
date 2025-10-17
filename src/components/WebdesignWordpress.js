@@ -10,25 +10,12 @@ export default function WordPressSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* 4.2. Hero Section */}
-        <motion.div 
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            animate={{ 
-              rotate: [0, -10, 10, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-            className="inline-block mb-8"
-          >
+        <div className="text-center mb-20">
+          <div className="inline-block mb-8">
             <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl">
               <GlobeAltIcon className="w-12 h-12 text-white" />
             </div>
-          </motion.div>
+          </div>
           <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
             WordPress Website Experte
           </h2>
@@ -39,7 +26,7 @@ export default function WordPressSection() {
             von der Unternehmenspräsentation bis zum Blog. Ihre Website wird nicht nur modern aussehen, 
             sondern auch <span className="font-bold text-red-600">maximale Flexibilität</span> bieten.
           </p>
-        </motion.div>
+        </div>
 
         {/* 4.3. Technical Skills Grid */}
         <div className="grid lg:grid-cols-4 gap-6 mb-20">
@@ -73,56 +60,32 @@ export default function WordPressSection() {
               skills: ["Theme Dev", "Plugin Dev", "Hooks", "Customization"]
             }
           ].map(({ icon, title, desc, color, skills }, i) => (
-            <motion.div
+            <div
               key={title}
-              initial={{ opacity: 0, y: 50, rotateX: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                y: -15,
-                transition: { duration: 0.3 }
-              }}
-              className="group bg-gradient-to-br from-gray-50 to-white border-2 border-orange-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl hover:shadow-orange-200/50 transition-all duration-300 transform perspective-1000"
+              className="group bg-gradient-to-br from-gray-50 to-white border-2 border-orange-100 rounded-3xl p-6 shadow-lg hover:shadow-2xl hover:shadow-orange-200/50 transition-all duration-300"
             >
-              <motion.div 
-                className={`w-16 h-16 bg-gradient-to-r ${color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className={`w-16 h-16 bg-gradient-to-r ${color} rounded-2xl flex items-center justify-center mb-6 mx-auto transition-all duration-300`}>
                 <span className="text-3xl">{icon}</span>
-              </motion.div>
+              </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-orange-600 transition-colors duration-300">{title}</h3>
               <p className="text-gray-600 mb-4 text-sm">{desc}</p>
               <div className="space-y-2">
                 {skills.map((skill, index) => (
-                  <motion.div 
+                  <div 
                     key={skill}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 + index * 0.05 }}
-                    viewport={{ once: true }}
                     className="flex items-center text-xs text-gray-600 group-hover:text-gray-700"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2 group-hover:bg-orange-500 transition-colors duration-300"></span>
                     {skill}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* 4.4. WordPress Features Showcase */}
-        <motion.div 
-          className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-8 mb-20 border-2 border-orange-100"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-8 mb-20 border-2 border-orange-100">
           <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">WordPress für Websites & Blogs</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
@@ -151,12 +114,8 @@ export default function WordPressSection() {
                     features: ["Custom Post Types", "Advanced Forms", "API Integration"]
                   }
                 ].map(({ title, desc, icon, features }, index) => (
-                  <motion.div 
+                  <div 
                     key={title}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
                     className="group p-4 bg-white rounded-xl border border-orange-200 transition-all duration-300"
                   >
                     <div className="flex items-start">
@@ -173,7 +132,7 @@ export default function WordPressSection() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -203,12 +162,8 @@ export default function WordPressSection() {
                     features: ["Schema Markup", "Google Analytics", "Search Console"]
                   }
                 ].map(({ title, desc, icon, features }, index) => (
-                  <motion.div 
+                  <div 
                     key={title}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
                     className="group p-4 bg-white rounded-xl border border-red-200 transition-all duration-300"
                   >
                     <div className="flex items-start">
@@ -225,21 +180,15 @@ export default function WordPressSection() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* 4.5. Technical Expertise Showcase */}
-        <motion.div 
-          className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-8 mb-20 border-2 border-orange-200"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-8 mb-20 border-2 border-orange-200">
           <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Technische Expertise & Best Practices</h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
@@ -270,7 +219,7 @@ export default function WordPressSection() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

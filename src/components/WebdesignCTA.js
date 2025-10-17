@@ -11,60 +11,29 @@ export default function CTASection() {
       
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center">
           {/* Hero Icon */}
-          <motion.div
-            animate={{ 
-              rotate: [0, -10, 10, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="inline-block mb-8"
-          >
+          <div className="inline-block mb-8">
             <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
               <span className="text-4xl">💼</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <motion.h2 
-            className="text-6xl font-bold mb-8 bg-gradient-to-r from-gray-900 via-orange-600 to-yellow-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-gray-900 via-orange-600 to-yellow-600 bg-clip-text text-transparent">
             Starten Sie Ihr Projekt mit uns
-          </motion.h2>
+          </h2>
 
           {/* Subtitle */}
-          <motion.p 
-            className="text-2xl max-w-4xl mx-auto leading-relaxed text-gray-700 mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
+          <p className="text-2xl max-w-4xl mx-auto leading-relaxed text-gray-700 mb-12">
             Lassen Sie uns in einem 
             <span className="font-bold text-orange-600"> kostenlosen Strategiegespräch</span> Ihre Vision besprechen 
             und gemeinsam eine <span className="font-bold text-yellow-600">maßgeschneiderte Lösung</span> entwickeln, 
             die Ihr Unternehmen nachhaltig voranbringt.
-          </motion.p>
+          </p>
 
           {/* Features Grid */}
-          <motion.div 
-            className="grid md:grid-cols-3 gap-8 mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
               {
                 icon: "💼",
@@ -82,90 +51,30 @@ export default function CTASection() {
                 desc: "Bewährte Methoden für messbare Ergebnisse"
               }
             ].map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
                 className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-8 border border-orange-200 hover:border-orange-400 hover:shadow-xl transition-all duration-300 shadow-lg"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-gray-800">{feature.title}</h3>
                 <p className="text-gray-600 text-sm">{feature.desc}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            viewport={{ once: true }}
-          >
-            <motion.a
+          <div>
+            <a
               href="/kontakt"
-              animate={{
-                scale: [1, 1.02, 1],
-                boxShadow: [
-                  "0 10px 25px rgba(249, 115, 22, 0.3)",
-                  "0 15px 35px rgba(249, 115, 22, 0.5)",
-                  "0 10px 25px rgba(249, 115, 22, 0.3)",
-                ],
-              }}
-              transition={{
-                scale: { repeat: Infinity, duration: 2, ease: "easeInOut" },
-                boxShadow: { repeat: Infinity, duration: 2, ease: "easeInOut" },
-              }}
-              whileHover={{ 
-                scale: 1.08, 
-                y: -8,
-                rotate: [0, -2, 2, 0],
-                transition: { 
-                  duration: 0.4,
-                  scale: { type: "spring", stiffness: 300, damping: 10 },
-                  rotate: { duration: 0.6, ease: "easeInOut" }
-                }
-              }}
-              whileTap={{ scale: 0.95 }}
               className="inline-flex items-center bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-bold px-12 py-6 rounded-full text-xl transition-all duration-300 group relative overflow-hidden"
             >
-              {/* Hover shine effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              />
-              
               <span className="relative z-10 mr-3 font-extrabold tracking-wide">Kontakt</span>
-              <motion.span
-                className="relative z-10 text-2xl"
-                animate={{ 
-                  x: [0, 8, 0],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              >
-                →
-              </motion.span>
-            </motion.a>
-          </motion.div>
+              <span className="relative z-10 text-2xl">→</span>
+            </a>
+          </div>
 
           {/* Trust Indicators */}
-          <motion.div 
-            className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-600"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            viewport={{ once: true }}
-          >
+          <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-600">
             <div className="flex items-center">
               <span className="text-2xl mr-2">✅</span>
               <span className="text-sm font-medium">Kostenlose Beratung</span>
@@ -178,8 +87,8 @@ export default function CTASection() {
               <span className="text-2xl mr-2">🔒</span>
               <span className="text-sm font-medium">100% Vertraulich</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

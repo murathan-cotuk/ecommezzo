@@ -79,9 +79,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              E
-              <span className="text-teal-400">C</span>
-              OMMEZZO
+              ECOMMEZZO
             </motion.a>
             
             {/* Desktop Navigation */}
@@ -215,11 +213,18 @@ export default function Navbar() {
                 >
                   {/* Header with logo and close button */}
                   <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                    <div className="text-2xl font-bold text-gray-900 font-serif">
-                      E
-                      <span className="text-teal-500">C</span>
-                      OMMEZZO
-                    </div>
+                    <a 
+                      href="/" 
+                      className="text-2xl font-bold text-gray-900 font-serif hover:text-teal-500 transition-colors duration-200"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                          detail: { isOpen: false } 
+                        }));
+                      }}
+                    >
+                      ECOMMEZZO
+                    </a>
                     <button
                       onClick={() => {
                         setIsMobileMenuOpen(false);
