@@ -116,9 +116,9 @@ export default function Marketing() {
                 href="/kontakt"
                 className="block w-fit mx-auto lg:mx-0"
               >
-                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c3dcb1] to-[#6f935f] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#708163] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
+                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#c3dcb1] to-[#6f935f] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#708163] transition-shadow duration-300 inline-flex items-center gap-3 text-sm sm:text-lg">
                 Kontakt Aufnehmen
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
@@ -206,13 +206,7 @@ export default function Marketing() {
 
       {/* 2. Services Section */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             Unsere E-Commerce Marketing Services
           </h2>
@@ -221,13 +215,7 @@ export default function Marketing() {
           </p>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">🏆</span>
@@ -237,15 +225,9 @@ export default function Marketing() {
                 <p className="text-gray-600 leading-relaxed">
                   Als führende E-Commerce Marketing Agentur in Deutschland helfen wir Unternehmen dabei, ihre Online-Verkäufe zu maximieren.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">🎯</span>
@@ -255,15 +237,9 @@ export default function Marketing() {
                 <p className="text-gray-600 leading-relaxed">
                   Unser ganzheitlicher Ansatz kombiniert bewährte Marketing-Strategien mit modernster Technologie für messbare Ergebnisse.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">⚡</span>
@@ -273,16 +249,10 @@ export default function Marketing() {
                 <p className="text-gray-600 leading-relaxed">
                   Mit über 5 Jahren Erfahrung haben wir bereits Hunderten von Unternehmen geholfen, ihre Verkäufe zu steigern.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-2xl border border-gray-200"
-            >
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-2xl border border-gray-200">
               <div className="flex items-start">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
                   <span className="text-3xl">💡</span>
@@ -301,9 +271,9 @@ export default function Marketing() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
@@ -351,7 +321,7 @@ export default function Marketing() {
               image: "/marketing-targeting.jpg"
             }
           ].map((service, index) => (
-            <motion.div
+            <div
               key={index}
               id={
                 index === 0 ? "seo" : 
@@ -360,11 +330,7 @@ export default function Marketing() {
                 index === 5 ? "target-audience" : 
                 undefined
               }
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100 overflow-hidden"
             >
               {/* Service Image */}
               <div className="h-48 bg-gradient-to-br from-cyan-100 to-blue-200 flex items-center justify-center">
@@ -384,7 +350,7 @@ export default function Marketing() {
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -392,18 +358,12 @@ export default function Marketing() {
       {/* 3. ROAS & Performance Section */}
       <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-6">Unsere Performance-Zahlen</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Mit unserem datengetriebenen Ansatz steigern wir die Verkäufe unserer Kunden durchschnittlich um das 4,2-fache
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -412,18 +372,14 @@ export default function Marketing() {
               { number: "€2.3M", label: "Gesamtumsatz", description: "Gesamtumsatz, den wir für unsere Kunden generiert haben" },
               { number: "89%", label: "Kundenzufriedenheit", description: "Anteil unserer fortlaufenden Kunden" }
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20"
               >
-                <AnimatedNumber value={stat.number} duration={2.5} />
+                <span className="text-4xl font-bold text-orange-500 mb-2">{stat.number}</span>
                 <div className="text-xl font-semibold mb-2">{stat.label}</div>
                 <div className="text-sm text-gray-300">{stat.description}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -432,20 +388,14 @@ export default function Marketing() {
       {/* 3.5. Detailed E-Commerce Marketing Content Section */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-6 text-gray-800">
               E-Commerce Marketing Strategien die funktionieren
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Erfahren Sie, wie wir Ihren Online-Shop zum Verkaufsschlager machen
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
@@ -585,26 +535,14 @@ export default function Marketing() {
              {/* 4. Why Choose Us Section */}
        <section className="py-20 px-6 bg-gray-50">
          <div className="max-w-7xl mx-auto">
-           <motion.div
-             initial={{ opacity: 0, y: 50 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-             viewport={{ once: true }}
-             className="text-center mb-16"
-           >
+           <div className="text-center mb-16">
              <h2 className="text-5xl font-bold mb-6 text-gray-800">Warum Ecommezzo?</h2>
              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
                Wir sind nicht nur eine Marketing-Agentur - wir sind Ihr strategischer Partner für nachhaltiges Wachstum
              </p>
              <div className="max-w-6xl mx-auto">
                <div className="grid lg:grid-cols-2 gap-8 mb-12">
-                 <motion.div
-                   initial={{ opacity: 0, x: -30 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 0.6, delay: 0.1 }}
-                   viewport={{ once: true }}
-                   className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100"
-                 >
+                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100">
                    <div className="flex items-center mb-6">
                      <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mr-4">
                        <span className="text-2xl">🎓</span>
@@ -620,15 +558,9 @@ export default function Marketing() {
                      <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Facebook Marketing</span>
                      <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Amazon PPC</span>
                    </div>
-                 </motion.div>
+                 </div>
 
-                 <motion.div
-                   initial={{ opacity: 0, x: 30 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   transition={{ duration: 0.6, delay: 0.2 }}
-                   viewport={{ once: true }}
-                   className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100"
-                 >
+                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100">
                    <div className="flex items-center mb-6">
                      <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mr-4">
                        <span className="text-2xl">📈</span>
@@ -645,16 +577,10 @@ export default function Marketing() {
                      </div>
                      <span className="text-sm font-medium text-green-600">89% Kundenzufriedenheit</span>
                    </div>
-                 </motion.div>
+                 </div>
                </div>
 
-               <motion.div
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.8, delay: 0.3 }}
-                 viewport={{ once: true }}
-                 className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100"
-               >
+               <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100">
                  <div className="flex items-start">
                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
                      <span className="text-3xl">🛍️</span>
@@ -672,7 +598,7 @@ export default function Marketing() {
                        </div>
                        <div className="text-center p-4 bg-white rounded-xl border border-purple-100">
                          <div className="text-2xl mb-2">🌐</div>
-                         <div className="text-sm font-medium text-gray-700">WooCommerce</div>
+                         <div className="text-sm font-medium text-gray-700">Woo Commerce</div>
                        </div>
                        <div className="text-center p-4 bg-white rounded-xl border border-purple-100">
                          <div className="text-2xl mb-2">📦</div>
@@ -685,9 +611,9 @@ export default function Marketing() {
                      </div>
                    </div>
                  </div>
-               </motion.div>
+               </div>
              </div>
-           </motion.div>
+           </div>
 
            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
              {[
@@ -716,20 +642,16 @@ export default function Marketing() {
                  color: "from-orange-400 to-red-600"
                }
              ].map((feature, index) => (
-               <motion.div
+               <div
                  key={index}
-                 initial={{ opacity: 0, y: 50 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                 viewport={{ once: true }}
-                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center"
+                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
                >
                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6`}>
                    {feature.icon}
                  </div>
                  <h3 className="text-2xl font-bold mb-4 text-gray-800">{feature.title}</h3>
                  <p className="text-gray-600">{feature.description}</p>
-               </motion.div>
+               </div>
              ))}
            </div>
          </div>
@@ -737,18 +659,12 @@ export default function Marketing() {
 
       {/* 5. Process Section */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 text-gray-800">Unser Arbeitsprozess</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             In 4 Schritten steigern wir Ihre E-Commerce-Verkäufe
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
@@ -777,12 +693,8 @@ export default function Marketing() {
               icon: "📈"
             }
           ].map((process, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="text-center"
             >
               <div className="relative mb-6">
@@ -793,7 +705,7 @@ export default function Marketing() {
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-800">{process.title}</h3>
               <p className="text-gray-600">{process.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -801,29 +713,17 @@ export default function Marketing() {
       {/* 6. E-Commerce Marketing Benefits & FAQ Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-6 text-gray-800">
               Häufige Fragen zum E-Commerce Marketing
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Alles was Sie über professionelles E-Commerce Marketing wissen müssen
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100"
-            >
+            <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
                   <span className="text-2xl">❓</span>
@@ -870,15 +770,9 @@ export default function Marketing() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100"
-            >
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
                   <span className="text-2xl">📊</span>
@@ -931,17 +825,11 @@ export default function Marketing() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <div className="mt-16 grid lg:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mr-4">
                   <span className="text-2xl">💰</span>
@@ -967,15 +855,9 @@ export default function Marketing() {
                   <div className="text-xs text-gray-500">Rendite</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4">
                   <span className="text-2xl">📈</span>
@@ -1001,15 +883,9 @@ export default function Marketing() {
                   <div className="text-xs text-gray-500">Wachstum</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mr-4">
                   <span className="text-2xl">🌐</span>
@@ -1035,7 +911,7 @@ export default function Marketing() {
                   <div className="text-xs text-gray-500">Integration</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1050,42 +926,19 @@ export default function Marketing() {
          </div>
 
          <div className="relative z-10 max-w-6xl mx-auto text-center">
-           <motion.div
-             initial={{ opacity: 0, y: 50 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-             viewport={{ once: true }}
-           >
+           <div>
              {/* Main Headline */}
-             <motion.h2 
-               initial={{ opacity: 0, scale: 0.8 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               transition={{ duration: 0.8, delay: 0.2 }}
-               viewport={{ once: true }}
-               className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent"
-             >
+             <h2 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
                Bereit für den Durchbruch?
-             </motion.h2>
+             </h2>
 
-             <motion.p 
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.4 }}
-               viewport={{ once: true }}
-               className="text-2xl md:text-3xl mb-12 text-gray-800 max-w-4xl mx-auto leading-relaxed"
-             >
+             <p className="text-2xl md:text-3xl mb-12 text-gray-800 max-w-4xl mx-auto leading-relaxed">
                Verwandeln Sie Ihre E-Commerce-Träume in Realität. 
                <span className="text-orange-600 font-semibold"> Jetzt ist der Moment</span> für exponentielles Wachstum.
-             </motion.p>
+             </p>
 
              {/* SEO Content Cards */}
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.5 }}
-               viewport={{ once: true }}
-               className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto"
-             >
+             <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-orange-100 shadow-lg">
                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                    <span className="text-2xl">⚡</span>
@@ -1109,16 +962,10 @@ export default function Marketing() {
                  <h3 className="text-lg font-bold text-gray-800 mb-2">Langfristige Partnerschaft</h3>
                  <p className="text-gray-600 text-sm">89% unserer Kunden bleiben langfristig bei uns</p>
                </div>
-             </motion.div>
+             </div>
 
              {/* SEO Benefits Text */}
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.6 }}
-               viewport={{ once: true }}
-               className="bg-gradient-to-r from-white/90 to-blue-50/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 shadow-xl mb-12 max-w-4xl mx-auto"
-             >
+             <div className="bg-gradient-to-r from-white/90 to-blue-50/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 shadow-xl mb-12 max-w-4xl mx-auto">
                <h3 className="text-2xl font-bold text-gray-800 mb-6">Warum jetzt handeln?</h3>
                <div className="grid md:grid-cols-2 gap-6 text-left">
                  <div>
@@ -1140,20 +987,12 @@ export default function Marketing() {
                    </p>
                  </div>
                </div>
-             </motion.div>
+             </div>
 
              {/* CTA Button */}
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.7 }}
-               viewport={{ once: true }}
-               className="mb-1"
-             >
-               <motion.button
-                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
-                 whileTap={{ scale: 0.95 }}
-                 className="group relative px-16 py-6 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-xl rounded-2xl shadow-2xl overflow-hidden"
+             <div className="mb-1">
+               <button
+                 className="group relative px-16 py-6 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-xl rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300"
                  onClick={() => window.location.href = '/kontakt'}
                >
                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1164,17 +1003,11 @@ export default function Marketing() {
                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                    </svg>
                  </span>
-               </motion.button>
-             </motion.div>
+               </button>
+             </div>
 
              {/* Trust Indicators */}
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.8 }}
-               viewport={{ once: true }}
-               className="mt-12 flex flex-wrap justify-center items-center gap-8 text-gray-500"
-             >
+             <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-gray-500">
                <div className="flex items-center gap-2">
                  <span className="text-green-500">✓</span>
                  <span className="text-sm">Kostenlose Erstberatung</span>
@@ -1187,9 +1020,9 @@ export default function Marketing() {
                  <span className="text-green-500">✓</span>
                  <span className="text-sm">Messbare Ergebnisse garantiert</span>
                </div>
-             </motion.div>
+             </div>
              
-           </motion.div>
+           </div>
          </div>
        </section>
      </div>

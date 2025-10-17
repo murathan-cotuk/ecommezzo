@@ -98,9 +98,9 @@ export default function Marktplatz() {
                 href="/kontakt"
                 className="block w-fit mx-auto lg:mx-0"
               >
-                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#83c5dc] to-[#2998be] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#476b78] transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 inline-flex items-center gap-3 text-sm sm:text-lg">
+                <button className="px-4 sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-[#83c5dc] to-[#2998be] text-white font-bold rounded-xl shadow-2xl hover:shadow-[#476b78] transition-shadow duration-300 inline-flex items-center gap-3 text-sm sm:text-lg">
                 Kontakt Aufnehmen
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
@@ -187,13 +187,7 @@ export default function Marktplatz() {
 
       {/* 2. Services Section */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             Unsere Marktplatz Services
           </h2>
@@ -202,13 +196,7 @@ export default function Marktplatz() {
           </p>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">🛒</span>
@@ -219,15 +207,9 @@ export default function Marktplatz() {
                   Als spezialisierte Marktplatz Marketing Agentur verstehen wir die einzigartigen Herausforderungen 
                   von Amazon, eBay, Otto und Zalando.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">📈</span>
@@ -238,15 +220,9 @@ export default function Marktplatz() {
                   Mit über 5 Jahren Erfahrung im Marktplatz Marketing steigern wir die Verkäufe unserer Kunden 
                   durchschnittlich um das 3,8-fache.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-all duration-300"
-              >
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-2xl">🌍</span>
@@ -257,16 +233,10 @@ export default function Marktplatz() {
                   Von Deutschland bis USA - wir helfen Ihnen dabei, neue Märkte zu erschließen und 
                   Ihr Geschäft global zu skalieren.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-gray-50 to-orange-50 p-8 rounded-2xl border border-gray-200"
-            >
+            <div className="bg-gradient-to-r from-gray-50 to-orange-50 p-8 rounded-2xl border border-gray-200">
               <div className="flex items-start">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
                   <span className="text-3xl">💡</span>
@@ -285,9 +255,9 @@ export default function Marktplatz() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
@@ -334,13 +304,9 @@ export default function Marktplatz() {
               platforms: ["Alle Plattformen"]
             }
           ].map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100 overflow-hidden"
             >
               {/* Service Image */}
               <div className="h-48 bg-gradient-to-br from-cyan-100 to-blue-200 flex items-center justify-center">
@@ -370,7 +336,7 @@ export default function Marktplatz() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -378,18 +344,12 @@ export default function Marktplatz() {
       {/* 3. ROAS & Performance Section */}
       <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-6">Unsere Marktplatz-Performance</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Mit unserem datengetriebenen Ansatz steigern wir die Marktplatz-Verkäufe unserer Kunden durchschnittlich um das 3,8-fache
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -398,18 +358,14 @@ export default function Marktplatz() {
               { number: "€1.8M", label: "Marktplatz-Umsatz", description: "Gesamtumsatz auf allen Marktplätzen" },
               { number: "92%", label: "Kundenzufriedenheit", description: "Anteil unserer fortlaufenden Kunden" }
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20"
               >
-                <AnimatedNumber value={stat.number} duration={2.5} />
+                <span className="text-4xl font-bold text-orange-500 mb-2">{stat.number}</span>
                 <div className="text-xl font-semibold mb-2">{stat.label}</div>
                 <div className="text-sm text-gray-300">{stat.description}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -418,26 +374,14 @@ export default function Marktplatz() {
       {/* 4. Why Choose Us Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-6 text-gray-800">Warum Ecommezzo für Marktplätze?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Wir sind nicht nur eine Marketing-Agentur - wir sind Ihr strategischer Partner für nachhaltiges Marktplatz-Wachstum
             </p>
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-2 gap-8 mb-12">
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100"
-                >
+                <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100">
                   <div className="flex items-center mb-6">
                     <div className="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mr-4">
                       <span className="text-2xl">🎯</span>
@@ -453,15 +397,9 @@ export default function Marktplatz() {
                     <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">eBay Marketing</span>
                     <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Otto Partner</span>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100"
-                >
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100">
                   <div className="flex items-center mb-6">
                     <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mr-4">
                       <span className="text-2xl">📊</span>
@@ -478,16 +416,10 @@ export default function Marktplatz() {
                     </div>
                     <span className="text-sm font-medium text-blue-600">92% Kundenzufriedenheit</span>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100"
-              >
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100">
                 <div className="flex items-start">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
                     <span className="text-3xl">🌍</span>
@@ -518,9 +450,9 @@ export default function Marktplatz() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -549,20 +481,16 @@ export default function Marktplatz() {
                 color: "from-orange-400 to-red-600"
               }
             ].map((feature, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6`}>
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-800">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -570,18 +498,12 @@ export default function Marktplatz() {
 
       {/* 5. Process Section */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 text-gray-800">Unser Marktplatz-Prozess</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             In 4 Schritten steigern wir Ihre Marktplatz-Verkäufe
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
@@ -610,12 +532,8 @@ export default function Marktplatz() {
               icon: "📈"
             }
           ].map((process, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="text-center"
             >
               <div className="relative mb-6">
@@ -626,7 +544,7 @@ export default function Marktplatz() {
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-800">{process.title}</h3>
               <p className="text-gray-600">{process.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -641,42 +559,19 @@ export default function Marktplatz() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div>
             {/* Main Headline */}
-            <motion.h2 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent"
-            >
+            <h2 className="text-6xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
               Bereit für Marktplatz-Erfolg?
-            </motion.h2>
+            </h2>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="text-2xl md:text-3xl mb-12 text-gray-800 max-w-4xl mx-auto leading-relaxed"
-            >
+            <p className="text-2xl md:text-3xl mb-12 text-gray-800 max-w-4xl mx-auto leading-relaxed">
               Verwandeln Sie Ihre Marktplatz-Träume in Realität. 
               <span className="text-orange-600 font-semibold"> Jetzt ist der Moment</span> für exponentielles Marktplatz-Wachstum.
-            </motion.p>
+            </p>
 
             {/* SEO Content Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto"
-            >
+            <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
               <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-orange-100 shadow-lg">
                 <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⚡</span>
@@ -700,16 +595,10 @@ export default function Marktplatz() {
                 <h3 className="text-lg font-bold text-gray-800 mb-2">Langfristige Partnerschaft</h3>
                 <p className="text-gray-600 text-sm">92% unserer Kunden bleiben langfristig bei uns</p>
               </div>
-            </motion.div>
+            </div>
 
             {/* SEO Benefits Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-white/90 to-orange-50/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 shadow-xl mb-12 max-w-4xl mx-auto"
-            >
+            <div className="bg-gradient-to-r from-white/90 to-orange-50/90 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 shadow-xl mb-12 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Warum jetzt auf Marktplätzen handeln?</h3>
               <div className="grid md:grid-cols-2 gap-6 text-left">
                 <div>
@@ -733,20 +622,12 @@ export default function Marktplatz() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              viewport={{ once: true }}
-              className="mb-1"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-16 py-6 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-xl rounded-2xl shadow-2xl overflow-hidden"
+            <div className="mb-1">
+              <button
+                className="group relative px-16 py-6 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-xl rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300"
                 onClick={() => window.location.href = '/kontakt'}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -756,17 +637,11 @@ export default function Marktplatz() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
             {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="mt-12 flex flex-wrap justify-center items-center gap-8 text-gray-500"
-            >
+            <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-gray-500">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">✓</span>
                 <span className="text-sm">Kostenlose Marktplatz-Analyse</span>
@@ -779,9 +654,9 @@ export default function Marktplatz() {
                 <span className="text-green-500">✓</span>
                 <span className="text-sm">Messbare Marktplatz-Ergebnisse</span>
               </div>
-            </motion.div>
+            </div>
             
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

@@ -79,13 +79,37 @@ export default function Conversion() {
             padding-top: 98px;
           }
         }
+        /* Mobile: Prevent hero banner image from bleeding into content section */
+        @media (max-width: 768px) {
+          section:first-of-type {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+          }
+          
+          .max-w-7xl.mx-auto.px-6.py-20 {
+            background: #f9cd69 !important;
+            position: relative;
+            z-index: 10;
+            margin-top: -1px;
+            border-top: 1px solid #f9cd69;
+          }
+          
+          /* Ensure content is centered on mobile */
+          .md\\:hidden {
+            width: 100% !important;
+            max-width: 320px !important;
+            margin: 0 auto !important;
+            padding: 0 16px !important;
+          }
+        }
       `}</style>
 
       {/* Calculator Component */}
       <ConversionRateCalculator />
 
       {/* Content Sections */}
-      <div className="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-br from-[#e4a734 ] to-[#f9cd69]">
+      <div className="max-w-7xl mx-auto px-6 py-20 bg-[#f9cd69] relative z-10">
         
         {/* Definition Section */}
         <motion.section
@@ -93,13 +117,14 @@ export default function Conversion() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
-          <h2 className="text-5xl font-bold text-center mb-12 text-[#255547]">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-[#255547]">
             Was ist eine Conversion Rate?
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            {/* Desktop: Sol taraf - Açıklama ve Formel */}
+            <div className="hidden md:block">
               <p className="text-lg text-black leading-relaxed mb-6">
                 Die Conversion Rate (Konversionsrate) ist eine der wichtigsten Kennzahlen im Online-Marketing. 
                 Sie zeigt das Verhältnis zwischen Website-Besuchern und gewünschten Zielhandlungen an.
@@ -115,7 +140,9 @@ export default function Conversion() {
                 </p>
               </div>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-8">
+            
+            {/* Desktop: Sağ taraf - Beispielrechnung */}
+            <div className="hidden md:block bg-gray-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 text-gray-900">Beispielrechnung</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-4 bg-white rounded-lg">
@@ -130,6 +157,43 @@ export default function Conversion() {
                   <span className="font-semibold">Conversion Rate:</span>
                   <span className="font-bold text-xl">3%</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Mobile: Kompakt ortalanmış sıralama */}
+            <div className="md:hidden w-full max-w-xs mx-auto text-center space-y-4">
+              <p className="text-sm text-black leading-relaxed">
+                Die Conversion Rate (Konversionsrate) ist eine der wichtigsten Kennzahlen im Online-Marketing. 
+                Sie zeigt das Verhältnis zwischen Website-Besuchern und gewünschten Zielhandlungen an.
+              </p>
+              <p className="text-sm text-black leading-relaxed">
+                Einfach ausgedrückt: Wie viele Ihrer Besucher werden zu Kunden? Diese Metrik ist entscheidend 
+                für den Erfolg Ihrer Online-Präsenz und hilft dabei, Optimierungspotenziale zu identifizieren.
+              </p>
+              
+              <div className="bg-gray-50 rounded-xl p-4">
+                <h3 className="text-lg font-bold mb-3 text-gray-900">Beispielrechnung</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center p-2 bg-white rounded-lg">
+                    <span className="font-semibold text-xs">Sitzungen:</span>
+                    <span className="text-[#c499ba] font-bold text-xs">30.000</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-white rounded-lg">
+                    <span className="font-semibold text-xs">Conversions:</span>
+                    <span className="text-[#c499ba] font-bold text-xs">900</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-lg text-white">
+                    <span className="font-semibold text-xs">Conversion Rate:</span>
+                    <span className="font-bold text-sm">3%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-[#76a395] to-[#3ca384] rounded-xl p-4 text-white">
+                <h3 className="text-lg font-bold mb-2">Die Formel</h3>
+                <p className="text-sm">
+                  <strong>Conversions ÷ Sitzungen × 100% = Conversion Rate</strong>
+                </p>
               </div>
             </div>
           </div>
