@@ -257,18 +257,18 @@ export default function Home1() {
               
               {/* X Ekseni - Aylar */}
               <div className="absolute bottom-0 left-20 right-0 h-12 flex justify-between items-end text-gray-400 text-xs font-mono px-4 x-axis-labels">
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mär</span>
-                <span>Apr</span>
-                <span>Mai</span>
-                <span>Jun</span>
-                <span>Jul</span>
-                <span>Aug</span>
-                <span>Sep</span>
-                <span>Okt</span>
-                <span>Nov</span>
-                <span>Dez</span>
+                <span className="month-label">Jan</span>
+                <span className="month-label">Feb</span>
+                <span className="month-label">Mär</span>
+                <span className="month-label">Apr</span>
+                <span className="month-label">Mai</span>
+                <span className="month-label">Jun</span>
+                <span className="month-label">Jul</span>
+                <span className="month-label">Aug</span>
+                <span className="month-label">Sep</span>
+                <span className="month-label">Okt</span>
+                <span className="month-label">Nov</span>
+                <span className="month-label">Dez</span>
               </div>
               
               {/* Grid Çizgileri - Profesyonel */}
@@ -353,8 +353,8 @@ export default function Home1() {
                 <div className="text-gray-400 text-sm chart-subtitle">Real-time Verkaufsdaten</div>
               </div>
               
-              {/* Sağ üst köşe istatistikleri */}
-              <div className="absolute top-6 right-6 space-y-3 stats-container">
+              {/* Sağ üst köşe istatistikleri - Desktop only */}
+              <div className="absolute top-6 right-6 space-y-3 stats-container hidden md:block">
                 <div className="bg-green-500/20 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 stat-box">
                   <div className="text-green-400 text-sm font-semibold">+247%</div>
                   <div className="text-gray-300 text-xs">Umsatzsteigerung</div>
@@ -425,10 +425,17 @@ export default function Home1() {
             font-size: 12px !important;
           }
           
-          /* X-axis labels - readable size */
+          /* X-axis labels - readable size with better spacing */
           .x-axis-labels {
             font-size: 12px !important;
             height: 40px !important;
+            padding: 0 1rem !important;
+          }
+          
+          .month-label {
+            min-width: 20px !important;
+            text-align: center !important;
+            padding: 0 2px !important;
           }
           
           /* Chart area adjustments */
@@ -442,16 +449,9 @@ export default function Home1() {
             border-color: rgba(107, 114, 128, 0.3) !important;
           }
           
-          /* Statistics boxes - better positioned and sized */
+          /* Statistics boxes - hidden on mobile */
           .stats-container {
-            top: 1.5rem !important;
-            right: 1.5rem !important;
-            gap: 0.75rem !important;
-          }
-          
-          .stat-box {
-            padding: 0.75rem !important;
-            font-size: 12px !important;
+            display: none !important;
           }
           
           /* Chart title - readable size */
@@ -504,17 +504,16 @@ export default function Home1() {
           .x-axis-labels {
             font-size: 11px !important;
             height: 35px !important;
+            padding: 0 0.75rem !important;
+          }
+          
+          .month-label {
+            min-width: 18px !important;
+            padding: 0 1px !important;
           }
           
           .stats-container {
-            top: 1.25rem !important;
-            right: 1.25rem !important;
-            gap: 0.5rem !important;
-          }
-          
-          .stat-box {
-            padding: 0.5rem !important;
-            font-size: 11px !important;
+            display: none !important;
           }
           
           .chart-title {
@@ -550,17 +549,16 @@ export default function Home1() {
           .x-axis-labels {
             font-size: 10px !important;
             height: 30px !important;
+            padding: 0 0.5rem !important;
+          }
+          
+          .month-label {
+            min-width: 16px !important;
+            padding: 0 1px !important;
           }
           
           .stats-container {
-            top: 1rem !important;
-            right: 1rem !important;
-            gap: 0.5rem !important;
-          }
-          
-          .stat-box {
-            padding: 0.5rem !important;
-            font-size: 10px !important;
+            display: none !important;
           }
           
           .chart-title {
@@ -596,17 +594,16 @@ export default function Home1() {
           .x-axis-labels {
             font-size: 9px !important;
             height: 25px !important;
+            padding: 0 0.25rem !important;
+          }
+          
+          .month-label {
+            min-width: 14px !important;
+            padding: 0 1px !important;
           }
           
           .stats-container {
-            top: 0.75rem !important;
-            right: 0.75rem !important;
-            gap: 0.25rem !important;
-          }
-          
-          .stat-box {
-            padding: 0.25rem !important;
-            font-size: 9px !important;
+            display: none !important;
           }
           
           .chart-title {
