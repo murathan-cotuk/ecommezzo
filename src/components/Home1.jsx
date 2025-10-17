@@ -413,36 +413,145 @@ export default function Home1() {
 
         /* Mobile responsive fixes for the chart */
         @media (max-width: 768px) {
-          /* Chart container adjustments */
+          /* Chart container adjustments - bigger for mobile */
           .chart-container {
-            height: 300px !important;
+            height: 400px !important;
+            padding: 1.5rem !important;
+          }
+          
+          /* Y-axis labels - optimized for mobile */
+          .y-axis-labels {
+            width: 50px !important;
+            font-size: 12px !important;
+          }
+          
+          /* X-axis labels - readable size */
+          .x-axis-labels {
+            font-size: 12px !important;
+            height: 40px !important;
+          }
+          
+          /* Chart area adjustments */
+          .chart-area {
+            left: 50px !important;
+            padding-bottom: 40px !important;
+          }
+          
+          /* Grid lines - visible but not overwhelming */
+          .grid-lines {
+            border-color: rgba(107, 114, 128, 0.3) !important;
+          }
+          
+          /* Statistics boxes - better positioned and sized */
+          .stats-container {
+            top: 1.5rem !important;
+            right: 1.5rem !important;
+            gap: 0.75rem !important;
+          }
+          
+          .stat-box {
+            padding: 0.75rem !important;
+            font-size: 12px !important;
+          }
+          
+          /* Chart title - readable size */
+          .chart-title {
+            font-size: 18px !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          .chart-subtitle {
+            font-size: 12px !important;
+          }
+          
+          /* SVG adjustments */
+          .chart-svg {
+            height: 100% !important;
+            width: 100% !important;
+          }
+          
+          /* Legend adjustments - horizontal on mobile */
+          .chart-legend {
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            gap: 0.75rem !important;
+            margin-top: 1rem !important;
+            justify-content: center !important;
+          }
+          
+          .legend-item {
+            font-size: 12px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          /* Medium mobile adjustments */
+          .chart-container {
+            height: 350px !important;
+            padding: 1.25rem !important;
+          }
+          
+          .y-axis-labels {
+            width: 45px !important;
+            font-size: 11px !important;
+          }
+          
+          .chart-area {
+            left: 45px !important;
+            padding-bottom: 35px !important;
+          }
+          
+          .x-axis-labels {
+            font-size: 11px !important;
+            height: 35px !important;
+          }
+          
+          .stats-container {
+            top: 1.25rem !important;
+            right: 1.25rem !important;
+            gap: 0.5rem !important;
+          }
+          
+          .stat-box {
+            padding: 0.5rem !important;
+            font-size: 11px !important;
+          }
+          
+          .chart-title {
+            font-size: 16px !important;
+          }
+          
+          .chart-subtitle {
+            font-size: 11px !important;
+          }
+          
+          .legend-item {
+            font-size: 11px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Small mobile adjustments */
+          .chart-container {
+            height: 320px !important;
             padding: 1rem !important;
           }
           
-          /* Y-axis labels - smaller and repositioned */
           .y-axis-labels {
             width: 40px !important;
             font-size: 10px !important;
           }
           
-          /* X-axis labels - smaller font */
-          .x-axis-labels {
-            font-size: 10px !important;
-            height: 30px !important;
-          }
-          
-          /* Chart area adjustments */
           .chart-area {
             left: 40px !important;
             padding-bottom: 30px !important;
           }
           
-          /* Grid lines - thinner for mobile */
-          .grid-lines {
-            border-color: rgba(107, 114, 128, 0.2) !important;
+          .x-axis-labels {
+            font-size: 10px !important;
+            height: 30px !important;
           }
           
-          /* Statistics boxes - smaller and repositioned */
           .stats-container {
             top: 1rem !important;
             right: 1rem !important;
@@ -454,27 +563,12 @@ export default function Home1() {
             font-size: 10px !important;
           }
           
-          /* Chart title - smaller */
           .chart-title {
             font-size: 14px !important;
-            margin-bottom: 0.25rem !important;
           }
           
           .chart-subtitle {
             font-size: 10px !important;
-          }
-          
-          /* SVG adjustments */
-          .chart-svg {
-            height: 100% !important;
-            width: 100% !important;
-          }
-          
-          /* Legend adjustments */
-          .chart-legend {
-            flex-direction: column !important;
-            gap: 0.25rem !important;
-            margin-top: 0.5rem !important;
           }
           
           .legend-item {
@@ -482,36 +576,37 @@ export default function Home1() {
           }
         }
 
-        @media (max-width: 480px) {
-          /* Extra small mobile adjustments */
+        @media (max-width: 360px) {
+          /* Very small mobile adjustments */
           .chart-container {
-            height: 250px !important;
+            height: 280px !important;
             padding: 0.75rem !important;
           }
           
           .y-axis-labels {
-            width: 30px !important;
-            font-size: 8px !important;
+            width: 35px !important;
+            font-size: 9px !important;
           }
           
           .chart-area {
-            left: 30px !important;
+            left: 35px !important;
             padding-bottom: 25px !important;
           }
           
           .x-axis-labels {
-            font-size: 8px !important;
+            font-size: 9px !important;
             height: 25px !important;
           }
           
           .stats-container {
-            top: 0.5rem !important;
-            right: 0.5rem !important;
+            top: 0.75rem !important;
+            right: 0.75rem !important;
+            gap: 0.25rem !important;
           }
           
           .stat-box {
             padding: 0.25rem !important;
-            font-size: 8px !important;
+            font-size: 9px !important;
           }
           
           .chart-title {
@@ -519,7 +614,11 @@ export default function Home1() {
           }
           
           .chart-subtitle {
-            font-size: 8px !important;
+            font-size: 9px !important;
+          }
+          
+          .legend-item {
+            font-size: 9px !important;
           }
         }
       `}</style>
