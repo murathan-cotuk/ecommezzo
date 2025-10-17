@@ -257,51 +257,99 @@ export default function ResponsiveSection() {
                               </div>
                             )}
                             
-                            {/* MacBook Device Mockup - Ultra Gerçekçi */}
+                            {/* MacBook Device Mockup - YENİ TASARIM */}
                             {item.id === 'laptop' && (
                               <div className="macbook-mockup relative">
-                                {/* MacBook Base */}
-                                <div className="w-[28rem] h-3 bg-gray-800 rounded-b-2xl shadow-xl relative">
-                                  <div className="w-32 h-1 bg-gray-600 rounded-full mx-auto mt-1"></div>
-                                </div>
-                                {/* MacBook Screen */}
-                                <div className="w-[28rem] h-80 bg-gray-800 rounded-t-2xl p-3 shadow-2xl">
-                                  <div className="w-full h-full bg-white rounded-xl overflow-hidden">
-                                    {/* Browser Bar */}
-                                    <div className="h-10 bg-gray-100 flex items-center justify-between px-4 border-b">
-                                      <div className="flex items-center space-x-2">
-                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                      </div>
-                                      <div className="flex-1 mx-6">
-                                        <div className="h-5 bg-white rounded-lg border text-sm flex items-center px-3 text-gray-600 font-medium">
-                                          ecommezzo.com
-                                        </div>
-                                      </div>
-                                      <div className="w-5 h-5 bg-gray-300 rounded"></div>
-                                    </div>
-                                    {/* Website Content */}
-                                    <div className="h-12 bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center">
-                                      <span className="text-white font-bold text-lg">Ecommezzo</span>
-                                    </div>
-                                    <div className="p-6">
-                                      <div className="grid grid-cols-6 gap-3 mb-4">
-                                        <div className="h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg"></div>
-                                        <div className="h-12 bg-gradient-to-br from-red-100 to-red-200 rounded-lg"></div>
-                                        <div className="h-12 bg-gradient-to-br from-pink-100 to-pink-200 rounded-lg"></div>
-                                        <div className="h-12 bg-gradient-to-br from-rose-100 to-rose-200 rounded-lg"></div>
-                                        <div className="h-12 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg"></div>
-                                        <div className="h-12 bg-gradient-to-br from-red-50 to-red-100 rounded-lg"></div>
-                                      </div>
-                                      <div className="h-4 bg-gray-200 rounded mb-3"></div>
-                                      <div className="h-4 bg-gray-200 rounded mb-4 w-4/5"></div>
-                                      <div className="h-8 bg-orange-500 rounded-lg text-white text-center flex items-center justify-center text-sm font-semibold">
-                                        View Details
-                                      </div>
+                                {/* MacBook Base - Daha Gerçekçi */}
+                                <div className="w-[32rem] h-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-3xl shadow-2xl relative">
+                                  {/* Trackpad */}
+                                  <div className="w-24 h-16 bg-gray-700 rounded-2xl mx-auto mt-2 shadow-inner border border-gray-600"></div>
+                                  {/* Keyboard Area */}
+                                  <div className="w-full h-8 bg-gray-800 mt-2 relative">
+                                    <div className="absolute inset-0 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-2xl"></div>
+                                    {/* Keyboard Keys */}
+                                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                                      {[...Array(12)].map((_, i) => (
+                                        <div key={i} className="w-2 h-1.5 bg-gray-600 rounded-sm"></div>
+                                      ))}
                                     </div>
                                   </div>
                                 </div>
+                                
+                                {/* MacBook Screen - Daha Büyük ve Detaylı */}
+                                <div className="w-[32rem] h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-t-3xl p-4 shadow-2xl relative">
+                                  {/* Screen Bezel */}
+                                  <div className="w-full h-full bg-black rounded-2xl p-2 relative">
+                                    {/* Screen */}
+                                    <div className="w-full h-full bg-white rounded-xl overflow-hidden relative">
+                                      {/* Browser Bar - Daha Detaylı */}
+                                      <div className="h-12 bg-gray-50 flex items-center justify-between px-6 border-b border-gray-200">
+                                        {/* Traffic Lights */}
+                                        <div className="flex items-center space-x-3">
+                                          <div className="w-4 h-4 bg-red-500 rounded-full shadow-sm border border-red-600"></div>
+                                          <div className="w-4 h-4 bg-yellow-500 rounded-full shadow-sm border border-yellow-600"></div>
+                                          <div className="w-4 h-4 bg-green-500 rounded-full shadow-sm border border-green-600"></div>
+                                        </div>
+                                        
+                                        {/* URL Bar */}
+                                        <div className="flex-1 mx-8">
+                                          <div className="h-8 bg-white rounded-lg border border-gray-300 shadow-sm flex items-center px-4">
+                                            <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                            <span className="text-xs text-gray-700 font-medium">ecommezzo.com</span>
+                                          </div>
+                                        </div>
+                                        
+                                        {/* Browser Controls */}
+                                        <div className="flex items-center space-x-2">
+                                          <div className="w-6 h-6 bg-gray-200 rounded border border-gray-300"></div>
+                                          <div className="w-6 h-6 bg-gray-200 rounded border border-gray-300"></div>
+                                        </div>
+                                      </div>
+                                      
+                                      {/* Website Header */}
+                                      <div className="h-16 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 flex items-center justify-center relative">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-pink-600/20"></div>
+                                        <span className="text-white font-bold text-2xl relative z-10">Ecommezzo</span>
+                                      </div>
+                                      
+                                      {/* Website Content */}
+                                      <div className="p-8 bg-gray-50">
+                                        {/* Hero Section */}
+                                        <div className="mb-6">
+                                          <div className="h-6 bg-gray-200 rounded mb-3 w-3/4"></div>
+                                          <div className="h-6 bg-gray-200 rounded mb-4 w-1/2"></div>
+                                        </div>
+                                        
+                                        {/* Product Grid */}
+                                        <div className="grid grid-cols-6 gap-4 mb-6">
+                                          <div className="h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg shadow-sm border border-orange-200"></div>
+                                          <div className="h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-lg shadow-sm border border-red-200"></div>
+                                          <div className="h-16 bg-gradient-to-br from-pink-100 to-pink-200 rounded-lg shadow-sm border border-pink-200"></div>
+                                          <div className="h-16 bg-gradient-to-br from-rose-100 to-rose-200 rounded-lg shadow-sm border border-rose-200"></div>
+                                          <div className="h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-100"></div>
+                                          <div className="h-16 bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-100"></div>
+                                        </div>
+                                        
+                                        {/* Content Section */}
+                                        <div className="mb-6">
+                                          <div className="h-5 bg-gray-200 rounded mb-3 w-2/3"></div>
+                                          <div className="h-5 bg-gray-200 rounded mb-4 w-4/5"></div>
+                                        </div>
+                                        
+                                        {/* CTA Button */}
+                                        <div className="h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl text-white text-center flex items-center justify-center text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                          View Details
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Screen Reflection */}
+                                    <div className="absolute top-2 left-2 right-2 h-8 bg-gradient-to-b from-white/10 to-transparent rounded-t-xl pointer-events-none"></div>
+                                  </div>
+                                </div>
+                                
+                                {/* MacBook Hinge */}
+                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gradient-to-b from-gray-700 to-gray-800 rounded-full shadow-lg"></div>
                               </div>
                             )}
                             
@@ -323,7 +371,7 @@ export default function ResponsiveSection() {
                                         <div className="w-4 h-4 bg-green-500 rounded-full"></div>
                                       </div>
                                       <div className="flex-1 mx-8">
-                                        <div className="h-6 bg-white rounded-lg border text-base flex items-center px-4 text-gray-600 font-medium">
+                                        <div className="h-6 bg-white rounded-lg border text-sm flex items-center px-4 text-gray-600 font-medium">
                                           ecommezzo.com
                                         </div>
                                       </div>
@@ -1190,6 +1238,11 @@ const mobileStyles = `
       background: white !important;
       border-radius: 0.05rem !important;
       border: 1px solid #d1d5db !important;
+      font-size: 0.2rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #374151 !important;
     }
     
     .mobile-macbook-content {
@@ -1326,6 +1379,11 @@ const mobileStyles = `
       background: white !important;
       border-radius: 0.05rem !important;
       border: 1px solid #d1d5db !important;
+      font-size: 0.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #374151 !important;
     }
     
     .mobile-desktop-controls {
