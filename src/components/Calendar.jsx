@@ -9,6 +9,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
   const [currentMonth, setCurrentMonth] = useState(null);
   const [availableSlots, setAvailableSlots] = useState({});
   const [isClient, setIsClient] = useState(false);
+  const [showTimeSelection, setShowTimeSelection] = useState(false);
 
   // Takvim için gerekli fonksiyonlar
   const getDaysInMonth = (date) => {
@@ -149,11 +150,17 @@ export default function Calendar({ onTimeSelect, onClose }) {
     if (!isPast(date)) {
       setSelectedDate(date);
       setSelectedTime(null);
+      setShowTimeSelection(true);
     }
   };
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
+  };
+
+  const handleBackToCalendar = () => {
+    setShowTimeSelection(false);
+    setSelectedTime(null);
   };
 
   const handleConfirm = () => {
@@ -209,7 +216,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] md:max-h-[90vh] overflow-hidden my-4 md:my-0"
+        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[98vh] md:max-h-[90vh] overflow-hidden my-1 md:my-0"
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 md:p-6">
@@ -227,10 +234,20 @@ export default function Calendar({ onTimeSelect, onClose }) {
           <p className="text-cyan-100 mt-1 md:mt-2 text-sm md:text-base">Wählen Sie ein Datum und eine Uhrzeit</p>
         </div>
 
-        <div className="flex flex-col lg:flex-row min-h-[400px] h-[500px] md:h-[600px]">
-          {/* Takvim Bölümü */}
-          <div className="flex-1 p-4 md:p-6 border-r border-gray-200">
-            <div className="flex justify-between items-center mb-4 md:mb-6">
+        <AnimatePresence mode="wait">
+          {!showTimeSelection ? (
+            /* Takvim Ekranı */
+            <motion.div
+              key="calendar"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col lg:flex-row min-h-[400px] h-[500px] md:h-[600px]"
+            >
+              {/* Takvim Bölümü */}
+              <div className="flex-1 p-3 md:p-6 border-r border-gray-200">
+            <div className="flex justify-between items-center mb-3 md:mb-6">
               <button
                 onClick={prevMonth}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -251,9 +268,9 @@ export default function Calendar({ onTimeSelect, onClose }) {
             </div>
 
             {/* Hafta başlıkları */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
+            <div className="grid grid-cols-7 gap-1 mb-1">
               {['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'].map(day => (
-                <div key={day} className="text-center text-xs md:text-sm font-medium text-gray-600 py-1 md:py-2">
+                <div key={day} className="text-center text-xs md:text-sm font-medium text-gray-600 py-0.5 md:py-2">
                   {day}
                 </div>
               ))}
@@ -263,7 +280,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
             <div className="grid grid-cols-7 gap-1">
               {days.map((day, index) => {
                 if (!day) {
-                  return <div key={index} className="h-8 md:h-12" />;
+                  return <div key={index} className="h-6 md:h-12" />;
                 }
 
                 const dateStr = day.toISOString().split('T')[0];
@@ -277,7 +294,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
                     key={index}
                     onClick={() => handleDateSelect(day)}
                     disabled={isPastDate}
-                    className={`h-8 md:h-12 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 ${
+                    className={`h-6 md:h-12 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 ${
                       isSelected
                         ? 'bg-cyan-500 text-white'
                         : isPastDate
@@ -292,24 +309,75 @@ export default function Calendar({ onTimeSelect, onClose }) {
                 );
               })}
             </div>
-          </div>
+              </div>
 
-          {/* Zaman Dilimleri Bölümü */}
-          <div className="flex-1 p-4 md:p-6">
-            {selectedDate ? (
-              <div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4">
-                  für {formatDate(selectedDate)}
+              {/* Sağ taraf - Seçili tarih bilgisi */}
+              <div className="flex-1 p-3 md:p-6">
+                {selectedDate ? (
+                  <div className="text-center">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">
+                      Ausgewähltes Datum
+                    </h3>
+                    <div className="bg-cyan-50 rounded-lg p-4 mb-4">
+                      <p className="text-lg md:text-xl font-bold text-cyan-700">
+                        {formatDate(selectedDate)}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setShowTimeSelection(true)}
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300"
+                    >
+                      Uhrzeit wählen
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center text-gray-500">
+                      <svg className="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <p className="text-lg">Bitte wählen Sie ein Datum aus</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ) : (
+            /* Saat Seçim Ekranı */
+            <motion.div
+              key="time-selection"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col min-h-[400px] h-[500px] md:h-[600px]"
+            >
+              {/* Header - Geri dönüş butonu */}
+              <div className="flex items-center justify-between p-3 md:p-6 border-b border-gray-200">
+                <button
+                  onClick={handleBackToCalendar}
+                  className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <span className="text-sm md:text-base">Zurück zum Kalender</span>
+                </button>
+                <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+                  Uhrzeit für {formatDate(selectedDate)}
                 </h3>
-                
-                <div className="grid grid-cols-2 gap-2 md:gap-3 max-h-48 md:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+              </div>
+
+              {/* Zaman Dilimleri */}
+              <div className="flex-1 p-3 md:p-6 overflow-y-auto">
+                <div className="grid grid-cols-2 gap-2 md:gap-3">
                   {Object.entries(availableSlots[selectedDate.toISOString().split('T')[0]] || {})
                     .filter(([time, status]) => status === 'available')
                     .map(([time, status]) => (
                       <button
                         key={time}
                         onClick={() => handleTimeSelect(time)}
-                        className={`p-2 md:p-3 rounded-lg border-2 transition-all duration-200 text-sm ${
+                        className={`p-3 md:p-4 rounded-lg border-2 transition-all duration-200 text-sm md:text-base font-medium ${
                           selectedTime === time
                             ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
                             : 'border-gray-200 hover:border-cyan-300 hover:bg-gray-50 text-gray-800'
@@ -324,34 +392,25 @@ export default function Calendar({ onTimeSelect, onClose }) {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 rounded-lg"
+                    className="mt-6 p-4 bg-gray-50 rounded-lg"
                   >
-                    <p className="text-xs md:text-sm text-gray-600 mb-2">Ausgewählter Termin:</p>
-                    <p className="text-sm md:text-base font-semibold text-gray-800">
+                    <p className="text-sm md:text-base text-gray-600 mb-2">Ausgewählter Termin:</p>
+                    <p className="text-lg md:text-xl font-semibold text-gray-800 mb-4">
                       {formatDate(selectedDate)} um {selectedTime}
                     </p>
                     
                     <button
                       onClick={handleConfirm}
-                      className="w-full mt-3 md:mt-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-6 rounded-lg text-base md:text-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
                     >
                       Termin Bestätigen
                     </button>
                   </motion.div>
                 )}
               </div>
-            ) : (
-              <div className="flex items-center justify-center h-full">
-                <div className="text-center text-gray-500">
-                  <svg className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-sm md:text-lg">Bitte wählen Sie ein Datum aus</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
