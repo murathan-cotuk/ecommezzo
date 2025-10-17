@@ -114,6 +114,15 @@ export default function KontaktForm() {
       
       return { ...prev, [fieldName]: newValue };
     });
+
+    // Otomatik olarak sonraki soruya geç (500ms sonra)
+    setTimeout(() => {
+      if (currentStep < questions.length - 1) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        setCurrentStep(questions.length); // İletişim formuna geç
+      }
+    }, 500);
   };
 
   const handleNextStep = () => {
@@ -232,11 +241,11 @@ export default function KontaktForm() {
   const progress = ((currentStep + 1) / (questions.length + 2)) * 100; // questions.length + iletişim + teşekkür
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+      <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-8 lg:p-12">
         
         {/* Progress Bar */}
-        <div className="mb-8">
+        <div className="mb-4 md:mb-8">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
             <span>Fortschritt</span>
             <span>{Math.round(progress)}%</span>
@@ -261,17 +270,17 @@ export default function KontaktForm() {
           >
             {/* Soru Adımları */}
             {currentStep < questions.length && (
-              <div className="text-center space-y-8">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <div className="text-center space-y-4 md:space-y-8">
+                <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-4">
                   {questions[currentStep].question}
                 </h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
                   {questions[currentStep].options.map((option) => (
                     <motion.button
                       key={option.value}
                       onClick={() => handleQuestionAnswer(questions[currentStep].id, option.value)}
-                      className={`group border-2 p-6 rounded-xl transition-all duration-300 transform hover:scale-105 ${
+                      className={`group border-2 p-4 md:p-6 rounded-xl transition-all duration-300 transform hover:scale-105 ${
                         isOptionSelected(questions[currentStep].id, option.value)
                           ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
                           : 'border-gray-200 bg-white hover:border-cyan-500 hover:bg-cyan-50'
@@ -279,8 +288,8 @@ export default function KontaktForm() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <div className="text-4xl mb-3">{option.icon}</div>
-                      <div className={`font-semibold ${
+                      <div className="text-2xl md:text-4xl mb-2 md:mb-3">{option.icon}</div>
+                      <div className={`font-semibold text-sm md:text-base ${
                         isOptionSelected(questions[currentStep].id, option.value)
                           ? 'text-cyan-700'
                           : 'text-gray-800 group-hover:text-cyan-700'
@@ -288,7 +297,7 @@ export default function KontaktForm() {
                         {option.label}
                       </div>
                       {isOptionSelected(questions[currentStep].id, option.value) && (
-                        <div className="absolute top-2 right-2 w-6 h-6 bg-cyan-500 text-white rounded-full flex items-center justify-center text-sm">
+                        <div className="absolute top-1 right-1 w-4 h-4 bg-cyan-500 text-white rounded-full flex items-center justify-center text-xs">
                           ✓
                         </div>
                       )}
@@ -297,24 +306,12 @@ export default function KontaktForm() {
                 </div>
                 
                 {/* Navigation Buttons */}
-                <div className="flex justify-between items-center pt-6">
+                <div className="flex justify-start items-center pt-4">
                   <button
                     onClick={handlePreviousStep}
-                    className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300"
+                    className="px-4 py-2 text-sm border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300"
                   >
                     ← Zurück
-                  </button>
-                  
-                  <button
-                    onClick={handleNextStep}
-                    disabled={!canProceedToNext(questions[currentStep].id)}
-                    className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                      canProceedToNext(questions[currentStep].id)
-                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105'
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    Weiter →
                   </button>
                 </div>
               </div>
@@ -322,37 +319,37 @@ export default function KontaktForm() {
 
             {/* İletişim Formu */}
             {currentStep === questions.length && (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-4 md:mb-8">
                   Ihre Kontaktdaten
                 </h2>
                 
                 {/* Özet Bölümü */}
-                <div className="bg-gray-50 rounded-xl p-6 mb-8">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">Ihre Antworten - Übersicht</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-xl p-4 md:p-6 mb-4 md:mb-8">
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-3 md:mb-4">Ihre Antworten - Übersicht</h3>
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Projektart:</p>
-                      <p className="text-gray-800">{getSelectedAnswersText('projectType')}</p>
+                      <p className="text-xs md:text-sm font-medium text-gray-600">Projektart:</p>
+                      <p className="text-xs md:text-sm text-gray-800">{getSelectedAnswersText('projectType')}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Budget:</p>
-                      <p className="text-gray-800">{getSelectedAnswersText('budget')}</p>
+                      <p className="text-xs md:text-sm font-medium text-gray-600">Budget:</p>
+                      <p className="text-xs md:text-sm text-gray-800">{getSelectedAnswersText('budget')}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Zeitplan:</p>
-                      <p className="text-gray-800">{getSelectedAnswersText('timeline')}</p>
+                      <p className="text-xs md:text-sm font-medium text-gray-600">Zeitplan:</p>
+                      <p className="text-xs md:text-sm text-gray-800">{getSelectedAnswersText('timeline')}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Erfahrung:</p>
-                      <p className="text-gray-800">{getSelectedAnswersText('experience')}</p>
+                      <p className="text-xs md:text-sm font-medium text-gray-600">Erfahrung:</p>
+                      <p className="text-xs md:text-sm text-gray-800">{getSelectedAnswersText('experience')}</p>
                     </div>
                   </div>
                 </div>
                
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <div className="grid grid-cols-2 gap-3 md:gap-6">
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                   <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">
                      Name *
                    </label>
                    <input
@@ -360,13 +357,13 @@ export default function KontaktForm() {
                      required
                      value={formData.name}
                      onChange={(e) => handleInputChange('name', e.target.value)}
-                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
+                     className="w-full p-2 md:p-3 text-sm border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
                      placeholder="Ihr vollständiger Name"
                    />
                  </div>
                  
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                   <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">
                      E-Mail *
                    </label>
                    <input
@@ -374,61 +371,61 @@ export default function KontaktForm() {
                      required
                      value={formData.email}
                      onChange={(e) => handleInputChange('email', e.target.value)}
-                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
+                     className="w-full p-2 md:p-3 text-sm border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
                      placeholder="ihre.email@beispiel.de"
                    />
                  </div>
                  
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                   <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">
                      Telefon
                    </label>
                    <input
                      type="tel"
                      value={formData.phone}
                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
+                     className="w-full p-2 md:p-3 text-sm border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
                      placeholder="+49 123 456789"
                    />
                  </div>
                  
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                   <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">
                      Unternehmen
                    </label>
                    <input
                      type="text"
                      value={formData.company}
                      onChange={(e) => handleInputChange('company', e.target.value)}
-                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
+                     className="w-full p-2 md:p-3 text-sm border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
                      placeholder="Ihr Unternehmen"
                    />
                  </div>
                </div>
                
                <div>
-                 <label className="block text-sm font-medium text-gray-700 mb-2">
+                 <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">
                    Zusätzliche Nachricht
                  </label>
                  <textarea
                    value={formData.message}
                    onChange={(e) => handleInputChange('message', e.target.value)}
-                   rows={4}
-                   className="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
+                   rows={2}
+                   className="w-full p-2 md:p-3 text-sm border-2 border-gray-300 rounded-lg focus:border-cyan-500 focus:outline-none transition-colors"
                    placeholder="Erzählen Sie uns mehr über Ihr Projekt..."
                  />
                </div>
 
                {/* Onay Kutuları */}
-               <div className="space-y-4 pt-4 border-t border-gray-200">
-                 <label className="flex items-start space-x-3 cursor-pointer">
+               <div className="space-y-3 pt-3 md:pt-4 border-t border-gray-200">
+                 <label className="flex items-start space-x-2 md:space-x-3 cursor-pointer">
                    <input
                      type="checkbox"
                      checked={formData.privacyPolicy}
                      onChange={(e) => handleInputChange('privacyPolicy', e.target.checked)}
-                     className="mt-1 w-5 h-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500"
+                     className="mt-0.5 md:mt-1 w-4 h-4 md:w-5 md:h-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500"
                    />
-                   <span className="text-sm text-gray-700">
+                   <span className="text-xs md:text-sm text-gray-700">
                      Ich akzeptiere die{' '}
                      <a href="/datenschutz" className="text-cyan-600 hover:underline">
                        Datenschutzerklärung
@@ -437,21 +434,21 @@ export default function KontaktForm() {
                    </span>
                  </label>
                  
-                 <label className="flex items-start space-x-3 cursor-pointer">
+                 <label className="flex items-start space-x-2 md:space-x-3 cursor-pointer">
                    <input
                      type="checkbox"
                      checked={formData.wantAppointment}
                      onChange={(e) => handleInputChange('wantAppointment', e.target.checked)}
-                     className="mt-1 w-5 h-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500"
+                     className="mt-0.5 md:mt-1 w-4 h-4 md:w-5 md:h-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500"
                    />
-                   <span className="text-sm text-gray-700">
+                   <span className="text-xs md:text-sm text-gray-700">
                      Möchten Sie einen Termin buchen?
                    </span>
                  </label>
                  
                  {formData.wantAppointment && appointmentData && (
-                   <div className="ml-8 mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                     <p className="text-sm text-green-800">
+                   <div className="ml-6 mt-1 p-2 md:p-3 bg-green-50 border border-green-200 rounded-lg">
+                     <p className="text-xs md:text-sm text-green-800">
                        <strong>Ausgewählter Termin:</strong> {appointmentData.formattedDate} um {appointmentData.time}
                      </p>
                      <button
@@ -466,11 +463,11 @@ export default function KontaktForm() {
                </div>
 
                {/* Navigation ve Gönder Butonu */}
-               <div className="flex justify-between items-center pt-6">
+               <div className="flex justify-between items-center pt-4 md:pt-6">
                  <button
                    type="button"
                    onClick={handlePreviousStep}
-                   className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300"
+                   className="px-4 py-2 text-sm border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300"
                  >
                    ← Zurück
                  </button>
@@ -478,7 +475,7 @@ export default function KontaktForm() {
                  <button
                    type="submit"
                    disabled={!formData.privacyPolicy || isSubmitting}
-                   className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 ${
+                   className={`px-6 py-2 text-sm rounded-lg font-semibold transition-all duration-300 ${
                      formData.privacyPolicy && !isSubmitting
                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105'
                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -486,7 +483,7 @@ export default function KontaktForm() {
                  >
                    {isSubmitting ? (
                      <div className="flex items-center">
-                       <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                       <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                        </svg>
