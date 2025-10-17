@@ -223,30 +223,30 @@ export default function Home1() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Verkaufsentwicklung</h2>
             <p className="text-gray-600 text-lg">1 Jahr mit Ecommezzo - Durchschnittliche Steigerung</p>
-            <div className="flex justify-center items-center mt-4 space-x-8">
-              <div className="flex items-center space-x-2">
+            <div className="flex justify-center items-center mt-4 space-x-8 chart-legend">
+              <div className="flex items-center space-x-2 legend-item">
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 <span className="text-sm text-gray-600">+247% Umsatzsteigerung</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 legend-item">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                 <span className="text-sm text-gray-600">+156% Conversion Rate</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 legend-item">
                 <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
                 <span className="text-sm text-gray-600">+89% Traffic Zuwachs</span>
               </div>
             </div>
           </div>
           
-          <div className="w-full h-[500px] bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-gray-700 relative overflow-hidden">
+          <div className="w-full h-[500px] bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-gray-700 relative overflow-hidden chart-container">
             {/* Dekoratif Elementler */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
             
             <div className="relative h-full">
               {/* Y Ekseni - Profesyonel */}
-              <div className="absolute left-0 top-0 h-full w-20 flex flex-col justify-between text-gray-300 text-sm font-mono">
+              <div className="absolute left-0 top-0 h-full w-20 flex flex-col justify-between text-gray-300 text-sm font-mono y-axis-labels">
                 <span className={`text-green-400 font-semibold transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '1.5s'}}>€250K</span>
                 <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '1.2s'}}>€200K</span>
                 <span className={`transition-all duration-2000 ${showGraph ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{transitionDelay: '0.9s'}}>€150K</span>
@@ -256,7 +256,7 @@ export default function Home1() {
               </div>
               
               {/* X Ekseni - Aylar */}
-              <div className="absolute bottom-0 left-20 right-0 h-12 flex justify-between items-end text-gray-400 text-xs font-mono px-4">
+              <div className="absolute bottom-0 left-20 right-0 h-12 flex justify-between items-end text-gray-400 text-xs font-mono px-4 x-axis-labels">
                 <span>Jan</span>
                 <span>Feb</span>
                 <span>Mär</span>
@@ -272,7 +272,7 @@ export default function Home1() {
               </div>
               
               {/* Grid Çizgileri - Profesyonel */}
-              <div className="absolute left-20 right-0 top-0 h-full pb-12">
+              <div className="absolute left-20 right-0 top-0 h-full pb-12 grid-lines">
                 {[0, 1, 2, 3, 4, 5].map((i) => (
                   <div key={i} className="absolute w-full border-t border-gray-700/40" style={{top: `${i * 20}%`}}></div>
                 ))}
@@ -282,8 +282,8 @@ export default function Home1() {
               </div>
               
               {/* Profesyonel Grafik */}
-              <div className="absolute left-20 right-0 top-0 h-full pb-12">
-                <svg className="w-full h-full" viewBox="0 0 1000 400">
+              <div className="absolute left-20 right-0 top-0 h-full pb-12 chart-area">
+                <svg className="w-full h-full chart-svg" viewBox="0 0 1000 400">
                   {/* Ana satış çizgisi - Gerçekçi veri */}
                   <path
                     d="M 0 380 L 83 360 L 166 340 L 250 300 L 333 250 L 416 200 L 500 150 L 583 120 L 666 90 L 750 60 L 833 40 L 916 25 L 1000 15"
@@ -349,21 +349,21 @@ export default function Home1() {
               
               {/* Profesyonel Başlık ve İstatistikler */}
               <div className="absolute top-6 left-24">
-                <div className="text-white text-xl font-bold mb-2">Live Performance Dashboard</div>
-                <div className="text-gray-400 text-sm">Real-time Verkaufsdaten</div>
+                <div className="text-white text-xl font-bold mb-2 chart-title">Live Performance Dashboard</div>
+                <div className="text-gray-400 text-sm chart-subtitle">Real-time Verkaufsdaten</div>
               </div>
               
               {/* Sağ üst köşe istatistikleri */}
-              <div className="absolute top-6 right-6 space-y-3">
-                <div className="bg-green-500/20 backdrop-blur-sm rounded-lg p-3 border border-green-500/30">
+              <div className="absolute top-6 right-6 space-y-3 stats-container">
+                <div className="bg-green-500/20 backdrop-blur-sm rounded-lg p-3 border border-green-500/30 stat-box">
                   <div className="text-green-400 text-sm font-semibold">+247%</div>
                   <div className="text-gray-300 text-xs">Umsatzsteigerung</div>
                 </div>
-                <div className="bg-blue-500/20 backdrop-blur-sm rounded-lg p-3 border border-blue-500/30">
+                <div className="bg-blue-500/20 backdrop-blur-sm rounded-lg p-3 border border-blue-500/30 stat-box">
                   <div className="text-blue-400 text-sm font-semibold">+156%</div>
                   <div className="text-gray-300 text-xs">Conversion Rate</div>
                 </div>
-                <div className="bg-purple-500/20 backdrop-blur-sm rounded-lg p-3 border border-purple-500/30">
+                <div className="bg-purple-500/20 backdrop-blur-sm rounded-lg p-3 border border-purple-500/30 stat-box">
                   <div className="text-purple-400 text-sm font-semibold">+89%</div>
                   <div className="text-gray-300 text-xs">Traffic Zuwachs</div>
                 </div>
@@ -409,6 +409,118 @@ export default function Home1() {
           opacity: 0;
           animation: draw-area 4s ease-in-out forwards;
           animation-delay: 2s;
+        }
+
+        /* Mobile responsive fixes for the chart */
+        @media (max-width: 768px) {
+          /* Chart container adjustments */
+          .chart-container {
+            height: 300px !important;
+            padding: 1rem !important;
+          }
+          
+          /* Y-axis labels - smaller and repositioned */
+          .y-axis-labels {
+            width: 40px !important;
+            font-size: 10px !important;
+          }
+          
+          /* X-axis labels - smaller font */
+          .x-axis-labels {
+            font-size: 10px !important;
+            height: 30px !important;
+          }
+          
+          /* Chart area adjustments */
+          .chart-area {
+            left: 40px !important;
+            padding-bottom: 30px !important;
+          }
+          
+          /* Grid lines - thinner for mobile */
+          .grid-lines {
+            border-color: rgba(107, 114, 128, 0.2) !important;
+          }
+          
+          /* Statistics boxes - smaller and repositioned */
+          .stats-container {
+            top: 1rem !important;
+            right: 1rem !important;
+            gap: 0.5rem !important;
+          }
+          
+          .stat-box {
+            padding: 0.5rem !important;
+            font-size: 10px !important;
+          }
+          
+          /* Chart title - smaller */
+          .chart-title {
+            font-size: 14px !important;
+            margin-bottom: 0.25rem !important;
+          }
+          
+          .chart-subtitle {
+            font-size: 10px !important;
+          }
+          
+          /* SVG adjustments */
+          .chart-svg {
+            height: 100% !important;
+            width: 100% !important;
+          }
+          
+          /* Legend adjustments */
+          .chart-legend {
+            flex-direction: column !important;
+            gap: 0.25rem !important;
+            margin-top: 0.5rem !important;
+          }
+          
+          .legend-item {
+            font-size: 10px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Extra small mobile adjustments */
+          .chart-container {
+            height: 250px !important;
+            padding: 0.75rem !important;
+          }
+          
+          .y-axis-labels {
+            width: 30px !important;
+            font-size: 8px !important;
+          }
+          
+          .chart-area {
+            left: 30px !important;
+            padding-bottom: 25px !important;
+          }
+          
+          .x-axis-labels {
+            font-size: 8px !important;
+            height: 25px !important;
+          }
+          
+          .stats-container {
+            top: 0.5rem !important;
+            right: 0.5rem !important;
+          }
+          
+          .stat-box {
+            padding: 0.25rem !important;
+            font-size: 8px !important;
+          }
+          
+          .chart-title {
+            font-size: 12px !important;
+          }
+          
+          .chart-subtitle {
+            font-size: 8px !important;
+          }
         }
       `}</style>
     </section>
