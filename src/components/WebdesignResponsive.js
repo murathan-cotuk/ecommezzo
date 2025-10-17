@@ -7,11 +7,11 @@ export default function ResponsiveSection() {
   const [activeDevice, setActiveDevice] = useState('mobile');
 
   return (
-    <section id="responsive" className="py-16 px-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+    <section id="responsive" className="responsive-section py-16 px-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
       <div className="w-full relative z-10">
         {/* Hero Section */}
         <motion.div 
-          className="text-center mb-0"
+          className="hero-section text-center mb-0"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -23,16 +23,16 @@ export default function ResponsiveSection() {
               scale: [1, 1.1, 1]
             }}
             transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
-            className="inline-block mb-8"
+            className="hero-icon inline-block mb-8"
           >
             <div className="w-24 h-24 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto shadow-2xl">
               <span className="text-3xl">📱</span>
             </div>
           </motion.div>
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent bg-[length:100%_200%] bg-bottom leading-[1.3] relative z-20">
+          <h2 className="hero-title text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent bg-[length:100%_200%] bg-bottom leading-[1.3] relative z-20">
             Responsive Design Revolution
           </h2>
-          <p className="text-2xl max-w-4xl mx-auto leading-relaxed text-gray-300">
+          <p className="hero-subtitle text-2xl max-w-4xl mx-auto leading-relaxed text-gray-300">
             Eine <span className="font-bold text-purple-400">3D-Interaktive Erfahrung</span> für alle Geräte. 
             Unsere Designs passen sich <span className="font-bold text-pink-400">intelligent an</span> und 
             bieten eine <span className="font-bold text-indigo-400">revolutionäre User Experience</span>.
@@ -41,7 +41,7 @@ export default function ResponsiveSection() {
 
         {/* 4-Button Responsive Design Showcase - YENİ TASARIM */}
         <motion.div 
-          className="relative w-full"
+          className="device-showcase relative w-full"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
@@ -54,7 +54,7 @@ export default function ResponsiveSection() {
         >
           <div className="w-full h-[92%] flex px-0">
             {/* Device Buttons - 4 Equal Parts */}
-            <div className="w-full flex">
+            <div className="device-buttons w-full flex">
               {[
                 {
                   id: 'mobile',
@@ -107,9 +107,9 @@ export default function ResponsiveSection() {
                 >
                   {/* Button */}
                   <motion.div 
-                    className={`h-full cursor-pointer transition-all duration-400 ease-in-out ${
+                    className={`device-button h-full cursor-pointer transition-all duration-400 ease-in-out ${
                       activeDevice === item.id 
-                        ? 'bg-gradient-to-b from-purple-800/80 to-indigo-800/80 border-2 border-purple-400/50' 
+                        ? 'active bg-gradient-to-b from-purple-800/80 to-indigo-800/80 border-2 border-purple-400/50' 
                         : 'bg-gradient-to-b from-purple-900/40 to-indigo-900/40 border border-purple-500/20 hover:border-purple-400/40 hover:bg-purple-900/60'
                     } rounded-2xl p-6 flex flex-col justify-end`}
                     onClick={() => setActiveDevice(item.id)}
@@ -120,10 +120,10 @@ export default function ResponsiveSection() {
                     whileTap={{ scale: 0.99 }}
                   >
                     {/* Button Content - Vertical Text from Bottom - Fixed Position */}
-                    <div className="flex flex-col h-full justify-end relative z-10 w-[8.90%]">
+                    <div className="device-button-content flex flex-col h-full justify-end relative z-10 w-[8.90%]">
                       {/* Title and Number - Always Visible, Vertical from Bottom */}
                       <div className="flex-1 flex items-end justify-start mb-2">
-                        <h2 className={`text-5xl font-bold leading-tight transition-all duration-500 ${
+                        <h2 className={`device-title text-5xl font-bold leading-tight transition-all duration-500 ${
                           activeDevice === item.id ? 'text-white' : 'text-gray-300'
                         }`} style={{ 
                           writingMode: 'vertical-rl', 
@@ -140,7 +140,7 @@ export default function ResponsiveSection() {
                     <div className="flex flex-col h-full justify-end relative z-10 w-[8.90%]">
                       {/* Title and Number - Always Visible, Vertical from Bottom */}
                       <div className="flex-1 flex items-end justify-start mb-8">
-                        <h2 className={`text-8xl font-bold leading-tight transition-all duration-500 ${
+                        <h2 className={`device-number text-8xl font-bold leading-tight transition-all duration-500 ${
                           activeDevice === item.id ? 'text-white' : 'text-gray-300'
                         }`} style={{ 
                           writingMode: 'vertical-rl', 
@@ -157,14 +157,14 @@ export default function ResponsiveSection() {
                   {/* Device Display - Only for Active Button */}
                   {activeDevice === item.id && (
                     <motion.div
-                      className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/90 to-indigo-900/90 backdrop-blur-lg rounded-2xl border-2 border-purple-400/50 p-8 flex items-center justify-center z-5"
+                      className="device-display absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/90 to-indigo-900/90 backdrop-blur-lg rounded-2xl border-2 border-purple-400/50 p-8 flex items-center justify-center z-5"
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.7, ease: "easeInOut" }}
                     >
                       <div className="w-full h-full flex items-center">
                         {/* Device Mockup - Larger */}
-                        <div className="w-2/3 h-full flex items-center justify-center pr-8">
+                        <div className="device-mockup w-2/3 h-full flex items-center justify-center pr-8">
                           <motion.div 
                             className="w-full h-full flex items-center justify-center"
                             whileHover={{ scale: 1.02 }}
@@ -172,7 +172,7 @@ export default function ResponsiveSection() {
                           >
                             {/* iPhone Device Mockup - Ultra Gerçekçi */}
                             {item.id === 'mobile' && (
-                              <div className="relative">
+                              <div className="iphone-mockup relative">
                                 {/* iPhone Frame */}
                                 <div className="w-72 h-[36rem] bg-black rounded-[3.5rem] p-4 shadow-2xl relative">
                                   {/* Dynamic Island */}  
@@ -216,7 +216,7 @@ export default function ResponsiveSection() {
                             
                             {/* iPad Device Mockup - Ultra Gerçekçi */}
                             {item.id === 'tablet' && (
-                              <div className="relative">
+                              <div className="ipad-mockup relative">
                                 {/* iPad Frame */}
                                 <div className="w-96 h-[36rem] bg-black rounded-3xl p-4 shadow-2xl relative">
                                   {/* Camera */}
@@ -259,7 +259,7 @@ export default function ResponsiveSection() {
                             
                             {/* MacBook Device Mockup - Ultra Gerçekçi */}
                             {item.id === 'laptop' && (
-                              <div className="relative">
+                              <div className="macbook-mockup relative">
                                 {/* MacBook Base */}
                                 <div className="w-[28rem] h-3 bg-gray-800 rounded-b-2xl shadow-xl relative">
                                   <div className="w-32 h-1 bg-gray-600 rounded-full mx-auto mt-1"></div>
@@ -307,7 +307,7 @@ export default function ResponsiveSection() {
                             
                             {/* 27" Monitor Device Mockup - Ultra Gerçekçi */}
                             {item.id === 'desktop' && (
-                              <div className="relative">
+                              <div className="desktop-mockup relative">
                                 {/* Monitor Stand */}
                                 <div className="w-6 h-12 bg-gray-700 mx-auto rounded-b-lg"></div>
                                 {/* Monitor Base */}
@@ -356,7 +356,7 @@ export default function ResponsiveSection() {
                         </div>
 
                         {/* Content - Side by Side */}
-                        <div className="w-1/3 h-full flex flex-col justify-center">
+                        <div className="device-content w-1/3 h-full flex flex-col justify-center">
                           <div className="text-left">
                             <h2 className="text-3xl font-bold mb-4 text-white">
                               {item.subtitle}
@@ -366,7 +366,7 @@ export default function ResponsiveSection() {
                             </p>
                             
                             {/* Features */}
-                            <div className="flex flex-wrap gap-3">
+                            <div className="device-features flex flex-wrap gap-3">
                               {item.features.map((feature, i) => (
                                 <motion.span 
                                   key={feature}
@@ -374,7 +374,7 @@ export default function ResponsiveSection() {
                                   whileInView={{ opacity: 1, scale: 1 }}
                                   transition={{ delay: i * 0.1 }}
                                   viewport={{ once: true }}
-                                  className="text-sm bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full border border-purple-500/30 hover:bg-purple-500/30 transition-all duration-300"
+                                  className="device-feature text-sm bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full border border-purple-500/30 hover:bg-purple-500/30 transition-all duration-300"
                                 >
                                   {feature}
                                 </motion.span>
@@ -393,13 +393,13 @@ export default function ResponsiveSection() {
 
         {/* Interactive Accordion Experience */}
         <motion.div 
-          className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/30"
+          className="accordion-section bg-gradient-to-r from-purple-900/50 to-indigo-900/50 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/30"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-4xl font-bold text-center mb-12 text-white">Responsive Design Features</h3>
+          <h3 className="accordion-title text-4xl font-bold text-center mb-12 text-white">Responsive Design Features</h3>
           
           <div className="space-y-6">
             {[
@@ -449,10 +449,10 @@ export default function ResponsiveSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="group"
+                className="accordion-item group"
               >
                 <motion.div 
-                  className="flex items-center justify-between p-6 bg-gradient-to-r from-purple-800/30 to-indigo-800/30 rounded-2xl border border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 cursor-pointer"
+                  className="accordion-header flex items-center justify-between p-6 bg-gradient-to-r from-purple-800/30 to-indigo-800/30 rounded-2xl border border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 cursor-pointer"
                   whileHover={{ 
                     x: 10,
                     scale: 1.02,
@@ -474,13 +474,13 @@ export default function ResponsiveSection() {
                 >
                   <div className="flex items-center">
                     <motion.div
-                      className={`w-12 h-12 bg-gradient-to-r ${color} rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-200`}
+                      className={`accordion-icon w-12 h-12 bg-gradient-to-r ${color} rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-200`}
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
                     >
                       <span className="text-xl">{icon}</span>
                     </motion.div>
-                    <h4 className="font-bold text-white group-hover:text-purple-300 transition-colors duration-200">{title}</h4>
+                    <h4 className="accordion-item-title font-bold text-white group-hover:text-purple-300 transition-colors duration-200">{title}</h4>
                   </div>
                   <motion.div
                     animate={{ rotate: 0 }}
@@ -495,14 +495,14 @@ export default function ResponsiveSection() {
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="overflow-hidden"
+                  className="accordion-content overflow-hidden"
                   style={{ height: '0px', opacity: 0 }}
                 >
                   <div className="p-6 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border-t border-purple-500/20">
                     <p className="text-gray-300 leading-relaxed mb-6 text-lg">{content}</p>
                     
                     {/* Feature Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="accordion-features flex flex-wrap gap-2 mb-6">
                       {features.map((feature, i) => (
                         <motion.span 
                           key={feature}
@@ -510,7 +510,7 @@ export default function ResponsiveSection() {
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ delay: i * 0.1 }}
                           viewport={{ once: true }}
-                          className="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30"
+                          className="accordion-feature text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30"
                         >
                           {feature}
                         </motion.span>
@@ -518,7 +518,7 @@ export default function ResponsiveSection() {
                     </div>
 
                     {/* Detailed Features */}
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="accordion-details grid md:grid-cols-2 gap-4">
                       {details.map((detail, i) => (
                         <motion.div
                           key={detail}
@@ -526,7 +526,7 @@ export default function ResponsiveSection() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.1 }}
                           viewport={{ once: true }}
-                          className="flex items-start p-3 bg-purple-800/20 rounded-lg border border-purple-500/20"
+                          className="accordion-detail flex items-start p-3 bg-purple-800/20 rounded-lg border border-purple-500/20"
                         >
                           <motion.div
                             className="w-2 h-2 bg-purple-400 rounded-full mr-3 mt-2 flex-shrink-0"
@@ -546,4 +546,378 @@ export default function ResponsiveSection() {
       </div>
     </section>
   );
+}
+
+// Mobile responsive CSS
+const mobileStyles = `
+  @media (max-width: 768px) {
+    .responsive-section {
+      padding: 1rem 0 !important;
+    }
+    
+    .hero-section {
+      margin-bottom: 1rem !important;
+      padding: 0 1rem !important;
+    }
+    
+    .hero-title {
+      font-size: 2rem !important;
+      line-height: 1.2 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+      padding: 0 0.5rem !important;
+    }
+    
+    .hero-icon {
+      width: 4rem !important;
+      height: 4rem !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .device-showcase {
+      height: auto !important;
+      min-height: 50vh !important;
+      margin-top: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .device-buttons {
+      flex-direction: column !important;
+      height: auto !important;
+    }
+    
+    .device-button {
+      width: 100% !important;
+      height: 60px !important;
+      margin-bottom: 0.5rem !important;
+      padding: 0.75rem !important;
+    }
+    
+    .device-button.active {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 300px !important;
+    }
+    
+    .device-button-content {
+      width: 100% !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+    
+    .device-title {
+      font-size: 1.25rem !important;
+      writing-mode: horizontal-tb !important;
+      transform: none !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .device-number {
+      font-size: 2rem !important;
+      writing-mode: horizontal-tb !important;
+      transform: none !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .device-display {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      padding: 1rem !important;
+    }
+    
+    .device-mockup {
+      width: 100% !important;
+      height: auto !important;
+      padding-right: 0 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .device-content {
+      width: 100% !important;
+      height: auto !important;
+      padding: 0 !important;
+    }
+    
+    .device-content h2 {
+      font-size: 1.5rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .device-content p {
+      font-size: 0.9rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .device-features {
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+    }
+    
+    .device-feature {
+      font-size: 0.75rem !important;
+      padding: 0.5rem 0.75rem !important;
+    }
+    
+    /* iPhone mockup mobile */
+    .iphone-mockup {
+      width: 200px !important;
+      height: 400px !important;
+    }
+    
+    /* iPad mockup mobile */
+    .ipad-mockup {
+      width: 250px !important;
+      height: 350px !important;
+    }
+    
+    /* MacBook mockup mobile */
+    .macbook-mockup {
+      width: 280px !important;
+      height: 200px !important;
+    }
+    
+    /* Desktop mockup mobile */
+    .desktop-mockup {
+      width: 300px !important;
+      height: 200px !important;
+    }
+    
+    .accordion-section {
+      padding: 1rem !important;
+      margin: 1rem 0 !important;
+    }
+    
+    .accordion-title {
+      font-size: 1.5rem !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .accordion-item {
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .accordion-header {
+      padding: 0.75rem !important;
+    }
+    
+    .accordion-icon {
+      width: 2rem !important;
+      height: 2rem !important;
+      margin-right: 0.5rem !important;
+    }
+    
+    .accordion-item-title {
+      font-size: 1rem !important;
+    }
+    
+    .accordion-content {
+      padding: 0.75rem !important;
+    }
+    
+    .accordion-content p {
+      font-size: 0.85rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .accordion-features {
+      flex-direction: column !important;
+      gap: 0.25rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .accordion-feature {
+      font-size: 0.7rem !important;
+      padding: 0.25rem 0.5rem !important;
+    }
+    
+    .accordion-details {
+      grid-template-columns: 1fr !important;
+      gap: 0.5rem !important;
+    }
+    
+    .accordion-detail {
+      padding: 0.5rem !important;
+      font-size: 0.75rem !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 1.75rem !important;
+    }
+    
+    .hero-subtitle {
+      font-size: 0.9rem !important;
+    }
+    
+    .device-button {
+      height: 50px !important;
+      padding: 0.5rem !important;
+    }
+    
+    .device-button.active {
+      min-height: 250px !important;
+    }
+    
+    .device-title {
+      font-size: 1rem !important;
+    }
+    
+    .device-number {
+      font-size: 1.5rem !important;
+    }
+    
+    .device-content h2 {
+      font-size: 1.25rem !important;
+    }
+    
+    .device-content p {
+      font-size: 0.8rem !important;
+    }
+    
+    .iphone-mockup {
+      width: 180px !important;
+      height: 360px !important;
+    }
+    
+    .ipad-mockup {
+      width: 220px !important;
+      height: 300px !important;
+    }
+    
+    .macbook-mockup {
+      width: 250px !important;
+      height: 180px !important;
+    }
+    
+    .desktop-mockup {
+      width: 270px !important;
+      height: 180px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.5rem !important;
+    }
+    
+    .hero-subtitle {
+      font-size: 0.85rem !important;
+    }
+    
+    .device-button {
+      height: 45px !important;
+      padding: 0.4rem !important;
+    }
+    
+    .device-button.active {
+      min-height: 200px !important;
+    }
+    
+    .device-title {
+      font-size: 0.9rem !important;
+    }
+    
+    .device-number {
+      font-size: 1.25rem !important;
+    }
+    
+    .device-content h2 {
+      font-size: 1.1rem !important;
+    }
+    
+    .device-content p {
+      font-size: 0.75rem !important;
+    }
+    
+    .iphone-mockup {
+      width: 160px !important;
+      height: 320px !important;
+    }
+    
+    .ipad-mockup {
+      width: 200px !important;
+      height: 280px !important;
+    }
+    
+    .macbook-mockup {
+      width: 220px !important;
+      height: 160px !important;
+    }
+    
+    .desktop-mockup {
+      width: 240px !important;
+      height: 160px !important;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .hero-title {
+      font-size: 1.25rem !important;
+    }
+    
+    .hero-subtitle {
+      font-size: 0.8rem !important;
+    }
+    
+    .device-button {
+      height: 40px !important;
+      padding: 0.3rem !important;
+    }
+    
+    .device-button.active {
+      min-height: 180px !important;
+    }
+    
+    .device-title {
+      font-size: 0.8rem !important;
+    }
+    
+    .device-number {
+      font-size: 1rem !important;
+    }
+    
+    .device-content h2 {
+      font-size: 1rem !important;
+    }
+    
+    .device-content p {
+      font-size: 0.7rem !important;
+    }
+    
+    .iphone-mockup {
+      width: 140px !important;
+      height: 280px !important;
+    }
+    
+    .ipad-mockup {
+      width: 180px !important;
+      height: 250px !important;
+    }
+    
+    .macbook-mockup {
+      width: 200px !important;
+      height: 140px !important;
+    }
+    
+    .desktop-mockup {
+      width: 220px !important;
+      height: 140px !important;
+    }
+  }
+`;
+
+// CSS'i head'e ekle
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = mobileStyles;
+  document.head.appendChild(style);
 }
