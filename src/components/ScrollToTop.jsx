@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Sayfa scroll durumunu dinle
   useEffect(() => {
@@ -20,6 +21,16 @@ export default function ScrollToTop() {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
+  // Mobile menu state'ini dinle
+  useEffect(() => {
+    const handleMobileMenuToggle = (event) => {
+      setIsMobileMenuOpen(event.detail.isOpen);
+    };
+
+    window.addEventListener('mobileMenuToggle', handleMobileMenuToggle);
+    return () => window.removeEventListener('mobileMenuToggle', handleMobileMenuToggle);
+  }, []);
+
   // Scroll en üste taşı
   const scrollToTop = () => {
     window.scrollTo({
@@ -30,7 +41,7 @@ export default function ScrollToTop() {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {visible && !isMobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, scale: 0, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -173,7 +173,14 @@ export default function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               className="lg:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 z-50"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                const newState = !isMobileMenuOpen;
+                setIsMobileMenuOpen(newState);
+                // Dispatch custom event for ScrollToTop component
+                window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                  detail: { isOpen: newState } 
+                }));
+              }}
             >
               <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
               <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -192,7 +199,12 @@ export default function Navbar() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                      detail: { isOpen: false } 
+                    }));
+                  }}
                 />
                 
                 {/* Full Screen Menu */}
@@ -207,11 +219,22 @@ export default function Navbar() {
                     stiffness: 200 
                   }}
                 >
-                  {/* Header with close button */}
+                  {/* Header with logo and close button */}
                   <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                    <h2 className="text-2xl font-bold text-gray-900">Menü</h2>
+                    <div className="text-2xl font-bold text-gray-900 font-serif">
+                      <span className="text-2xl font-bold font-serif">
+                        E
+                        <span className="text-teal-500">C</span>
+                        OMMEZZO
+                      </span>
+                    </div>
                     <button
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                          detail: { isOpen: false } 
+                        }));
+                      }}
                       className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
                     >
                       <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,7 +254,12 @@ export default function Navbar() {
                             ? 'text-teal-500' 
                             : 'text-gray-900 hover:text-teal-500'
                         }`}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                            detail: { isOpen: false } 
+                          }));
+                        }}
                         whileHover={{ x: 10 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -244,7 +272,12 @@ export default function Navbar() {
                             ? 'text-teal-500' 
                             : 'text-gray-900 hover:text-teal-500'
                         }`}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                            detail: { isOpen: false } 
+                          }));
+                        }}
                         whileHover={{ x: 10 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -257,7 +290,12 @@ export default function Navbar() {
                             ? 'text-teal-500' 
                             : 'text-gray-900 hover:text-teal-500'
                         }`}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                            detail: { isOpen: false } 
+                          }));
+                        }}
                         whileHover={{ x: 10 }}
                         transition={{ duration: 0.2 }}
                       > 
@@ -269,7 +307,12 @@ export default function Navbar() {
                     <div className="pt-8">
                       <motion.a 
                         href="/kontakt"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                            detail: { isOpen: false } 
+                          }));
+                        }}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ duration: 0.2 }}
