@@ -187,8 +187,8 @@ export default function Calendar({ onTimeSelect, onClose }) {
   // Client-side render kontrolü
   if (!isClient || !currentMonth) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden my-4 md:my-0">
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
@@ -204,17 +204,17 @@ export default function Calendar({ onTimeSelect, onClose }) {
   const monthName = currentMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] md:max-h-[90vh] overflow-hidden my-4 md:my-0"
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-6">
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-4 md:p-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Termin Buchen</h2>
+            <h2 className="text-xl md:text-2xl font-bold">Termin Buchen</h2>
             <button
               onClick={onClose}
               className="text-white hover:text-gray-200 transition-colors"
@@ -224,13 +224,13 @@ export default function Calendar({ onTimeSelect, onClose }) {
               </svg>
             </button>
           </div>
-          <p className="text-cyan-100 mt-2">Wählen Sie ein Datum und eine Uhrzeit</p>
+          <p className="text-cyan-100 mt-1 md:mt-2 text-sm md:text-base">Wählen Sie ein Datum und eine Uhrzeit</p>
         </div>
 
-        <div className="flex flex-col lg:flex-row h-[600px]">
+        <div className="flex flex-col lg:flex-row min-h-[400px] h-[500px] md:h-[600px]">
           {/* Takvim Bölümü */}
-          <div className="flex-1 p-6 border-r border-gray-200">
-            <div className="flex justify-between items-center mb-6">
+          <div className="flex-1 p-4 md:p-6 border-r border-gray-200">
+            <div className="flex justify-between items-center mb-4 md:mb-6">
               <button
                 onClick={prevMonth}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -239,7 +239,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <h3 className="text-xl font-semibold text-gray-800 capitalize">{monthName}</h3>
+              <h3 className="text-lg md:text-xl font-semibold text-gray-800 capitalize">{monthName}</h3>
               <button
                 onClick={nextMonth}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -253,7 +253,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
             {/* Hafta başlıkları */}
             <div className="grid grid-cols-7 gap-1 mb-2">
               {['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'].map(day => (
-                <div key={day} className="text-center text-sm font-medium text-gray-600 py-2">
+                <div key={day} className="text-center text-xs md:text-sm font-medium text-gray-600 py-1 md:py-2">
                   {day}
                 </div>
               ))}
@@ -263,7 +263,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
             <div className="grid grid-cols-7 gap-1">
               {days.map((day, index) => {
                 if (!day) {
-                  return <div key={index} className="h-12" />;
+                  return <div key={index} className="h-8 md:h-12" />;
                 }
 
                 const dateStr = day.toISOString().split('T')[0];
@@ -277,7 +277,7 @@ export default function Calendar({ onTimeSelect, onClose }) {
                     key={index}
                     onClick={() => handleDateSelect(day)}
                     disabled={isPastDate}
-                    className={`h-12 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    className={`h-8 md:h-12 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 ${
                       isSelected
                         ? 'bg-cyan-500 text-white'
                         : isPastDate
@@ -295,21 +295,21 @@ export default function Calendar({ onTimeSelect, onClose }) {
           </div>
 
           {/* Zaman Dilimleri Bölümü */}
-          <div className="flex-1 p-6">
+          <div className="flex-1 p-4 md:p-6">
             {selectedDate ? (
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4">
                   für {formatDate(selectedDate)}
                 </h3>
                 
-                <div className="grid grid-cols-2 gap-3 max-h-80 overflow-y-auto">
+                <div className="grid grid-cols-2 gap-2 md:gap-3 max-h-48 md:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                   {Object.entries(availableSlots[selectedDate.toISOString().split('T')[0]] || {})
                     .filter(([time, status]) => status === 'available')
                     .map(([time, status]) => (
                       <button
                         key={time}
                         onClick={() => handleTimeSelect(time)}
-                        className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                        className={`p-2 md:p-3 rounded-lg border-2 transition-all duration-200 text-sm ${
                           selectedTime === time
                             ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
                             : 'border-gray-200 hover:border-cyan-300 hover:bg-gray-50 text-gray-800'
@@ -324,16 +324,16 @@ export default function Calendar({ onTimeSelect, onClose }) {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-6 p-4 bg-gray-50 rounded-lg"
+                    className="mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 rounded-lg"
                   >
-                    <p className="text-sm text-gray-600 mb-2">Ausgewählter Termin:</p>
-                    <p className="font-semibold text-gray-800">
+                    <p className="text-xs md:text-sm text-gray-600 mb-2">Ausgewählter Termin:</p>
+                    <p className="text-sm md:text-base font-semibold text-gray-800">
                       {formatDate(selectedDate)} um {selectedTime}
                     </p>
                     
                     <button
                       onClick={handleConfirm}
-                      className="w-full mt-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                      className="w-full mt-3 md:mt-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
                     >
                       Termin Bestätigen
                     </button>
@@ -343,10 +343,10 @@ export default function Calendar({ onTimeSelect, onClose }) {
             ) : (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center text-gray-500">
-                  <svg className="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <p className="text-lg">Bitte wählen Sie ein Datum aus</p>
+                  <p className="text-sm md:text-lg">Bitte wählen Sie ein Datum aus</p>
                 </div>
               </div>
             )}
