@@ -75,19 +75,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full">
             <motion.a 
               href="/" 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold justify-between relative z-10"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif relative z-10"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-            <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif mr-0 scale-150 px-0">
-            <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif mr-0 scale-150 px-0">
-            E
-            <span className="C">
-              C
-            </span>
-            OMMEZZO
-          </span>
-          </span>
+              E
+              <span className="text-teal-400">C</span>
+              OMMEZZO
             </motion.a>
             
             {/* Desktop Navigation */}
@@ -222,11 +216,9 @@ export default function Navbar() {
                   {/* Header with logo and close button */}
                   <div className="flex items-center justify-between p-6 border-b border-gray-200">
                     <div className="text-2xl font-bold text-gray-900 font-serif">
-                      <span className="text-2xl font-bold font-serif">
-                        E
-                        <span className="text-teal-500">C</span>
-                        OMMEZZO
-                      </span>
+                      E
+                      <span className="text-teal-500">C</span>
+                      OMMEZZO
                     </div>
                     <button
                       onClick={() => {
