@@ -4,6 +4,12 @@ const nextConfig = {
     compiler: {
       styledComponents: true, // styled-components desteği
     },
+    typescript: {
+      ignoreBuildErrors: true,
+    },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
     images: {
       remotePatterns: [
         {

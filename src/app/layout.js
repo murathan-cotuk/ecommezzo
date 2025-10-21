@@ -3,8 +3,8 @@ import Navbar from '../components/Navbar'; // Navbar bileşenini doğru yoldan i
 import Footer from "../components/Footer";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import ScrollToTop from "@/components/ScrollToTop";
-import Loader from "@/components/Loader";
+import ScrollToTop from "../components/ScrollToTop";
+import Loader from "../components/Loader";
 import StyledComponentsRegistry from '../lib/registry';
 import GoogleSearchConsole from '../components/GoogleSearchConsole';
 import { generateStructuredData } from '../lib/seo';
