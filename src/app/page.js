@@ -2,16 +2,16 @@
 
 "use client";
 
-import CodeAnimation from "@/components/CodeAnimation";
-import ConversionRateCalculator from "@/components/ConversionRateCalculator";
-import Home1 from "@/components/Home1";
-import Home2 from "@/components/Home2";
-import Home3 from "@/components/Home3";
-import HomeLast from "@/components/HomeLast";
-import Compare from "@/components/Compare";
-import ReferenzSection from '@/components/WebdesignReferenz';
-import Portfolio from '@/components/Portfolio';
-import GraffitiScroll from '@/components/GraffitiScroll';
+import CodeAnimation from "../components/CodeAnimation";
+import ConversionRateCalculator from "../components/ConversionRateCalculator";
+import Home1 from "../components/Home1";
+import Home2 from "../components/Home2";
+import Home3 from "../components/Home3";
+import HomeLast from "../components/HomeLast";
+import Compare from "../components/Compare";
+import ReferenzSection from '../components/WebdesignReferenz';
+import Portfolio from '../components/Portfolio';
+import GraffitiScroll from '../components/GraffitiScroll';
 
 
 export default function Home() {
