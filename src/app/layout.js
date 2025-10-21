@@ -6,7 +6,6 @@ import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import Loader from "@/components/Loader";
 import StyledComponentsRegistry from '../lib/registry';
-import GoogleAnalytics from '../components/GoogleAnalytics';
 import GoogleSearchConsole from '../components/GoogleSearchConsole';
 import { generateStructuredData } from '../lib/seo';
 
@@ -110,7 +109,6 @@ export default function RootLayout({ children }) {
           <Loader />
           <Footer />
         </StyledComponentsRegistry>
-        <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />
       </body>
     </html>
   );
