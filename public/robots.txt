@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ecommezzo.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /backend/
+
+# Allow important pages
+Allow: /
+Allow: /about-us
+Allow: /marketing
+Allow: /webdesign
+Allow: /marktplatz
+Allow: /conversion
+Allow: /kontakt
+Allow: /projekte/
+Allow: /web-analytics
+Allow: /datenschutz
+Allow: /impressum
