@@ -57,7 +57,7 @@ function generateSessionId() {
 }
 
 // Session kaydet - Global store kullan
-import { sessionStore } from '../../../lib/sessionStore';
+import { sessionStore } from '../../../../lib/sessionStore';
 
 async function saveSession(sessionId, sessionData) {
   try {

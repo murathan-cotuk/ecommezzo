@@ -57,7 +57,7 @@ export async function POST(request) {
 }
 
 // Global session store kullan
-import { sessionStore } from '../../../lib/sessionStore';
+import { sessionStore } from '../../../../lib/sessionStore';
 
 async function getSession(sessionId) {
   try {
