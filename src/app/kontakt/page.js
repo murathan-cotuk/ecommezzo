@@ -127,7 +127,7 @@ export default function Kontakt() {
         </div>
       </section>
       
-      <NewsletterSignup />
+      {/*<NewsletterSignup />*/}
     </div>
   );
 }
