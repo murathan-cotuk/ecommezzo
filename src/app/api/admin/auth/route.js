@@ -5,12 +5,17 @@ export async function POST(request) {
 
     // Admin credentials (production'da environment variables kullanın)
     const adminCredentials = {
-      username: process.env.ADMIN_USERNAME || 'service@ecommezzo.com',
-      password: process.env.ADMIN_PASSWORD || 'Ecommezzo2023!'
+      username: process.env.ADMIN_USERNAME || 'admin',
+      password: process.env.ADMIN_PASSWORD || 'ecommezzo2024'
     };
+
+    // Debug log
+    console.log('Login attempt:', { username, password });
+    console.log('Expected:', adminCredentials);
 
     // Credentials kontrolü
     if (username !== adminCredentials.username || password !== adminCredentials.password) {
+      console.log('Login failed - credentials mismatch');
       return Response.json({
         success: false,
         message: 'Ungültige Anmeldedaten'
@@ -51,36 +56,14 @@ function generateSessionId() {
   return crypto.randomBytes(32).toString('hex');
 }
 
-// Session kaydet
+// Session kaydet - Memory tabanlı (deploy uyumlu)
+const sessions = new Map();
+
 async function saveSession(sessionId, sessionData) {
   try {
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    
-    const dataDir = path.join(process.cwd(), 'data');
-    const sessionsFile = path.join(dataDir, 'admin_sessions.json');
-
-    // Data klasörünü oluştur
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-    } catch (error) {
-      // Klasör zaten var
-    }
-
-    // Mevcut session'ları oku
-    let sessions = {};
-    try {
-      const existingData = await fs.readFile(sessionsFile, 'utf8');
-      sessions = JSON.parse(existingData);
-    } catch (error) {
-      // Dosya yok, boş object ile başla
-    }
-
-    // Yeni session ekle
-    sessions[sessionId] = sessionData;
-
-    // Session'ları kaydet
-    await fs.writeFile(sessionsFile, JSON.stringify(sessions, null, 2));
+    // Memory'de sakla (deploy ortamında dosya yazma sorunu olabilir)
+    sessions.set(sessionId, sessionData);
+    console.log('Session saved in memory:', sessionId);
   } catch (error) {
     console.error('Session save error:', error);
   }

@@ -51,39 +51,22 @@ export async function POST(request) {
   }
 }
 
-// Session oku
+// Session oku - Memory tabanlı
+const sessions = new Map();
+
 async function getSession(sessionId) {
   try {
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    
-    const dataDir = path.join(process.cwd(), 'data');
-    const sessionsFile = path.join(dataDir, 'admin_sessions.json');
-
-    const existingData = await fs.readFile(sessionsFile, 'utf8');
-    const sessions = JSON.parse(existingData);
-    
-    return sessions[sessionId] || null;
+    return sessions.get(sessionId) || null;
   } catch (error) {
     return null;
   }
 }
 
-// Session sil
+// Session sil - Memory tabanlı
 async function deleteSession(sessionId) {
   try {
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    
-    const dataDir = path.join(process.cwd(), 'data');
-    const sessionsFile = path.join(dataDir, 'admin_sessions.json');
-
-    const existingData = await fs.readFile(sessionsFile, 'utf8');
-    const sessions = JSON.parse(existingData);
-    
-    delete sessions[sessionId];
-    
-    await fs.writeFile(sessionsFile, JSON.stringify(sessions, null, 2));
+    sessions.delete(sessionId);
+    console.log('Session deleted from memory:', sessionId);
   } catch (error) {
     console.error('Session delete error:', error);
   }
