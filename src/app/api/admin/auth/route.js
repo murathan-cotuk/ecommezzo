@@ -56,14 +56,12 @@ function generateSessionId() {
   return crypto.randomBytes(32).toString('hex');
 }
 
-// Session kaydet - Memory tabanlı (deploy uyumlu)
-const sessions = new Map();
+// Session kaydet - Global store kullan
+import { sessionStore } from '../../../lib/sessionStore';
 
 async function saveSession(sessionId, sessionData) {
   try {
-    // Memory'de sakla (deploy ortamında dosya yazma sorunu olabilir)
-    sessions.set(sessionId, sessionData);
-    console.log('Session saved in memory:', sessionId);
+    sessionStore.set(sessionId, sessionData);
   } catch (error) {
     console.error('Session save error:', error);
   }

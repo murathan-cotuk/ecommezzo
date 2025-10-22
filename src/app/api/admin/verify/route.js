@@ -3,7 +3,10 @@ export async function POST(request) {
   try {
     const { sessionId } = await request.json();
 
+    console.log('Verify request - sessionId:', sessionId);
+
     if (!sessionId) {
+      console.log('No sessionId provided');
       return Response.json({
         success: false,
         message: 'Session ID erforderlich'
@@ -12,8 +15,10 @@ export async function POST(request) {
 
     // Session'ı kontrol et
     const session = await getSession(sessionId);
+    console.log('Session found:', session);
 
     if (!session) {
+      console.log('Session not found');
       return Response.json({
         success: false,
         message: 'Ungültige Session'
@@ -51,22 +56,21 @@ export async function POST(request) {
   }
 }
 
-// Session oku - Memory tabanlı
-const sessions = new Map();
+// Global session store kullan
+import { sessionStore } from '../../../lib/sessionStore';
 
 async function getSession(sessionId) {
   try {
-    return sessions.get(sessionId) || null;
+    return sessionStore.get(sessionId);
   } catch (error) {
     return null;
   }
 }
 
-// Session sil - Memory tabanlı
+// Session sil
 async function deleteSession(sessionId) {
   try {
-    sessions.delete(sessionId);
-    console.log('Session deleted from memory:', sessionId);
+    sessionStore.delete(sessionId);
   } catch (error) {
     console.error('Session delete error:', error);
   }

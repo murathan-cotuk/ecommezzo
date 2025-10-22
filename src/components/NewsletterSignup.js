@@ -47,7 +47,7 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-orange-200 to-amber-200 text-orange-900 py-12 px-4">
+    <div className="bg-gradient-to-r from-white to-white text-orange-900 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,12 +60,12 @@ export default function NewsletterSignup() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               📧 Abonnieren Sie jetzt unseren Newsletter!
             </h2>
-            <p className="text-lg md:text-xl text-orange-700 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-orange-700 max-w-2xl mx-auto ">
               Erhalten Sie exklusive E-Commerce Tipps, Marketing-Strategien und Updates direkt in Ihr Postfach.
             </p>
           </div>
 
-          <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto border border-orange-300/30">
+          <div className="bg-orange-100 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto border border-orange-300/30">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
