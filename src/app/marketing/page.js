@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import NewsletterSignup from '../../components/NewsletterSignup';
 
 // Animated Number Component
 function AnimatedNumber({ value, duration = 2, suffix = "" }) {
@@ -1025,6 +1026,8 @@ export default function Marketing() {
            </div>
          </div>
        </section>
+       
+       <NewsletterSignup />
      </div>
    );
  }

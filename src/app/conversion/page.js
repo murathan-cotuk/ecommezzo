@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import ConversionRateCalculator from '../../components/ConversionRateCalculator';
 import { ChartBarIcon, ArrowTrendingUpIcon, LightBulbIcon } from '@heroicons/react/24/outline';
+import NewsletterSignup from '../../components/NewsletterSignup';
 
 export default function Conversion() {
     return (
@@ -430,6 +431,8 @@ export default function Conversion() {
           </div>
         </motion.section>
         </div>
+        
+        <NewsletterSignup />
       </div>
     );
-  }
+}

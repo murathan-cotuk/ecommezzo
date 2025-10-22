@@ -1,0 +1,18 @@
+[
+  {
+    "email": "murathan.cotuk@gmail.com",
+    "name": "Murathan Cotuk",
+    "source": "contact_form",
+    "subscribedAt": "2025-10-22T12:00:16.398Z",
+    "status": "active",
+    "unsubscribeToken": "7c442348903a904ba64e3bc14695bf66"
+  },
+  {
+    "email": "ygndz1997@gmail.com",
+    "name": "Yagmur Gündüz",
+    "source": "newsletter_signup",
+    "subscribedAt": "2025-10-22T12:28:56.033Z",
+    "status": "active",
+    "unsubscribeToken": "50a52cee361f88992f813cd71e22869f"
+  }
+]

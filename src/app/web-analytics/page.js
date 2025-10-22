@@ -1,3 +1,5 @@
+import NewsletterSignup from '../../components/NewsletterSignup';
+
 export default function WebAnalytics() {
     return (
       <div>
@@ -8,6 +10,8 @@ export default function WebAnalytics() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-600 dark:text-gray-300">Web sitenizin performansını analiz edin.</p>
         </div>
+        
+        <NewsletterSignup />
       </div>
     );
   }

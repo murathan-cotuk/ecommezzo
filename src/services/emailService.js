@@ -175,6 +175,64 @@ export const sendEmail = async (formData, appointmentData = null) => {
   }
 };
 
+// Newsletter abonelik fonksiyonu
+export const subscribeToNewsletter = async (email, name = '') => {
+  try {
+    const response = await fetch('/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        name: name,
+        source: 'newsletter_signup'
+      })
+    });
+
+    const result = await response.json();
+    
+    if (result.success) {
+      console.log('Newsletter subscription successful:', result);
+      return result;
+    } else {
+      console.warn('Newsletter subscription failed:', result.message);
+      return result;
+    }
+  } catch (error) {
+    console.error('Newsletter subscription error:', error);
+    return {
+      success: false,
+      message: 'Newsletter subscription failed'
+    };
+  }
+};
+
+// Newsletter abonelik iptal fonksiyonu
+export const unsubscribeFromNewsletter = async (email, token = null) => {
+  try {
+    const response = await fetch('/api/newsletter/unsubscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        token: token
+      })
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Newsletter unsubscribe error:', error);
+    return {
+      success: false,
+      message: 'Newsletter unsubscribe failed'
+    };
+  }
+};
+
 // Test email gönderme fonksiyonu
 export const sendTestEmail = async () => {
   const testData = {

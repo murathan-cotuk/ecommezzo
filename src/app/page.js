@@ -12,6 +12,7 @@ import Compare from "../components/Compare";
 import ReferenzSection from '../components/WebdesignReferenz';
 import Portfolio from '../components/Portfolio';
 import GraffitiScroll from '../components/GraffitiScroll';
+import NewsletterSignup from '../components/NewsletterSignup';
 
 
 export default function Home() {
@@ -186,6 +187,7 @@ export default function Home() {
         {/*<Compare />*/}
         {/*<ReferenzSection />*/}
         <HomeLast />
+        <NewsletterSignup />
         
       </main>
       

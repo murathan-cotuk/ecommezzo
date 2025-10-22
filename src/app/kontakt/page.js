@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import KontaktForm from '../../components/KontaktForm';
 import ContactIconsBannerWrapper from '../../components/ContactIconsBannerWrapper';
+import NewsletterSignup from '../../components/NewsletterSignup';
 
 export default function Kontakt() {
   const scrollToForm = () => {
@@ -125,6 +126,8 @@ export default function Kontakt() {
           </div>
         </div>
       </section>
+      
+      <NewsletterSignup />
     </div>
   );
 }

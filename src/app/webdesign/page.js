@@ -12,6 +12,7 @@ import ReferenzSection from '../../components/WebdesignReferenz';
 import CTASection from '../../components/WebdesignCTA';
 import Portfolio from '../../components/Portfolio';
 import ShopRelaunch from '../../components/ShopRelaunch';
+import NewsletterSignup from '../../components/NewsletterSignup';
 
 
 
@@ -292,7 +293,8 @@ export default function Webdesign() {
       <ShopRelaunch />
       {/*<ReferenzSection />*/}
       {/*<Portfolio />*/}
-      <CTASection />      
+      <CTASection />
+      <NewsletterSignup />
 
       
     </div>

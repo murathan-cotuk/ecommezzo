@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from './Calendar';
-import { sendEmail } from '../services/emailService';
+import { sendEmail, subscribeToNewsletter } from '../services/emailService';
 import { useRouter } from 'next/navigation';
 
 export default function KontaktForm() {
@@ -25,7 +25,8 @@ export default function KontaktForm() {
     
     // Onaylar
     privacyPolicy: false,
-    wantAppointment: false
+    wantAppointment: false,
+    newsletterSubscription: false
   });
 
   const [showCalendar, setShowCalendar] = useState(false);
@@ -217,6 +218,17 @@ export default function KontaktForm() {
       const result = await sendEmail(formData, appointmentData);
       
       if (result.success) {
+        // Bülten aboneliği kontrolü
+        if (formData.newsletterSubscription) {
+          try {
+            await subscribeToNewsletter(formData.email, formData.name);
+            console.log('Newsletter subscription successful');
+          } catch (newsletterError) {
+            console.warn('Newsletter subscription failed:', newsletterError);
+            // Newsletter hatası ana formu etkilemesin
+          }
+        }
+        
         setCurrentStep(questions.length + 1); // Teşekkür sayfasına geç
       } else {
         alert(result.message);
@@ -446,6 +458,19 @@ export default function KontaktForm() {
                    </span>
                  </label>
                  
+                 <label className="flex items-start space-x-2 md:space-x-3 cursor-pointer">
+                   <input
+                     type="checkbox"
+                     checked={formData.newsletterSubscription}
+                     onChange={(e) => handleInputChange('newsletterSubscription', e.target.checked)}
+                     className="mt-0.5 md:mt-1 w-4 h-4 md:w-5 md:h-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500"
+                   />
+                   <span className="text-xs md:text-sm text-gray-700">
+                     📧 Möchten Sie unseren Newsletter abonnieren? 
+                     <span className="text-cyan-600 font-medium"> (Empfohlene E-Commerce Tipps & Updates)</span>
+                   </span>
+                 </label>
+                 
                  {formData.wantAppointment && appointmentData && (
                    <div className="ml-6 mt-1 p-2 md:p-3 bg-green-50 border border-green-200 rounded-lg">
                      <p className="text-xs md:text-sm text-green-800">
@@ -532,7 +557,8 @@ export default function KontaktForm() {
                           company: '',
                           message: '',
                           privacyPolicy: false,
-                          wantAppointment: false
+                          wantAppointment: false,
+                          newsletterSubscription: false
                         });
                         setAppointmentData(null);
                       }}
