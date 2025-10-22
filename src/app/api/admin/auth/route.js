@@ -5,8 +5,8 @@ export async function POST(request) {
 
     // Admin credentials (production'da environment variables kullanın)
     const adminCredentials = {
-      username: process.env.ADMIN_USERNAME || 'admin',
-      password: process.env.ADMIN_PASSWORD || 'ecommezzo2024!'
+      username: process.env.ADMIN_USERNAME || 'service@ecommezzo.com',
+      password: process.env.ADMIN_PASSWORD || 'Ecommezzo2023!'
     };
 
     // Credentials kontrolü
