@@ -37,6 +37,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+
   return (
     <>
       <motion.nav
@@ -120,6 +121,18 @@ export default function Navbar() {
               > 
                 Marktplatz
               </motion.a>
+              {/*<motion.a 
+                href="/softwares" 
+                className={`font-bold relative ${
+                  pathname === '/softwares' 
+                    ? 'text-[#981919]' 
+                    : 'hover:text-red-200'
+                }`}
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+              > 
+                Softwares
+              </motion.a>*/}
             </div>
             
             {/* Desktop Social & Contact */}
@@ -128,7 +141,7 @@ export default function Navbar() {
                 href="https://www.instagram.com/ecommezzo/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-cyan-600"
+                className="hover:text-#8f1818"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ duration: 0.2 }}
               >
@@ -141,7 +154,7 @@ export default function Navbar() {
                 href="https://tr.linkedin.com/company/ecommezzo" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-cyan-600"
+                className="hover:text-#8f1818"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 transition={{ duration: 0.2 }}
               >
@@ -160,7 +173,9 @@ export default function Navbar() {
                 Kontakt
               </button>
               </motion.a>
+              
             </div>
+
 
             {/* Mobile Hamburger Button */}
             <button
@@ -297,6 +312,24 @@ export default function Navbar() {
                         transition={{ duration: 0.2 }}
                       > 
                         Marktplatz
+                      </motion.a>
+                      <motion.a 
+                        href="/softwares" 
+                        className={`block text-2xl font-bold py-4 border-b border-gray-100 ${
+                          pathname === '/softwares' 
+                            ? 'text-teal-500' 
+                            : 'text-gray-900 hover:text-teal-500'
+                        }`}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          window.dispatchEvent(new CustomEvent('mobileMenuToggle', { 
+                            detail: { isOpen: false } 
+                          }));
+                        }}
+                        whileHover={{ x: 10 }}
+                        transition={{ duration: 0.2 }}
+                      > 
+                        Softwares
                       </motion.a>
                     </div>
                     
