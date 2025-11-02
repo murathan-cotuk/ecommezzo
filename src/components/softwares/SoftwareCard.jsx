@@ -13,7 +13,7 @@ export default function SoftwareCard({ software }) {
       {/* Cover Image */}
       <div className="relative h-48 overflow-hidden">
         <img 
-          src="/gta.png" 
+          src="/a.png" 
           alt={`${software.name} cover`}
           className="w-full h-full object-cover"
         />
