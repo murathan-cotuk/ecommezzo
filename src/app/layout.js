@@ -109,6 +109,57 @@ export default function RootLayout({ children }) {
           <Loader />
           <Footer />
         </StyledComponentsRegistry>
+        
+        {/* Görsel koruma scripti - Image protection script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Context menu engelleme
+                document.addEventListener('contextmenu', function(e) {
+                  if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
+                    e.preventDefault();
+                    return false;
+                  }
+                }, false);
+                
+                // Sürükle-bırak engelleme
+                document.addEventListener('dragstart', function(e) {
+                  if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
+                    e.preventDefault();
+                    return false;
+                  }
+                }, false);
+                
+                // Tüm img taglarına draggable="false" ekle
+                function addImageProtection() {
+                  const images = document.querySelectorAll('img, image, video');
+                  images.forEach(function(img) {
+                    img.setAttribute('draggable', 'false');
+                    img.style.pointerEvents = 'auto';
+                  });
+                }
+                
+                // Sayfa yüklendiğinde çalıştır
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', addImageProtection);
+                } else {
+                  addImageProtection();
+                }
+                
+                // Yeni içerik eklendiğinde de çalıştır (Next.js için)
+                const observer = new MutationObserver(function(mutations) {
+                  addImageProtection();
+                });
+                
+                observer.observe(document.body, {
+                  childList: true,
+                  subtree: true
+                });
+              })();
+            `,
+          }}
+        />
       </body>
     </html>
   );

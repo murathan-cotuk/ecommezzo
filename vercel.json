@@ -3,16 +3,5 @@
     "src/app/api/**/*.js": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "MONGODB_URI": "@mongodb_uri",
-    "SHOPIFY_API_KEY": "@shopify_api_key",
-    "SHOPIFY_API_SECRET": "@shopify_api_secret",
-    "NEXTAUTH_SECRET": "@nextauth_secret"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_API_URL": "@next_public_api_url"
-    }
   }
 }

@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import CTASection from '../../../components/WebdesignCTA';
+import NewsletterSignup from '../../../components/NewsletterSignup';
 
 // Format time function
 function formatTime(seconds) {
@@ -183,12 +185,12 @@ export default function KinetiqPhysioMed() {
               {
                 title: " ",
                 description: " ",
-                image: "/KinetiqPhysioMed/KinetiqSS1.png"
+                image: "/KinetiqPhysioMed/KinetiqSS2.png"
               },
               {
                 title: " ",
                 description: " ",
-                image: "/KinetiqPhysioMed/KinetiqSS1.png"
+                image: "/KinetiqPhysioMed/KinetiqSS3.png"
               }
             ].map((screen, index) => (
               <motion.div
@@ -274,7 +276,10 @@ export default function KinetiqPhysioMed() {
             ))}
           </div>
         </div>
-      </section>      
+      </section>
+      
+      <CTASection />
+      <NewsletterSignup />
     </div>
   );
 }

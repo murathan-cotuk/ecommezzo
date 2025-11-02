@@ -4,11 +4,7 @@ import Image from 'next/image';
 
 export default function Portfolio() {
   const kundenLogos = [
-    '/gta.png',
-    '/gta.png',
-    '/gta.png',
-    '/gta.png',
-    '/Hero.png',
+    '/Kinetiq-Logo.png',
   ];
 
   return (
@@ -47,7 +43,7 @@ export default function Portfolio() {
               title: "Megaman Fashion",
               category: "Online-Shop",
               description: "Professioneller E-Commerce Shop mit optimierter Conversion und modernem Design",
-              image: "/KinetiqPhysioMed/KinetiqPhysiomed.jpg",
+              image: "/Megaman/Megaman-Logo.png",
               video: "/KinetiqPhysioMed/KinetiqMobile.mp4",
               link: "/projekte/megaman",
             },

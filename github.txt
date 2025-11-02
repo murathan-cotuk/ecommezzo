@@ -5,7 +5,7 @@ ps: git checkout dev ; git add . ; git commit -m "update" ; git push origin dev
 
     git checkout dev
     git add .
-    git commit -m "Yeni özellik eklendi"
+    git commit -m "Update"
     git push origin dev
 
 

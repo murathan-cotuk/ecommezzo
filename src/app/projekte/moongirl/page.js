@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import CTASection from '../../../components/WebdesignCTA';
+import NewsletterSignup from '../../../components/NewsletterSignup';
 
 // Format time function
 function formatTime(seconds) {
@@ -274,7 +276,10 @@ export default function MoongirlLingerie() {
             ))}
           </div>
         </div>
-      </section>      
+      </section>
+      
+      <CTASection />
+      <NewsletterSignup />
     </div>
   );
 }
