@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import SimpleChart from '../../components/softwares/DeepVision/SimpleChart';
+import SimpleChart from '../../../components/softwares/DeepVision/SimpleChart';
 
 export default function DeepVisionDashboard() {
   const [data, setData] = useState(null);
