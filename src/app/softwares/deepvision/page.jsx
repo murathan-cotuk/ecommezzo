@@ -19,7 +19,7 @@ export default function DeepVisionPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section - Full Screen Dark Theme */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900 pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-6 md:pb-8">
+      <section className="relative min-h-[75vh] sm:min-h-[110vh] flex items-start sm:items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900 pt-24 pb-4 sm:pb-6 md:pb-8">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Grid Pattern */}
@@ -32,7 +32,7 @@ export default function DeepVisionPage() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-4 sm:py-6 md:py-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-2 sm:pt-6 md:pt-8 pb-4 sm:pb-6 md:pb-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
