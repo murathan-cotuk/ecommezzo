@@ -72,7 +72,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/Ecommezzo-Logo.png" />
         <link rel="shortcut icon" href="/Ecommezzo-Logo.png" />
@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${roboto.variable} antialiased`}>
+      <body className={`${roboto.variable} antialiased`} suppressHydrationWarning>
         <StyledComponentsRegistry>
           {/* <SplashScreen /> */}
           {/*<Banner />*/}
@@ -110,52 +110,31 @@ export default function RootLayout({ children }) {
           <Footer />
         </StyledComponentsRegistry>
         
-        {/* Görsel koruma scripti - Image protection script */}
+        {/* Görsel koruma scripti - Image protection script - Sadece event listener'lar kullanır, DOM'a attribute eklemez */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // Context menu engelleme
-                document.addEventListener('contextmenu', function(e) {
-                  if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
-                    e.preventDefault();
-                    return false;
-                  }
-                }, false);
-                
-                // Sürükle-bırak engelleme
-                document.addEventListener('dragstart', function(e) {
-                  if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
-                    e.preventDefault();
-                    return false;
-                  }
-                }, false);
-                
-                // Tüm img taglarına draggable="false" ekle
-                function addImageProtection() {
-                  const images = document.querySelectorAll('img, image, video');
-                  images.forEach(function(img) {
-                    img.setAttribute('draggable', 'false');
-                    img.style.pointerEvents = 'auto';
-                  });
+                // Hydration sonrası çalışması için setTimeout kullan
+                if (typeof window !== 'undefined') {
+                  setTimeout(function() {
+                    // Context menu engelleme
+                    document.addEventListener('contextmenu', function(e) {
+                      if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
+                        e.preventDefault();
+                        return false;
+                      }
+                    }, false);
+                    
+                    // Sürükle-bırak engelleme
+                    document.addEventListener('dragstart', function(e) {
+                      if (e.target.tagName === 'IMG' || e.target.tagName === 'IMAGE' || e.target.tagName === 'VIDEO') {
+                        e.preventDefault();
+                        return false;
+                      }
+                    }, false);
+                  }, 100);
                 }
-                
-                // Sayfa yüklendiğinde çalıştır
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', addImageProtection);
-                } else {
-                  addImageProtection();
-                }
-                
-                // Yeni içerik eklendiğinde de çalıştır (Next.js için)
-                const observer = new MutationObserver(function(mutations) {
-                  addImageProtection();
-                });
-                
-                observer.observe(document.body, {
-                  childList: true,
-                  subtree: true
-                });
               })();
             `,
           }}

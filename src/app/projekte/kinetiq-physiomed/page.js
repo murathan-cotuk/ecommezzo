@@ -18,6 +18,16 @@ export default function KinetiqPhysioMed() {
       {/* 1. Hero Section */}
       <section className="w-full min-h-[600px] md:h-[800px] bg-gradient-to-br from-[#008080] via-[#008080] to-[#008080] flex flex-col md:flex-row items-center relative px-4 sm:px-6 lg:px-8 py-12 md:py-0">
         
+        {/* Mobilde Arka Plan Görsel */}
+        <div className="absolute inset-0 md:hidden z-0 opacity-40">
+          <img
+            src="/KinetiqPhysioMed/Kinetiq2.jpg"
+            alt="Kinetiq PhysioMed Website"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#008080]/80 via-[#008080]/60 to-[#008080]/80"></div>
+        </div>
+        
         {/* Sol Taraf - Metin */}
         <div className="w-full md:w-2/3 pl-0 md:pl-8 lg:pl-32 pr-0 md:pr-8 lg:pr-36 relative z-10">
           <motion.div
@@ -40,7 +50,7 @@ export default function KinetiqPhysioMed() {
               bewerbern effektiv auf ein neues Level.
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 relative z-20">
               {[
                 { value: "+120%", label: "Traffic Steigerung", color: "from-[#cd5729] to-[#cd5729]" },
                 { value: "+85%", label: "Conversion Rate", color: "from-[#cd5729] to-[#cd5729]" },
@@ -51,7 +61,7 @@ export default function KinetiqPhysioMed() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-lg border border-white/50"
+                  className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-3 shadow-lg border border-white/50"
                 >
                   <div className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                     {stat.value}
@@ -64,15 +74,15 @@ export default function KinetiqPhysioMed() {
         </div>
 
         {/* Sağ Taraf - Ekranın Sağına Tamamen Yapışık Görsel */}
-        <div className="absolute right-0 top-0 md:top-auto md:mt-40 w-full md:w-1/3 h-1/3 md:h-full mt-auto md:mt-40">
+        <div className="hidden md:block absolute right-0 top-0 md:top-auto md:mt-40 w-full md:w-1/3 h-1/3 md:h-full mt-auto md:mt-40 z-10">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative h-full"
+            className="relative h-full w-full"
           >
             {/* Banner Uzunluğunda Görsel - Ekranın Sağına Tamamen Yapışık */}
-            <div className="h-full rounded-l-3xl shadow-2xl flex items-center justify-center">
+            <div className="h-full w-full rounded-l-3xl shadow-2xl flex items-center justify-center overflow-hidden">
               <img
                 src="/KinetiqPhysioMed/Kinetiq2.jpg"
                 alt="Kinetiq PhysioMed Website"
@@ -184,7 +194,7 @@ export default function KinetiqPhysioMed() {
               }
             ].map((screen, index) => (
               <motion.div
-                key={screen.title}
+                key={screen.image || index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
