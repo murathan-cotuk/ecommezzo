@@ -19,12 +19,12 @@ export default function DeepVisionPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section - Full Screen Dark Theme */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900 pt-24">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Floating Data Points */}
-          <div className="absolute top-20 left-10 w-4 h-4 bg-[#8f1818] rounded-full animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-6 h-6 bg-[#8f1818]/60 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-32 left-10 w-4 h-4 bg-[#8f1818] rounded-full animate-pulse"></div>
+          <div className="absolute top-52 right-20 w-6 h-6 bg-[#8f1818]/60 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
           <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-[#8f1818]/40 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
           <div className="absolute top-1/3 right-1/3 w-5 h-5 bg-[#8f1818]/30 rounded-full animate-bounce" style={{animationDelay: '3s'}}></div>
           
@@ -182,20 +182,22 @@ export default function DeepVisionPage() {
       {/* Navigation Tabs */}
       <section className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab.id
-                    ? 'border-#8f1818500 text-#8f1818'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-8 min-w-max">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? 'border-#8f1818500 text-#8f1818'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
