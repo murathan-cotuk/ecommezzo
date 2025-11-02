@@ -16,36 +16,31 @@ export default function MoongirlLingerie() {
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="w-full h-[800px] bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-900 flex items-center relative">
+      <section className="w-full min-h-[600px] md:h-[800px] bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-900 flex flex-col md:flex-row items-center relative px-4 sm:px-6 lg:px-8 py-12 md:py-0">
         
         {/* Sol Taraf - Metin */}
-        <div className="w-2/3 pl-32 pr-36 relative z-10">
+        <div className="w-full md:w-2/3 pl-0 md:pl-8 lg:pl-32 pr-0 md:pr-8 lg:pr-36 relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block mb-16"
-            >
+            <div className="inline-block mb-8 md:mb-16">
               
-            </motion.div>
+            </div>
             
-            <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent leading-tight">
               Wie Kinetiq PhysioMed zu einem einzigartigen Shop mit uns erhalten
             </h1>
             
-            <p className="text-xl text-white leading-relaxed mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-6 md:mb-8">
               Dank der Zusammenarbeit mit Ecommezzo präsentiert sich Kinetiq PhysioMed in einem einzigartigen Physio Website, 
               der exakt auf Identität & Anforderungen der Unternehmen zugeschnitten ist. Das individuelle Setup fußt auf 
               modernsten Best Practises, verkörpert exakt das Design und hebt die traffic für patienten, pflegeheimen und 
               bewerbern effektiv auf ein neues Level.
             </p>
             
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
               {[
                 { value: "+120%", label: "Traffic Steigerung", color: "from-[#cd5729] to-[#cd5729]" },
                 { value: "+85%", label: "Conversion Rate", color: "from-[#cd5729] to-[#cd5729]" },
@@ -53,15 +48,15 @@ export default function MoongirlLingerie() {
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-lg border border-white/50"
                 >
-                  <div className={`text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                  <div className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -69,11 +64,11 @@ export default function MoongirlLingerie() {
         </div>
 
         {/* Sağ Taraf - Ekranın Sağına Tamamen Yapışık Görsel */}
-        <div className="absolute right-0 top-50 w-1/3 mt-40">
+        <div className="absolute right-0 top-0 md:top-auto md:mt-40 w-full md:w-1/3 h-1/3 md:h-full mt-auto md:mt-40">
           <motion.div
-            initial={{ opacity: 0, x: 50, rotateY: 15 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
             className="relative h-full"
           >
             {/* Banner Uzunluğunda Görsel - Ekranın Sağına Tamamen Yapışık */}
@@ -89,16 +84,16 @@ export default function MoongirlLingerie() {
       </section>
 
       {/* 2. Mobile Video Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Sol Taraf - Mobile Video */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.3 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative order-2 lg:order-1"
             >
               <div className="bg-[#cd5729] rounded-3xl p-2 shadow-2xl">
                 <div className="aspect-[9/11] bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center overflow-hidden">
@@ -120,41 +115,42 @@ export default function MoongirlLingerie() {
 
             {/* Sağ Taraf - Metin */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.3 }}
               viewport={{ once: true }}
+              className="order-1 lg:order-2"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-800">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">
                 Mobile-First Design für optimale Benutzererfahrung
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 md:mb-8">
                 Die mobile Version der Kinetiq PhysioMed Website wurde speziell für Smartphones und Tablets optimiert. 
                 Mit einem responsiven Design sorgt sie für eine nahtlose Benutzererfahrung auf allen Geräten und 
                 maximiert die Conversion-Rate bei mobilen Nutzern.
               </p>
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 <div className="flex items-center">
-                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4"></div>
-                  <span className="text-gray-700">Responsive Design für alle Bildschirmgrößen</span>
+                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
+                  <span className="text-sm sm:text-base text-gray-700">Responsive Design für alle Bildschirmgrößen</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4"></div>
-                  <span className="text-gray-700">Optimierte Ladezeiten für mobile Geräte</span>
+                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
+                  <span className="text-sm sm:text-base text-gray-700">Optimierte Ladezeiten für mobile Geräte</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4"></div>
-                  <span className="text-gray-700">Touch-optimierte Navigation und Buttons</span>
+                  <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
+                  <span className="text-sm sm:text-base text-gray-700">Touch-optimierte Navigation und Buttons</span>
                 </div>
               </div>
               <a
                 href="https://kinetiq-physiomed.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#cd5729] to-[#cd5729] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-[#cd5729] to-[#cd5729] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
               >
                 <span>Zur Website</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
@@ -164,18 +160,12 @@ export default function MoongirlLingerie() {
       </section>
 
       {/* 3. Mobile Screenshots Section */}
-      <section className="py-10 px-6" style={{ backgroundColor: '#008080' }}>
+      <section className="py-8 md:py-10 px-4 sm:px-6" style={{ backgroundColor: '#008080' }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-2"
-          >
-          </motion.div>
+          <div className="text-center mb-4 md:mb-2">
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: " ",
@@ -195,14 +185,14 @@ export default function MoongirlLingerie() {
             ].map((screen, index) => (
               <motion.div
                 key={screen.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="text-center"
               >
                 {/* Sadece Görsel */}
-                <div className="relative mx-auto w-80 h-[650px] mb-2 mt-2">
+                <div className="relative mx-auto w-full max-w-[320px] h-[500px] sm:h-[550px] md:h-[650px] mb-2 mt-2">
                   <img
                     src={screen.image}
                     alt={screen.title}
@@ -210,8 +200,8 @@ export default function MoongirlLingerie() {
                   />
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-2">{screen.title}</h3>
-                <p className="text-white/80">{screen.description}</p>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2">{screen.title}</h3>
+                <p className="text-white/80 text-sm md:text-base">{screen.description}</p>
               </motion.div>
             ))}
           </div>
@@ -219,24 +209,24 @@ export default function MoongirlLingerie() {
       </section>
 
       {/* 4. Features Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 md:mb-16"
           >
-            <h2 className="text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">
               Website-Features & Funktionen
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Moderne Technologien und benutzerfreundliche Features für optimale Performance
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
                 icon: "📅",
@@ -261,17 +251,17 @@ export default function MoongirlLingerie() {
             ].map((feature, index) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+                className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-200 text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">{feature.icon}</span>
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                  <span className="text-2xl md:text-3xl">{feature.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-800">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-800">{feature.title}</h3>
+                <p className="text-sm md:text-base text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>

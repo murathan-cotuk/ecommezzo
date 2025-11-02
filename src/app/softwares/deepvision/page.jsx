@@ -19,15 +19,9 @@ export default function DeepVisionPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section - Full Screen Dark Theme */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900 pt-24">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-t from-gray-900 via-indigo-950 to-gray-900 pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-6 md:pb-8">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          {/* Floating Data Points */}
-          <div className="absolute top-32 left-10 w-4 h-4 bg-[#8f1818] rounded-full animate-pulse"></div>
-          <div className="absolute top-52 right-20 w-6 h-6 bg-[#8f1818]/60 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-[#8f1818]/40 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-          <div className="absolute top-1/3 right-1/3 w-5 h-5 bg-[#8f1818]/30 rounded-full animate-bounce" style={{animationDelay: '3s'}}></div>
-          
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="h-full w-full" style={{
@@ -38,20 +32,20 @@ export default function DeepVisionPage() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-4 sm:py-6 md:py-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.3 }}
           >
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center bg-[#8f1818]/20 backdrop-blur-sm border border-[#8f1818]/30 text-[#8f1818] px-6 py-3 rounded-full text-sm font-semibold mb-8"
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="inline-flex items-center bg-[#8f1818]/20 backdrop-blur-sm border border-[#8f1818]/30 text-[#8f1818] px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 md:mb-6"
             >
-              <div className="w-2 h-2 bg-[#8f1818] rounded-full mr-3 animate-pulse"></div>
+              <div className="w-2 h-2 bg-[#8f1818] rounded-full mr-2 sm:mr-3 animate-pulse"></div>
               AI-Powered Analytics Platform
             </motion.div>
             
@@ -59,8 +53,8 @@ export default function DeepVisionPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl sm:text-6xl lg:text-8xl font-bold mb-8"
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-3 sm:mb-4 md:mb-6"
             >
               <div className="flex justify-center">
                 <span className="bg-gradient-to-r from-white via-[#8f1818] to-white bg-clip-text text-transparent">
@@ -94,7 +88,7 @@ export default function DeepVisionPage() {
                 </span>
               </div>
               <br />
-              <span className="text-3xl sm:text-4xl lg:text-5xl text-gray-300 font-light">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-300 font-light">
                 Analytics
               </span>
             </motion.h1>
@@ -103,8 +97,8 @@ export default function DeepVisionPage() {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+              transition={{ duration: 0.3, delay: 0.3 }}
+              className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-3 sm:mb-4 md:mb-6 leading-relaxed px-2"
             >
               Revolutionäre KI-gestützte Kundenverhaltensanalyse für Shopify-Stores.  
               <span className="text-[#8f1818] font-semibold"> Echtzeit-Insights</span> die Ihr Business transformieren.
@@ -114,8 +108,8 @@ export default function DeepVisionPage() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex justify-center items-center"
+              transition={{ duration: 0.3, delay: 0.4 }}
+              className="flex justify-center items-center mb-2 sm:mb-3 md:mb-4"
             >
               <motion.a
                 href="/deepvision-app"
@@ -123,7 +117,7 @@ export default function DeepVisionPage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative bg-gradient-to-r from-[#8f1818] to-[#6b1212] text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-[#8f1818]/25 transition-all duration-300 overflow-hidden"
+                className="group relative bg-gradient-to-r from-[#8f1818] to-[#6b1212] text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg shadow-2xl hover:shadow-[#8f1818]/25 transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 <span className="relative flex items-center">
@@ -137,22 +131,22 @@ export default function DeepVisionPage() {
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto"
+              transition={{ duration: 0.3, delay: 0.5 }}
+              className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 mt-1 sm:mt-2 md:mt-3 max-w-4xl mx-auto px-2 sm:px-0"
             >
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#8f1818] mb-2">99.9%</div>
-                <div className="text-gray-400">Uptime</div>
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#8f1818] mb-0.5 sm:mb-1 md:mb-2">99.9%</div>
+                <div className="text-[9px] sm:text-xs md:text-sm lg:text-base text-gray-400 leading-tight">Uptime</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#8f1818] mb-2">10K+</div>
-                <div className="text-gray-400">Aktive Stores</div>
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#8f1818] mb-0.5 sm:mb-1 md:mb-2">10K+</div>
+                <div className="text-[9px] sm:text-xs md:text-sm lg:text-base text-gray-400 leading-tight">Aktive Stores</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#8f1818] mb-2">2.5x</div>
-                <div className="text-gray-400">Conversion Boost</div>
+                <div className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#8f1818] mb-0.5 sm:mb-1 md:mb-2">2.5x</div>
+                <div className="text-[9px] sm:text-xs md:text-sm lg:text-base text-gray-400 leading-tight break-words px-0.5">Conversion Boost</div>
               </div>
             </motion.div>
           </motion.div>
@@ -162,20 +156,12 @@ export default function DeepVisionPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-[#8f1818] rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-[#8f1818] rounded-full mt-2"
-            ></motion.div>
-          </motion.div>
+          <div className="w-6 h-10 border-2 border-[#8f1818] rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-[#8f1818] rounded-full mt-2"></div>
+          </div>
         </motion.div>
       </section>
 
@@ -657,9 +643,7 @@ export default function DeepVisionPage() {
                            <a href="/deepvision-app" target="_blank" rel="noopener noreferrer" className="bg-white text-[#8f1818] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors">
                              Kostenlose Testversion starten
                            </a>
-                           <a href="/kontakt" className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-[#8f1818] transition-all duration-300">
-                             Demo anfordern
-                           </a>
+                           
                          </div>
                        </div>
                      </div>
