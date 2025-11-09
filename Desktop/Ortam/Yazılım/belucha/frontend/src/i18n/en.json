@@ -1,0 +1,57 @@
+{
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "account": "Account",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "home": {
+    "title": "Welcome to Belucha",
+    "subtitle": "Your one-stop shop for everything",
+    "shopNow": "Shop Now",
+    "becomeSeller": "Become a Seller",
+    "featuredProducts": "Featured Products",
+    "topCategories": "Top Categories"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "quantity": "Quantity",
+    "description": "Description",
+    "reviews": "Reviews",
+    "relatedProducts": "Related Products"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shippingAddress": "Shipping Address",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order"
+  },
+  "account": {
+    "title": "My Account",
+    "orders": "My Orders",
+    "profile": "Profile",
+    "addresses": "Addresses",
+    "settings": "Settings"
+  }
+}
