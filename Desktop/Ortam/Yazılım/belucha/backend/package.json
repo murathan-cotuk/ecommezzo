@@ -1,0 +1,47 @@
+{
+  "name": "belucha-backend",
+  "version": "1.0.0",
+  "description": "Belucha e-commerce backend with Payload CMS",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.js nodemon --exec ts-node src/server.ts",
+    "build": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.js payload build",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.js payload"
+  },
+  "keywords": [
+    "e-commerce",
+    "payload",
+    "cms"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "payload": "^2.8.2",
+    "@payloadcms/db-mongodb": "^2.8.2",
+    "@payloadcms/richtext-lexical": "^2.8.2",
+    "mongoose": "^8.0.3",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "dotenv": "^16.3.1",
+    "stripe": "^14.10.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.41.0",
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.6",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/cors": "^2.8.17",
+    "@types/body-parser": "^1.19.5",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
+
+
