@@ -1,4 +1,23 @@
 // Admin session verification API endpoint
+import { sessionStore } from '../../../../lib/sessionStore';
+
+async function getSession(sessionId) {
+  try {
+    return sessionStore.get(sessionId);
+  } catch (error) {
+    return null;
+  }
+}
+
+// Session sil
+async function deleteSession(sessionId) {
+  try {
+    sessionStore.delete(sessionId);
+  } catch (error) {
+    console.error('Session delete error:', error);
+  }
+}
+
 export async function POST(request) {
   try {
     const { sessionId } = await request.json();
@@ -56,22 +75,3 @@ export async function POST(request) {
   }
 }
 
-// Global session store kullan
-import { sessionStore } from '../../../../lib/sessionStore';
-
-async function getSession(sessionId) {
-  try {
-    return sessionStore.get(sessionId);
-  } catch (error) {
-    return null;
-  }
-}
-
-// Session sil
-async function deleteSession(sessionId) {
-  try {
-    sessionStore.delete(sessionId);
-  } catch (error) {
-    console.error('Session delete error:', error);
-  }
-}
