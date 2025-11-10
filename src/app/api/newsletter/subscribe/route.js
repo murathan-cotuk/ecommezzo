@@ -1,4 +1,17 @@
 // Newsletter abonelik API endpoint
+// Unsubscribe token oluştur
+function generateUnsubscribeToken(email) {
+  const crypto = require('crypto');
+  return crypto.createHash('sha256').update(email + Date.now()).digest('hex').substring(0, 32);
+}
+
+// Hoş geldin emaili gönder (opsiyonel)
+async function sendWelcomeEmail(email, name) {
+  // Burada email gönderme servisi kullanabilirsiniz
+  // Şimdilik sadece log
+  console.log(`Welcome email sent to: ${email} (${name})`);
+}
+
 export async function POST(request) {
   try {
     const { email, name, source = 'contact_form' } = await request.json();
@@ -92,15 +105,3 @@ export async function POST(request) {
   }
 }
 
-// Unsubscribe token oluştur
-function generateUnsubscribeToken(email) {
-  const crypto = require('crypto');
-  return crypto.createHash('sha256').update(email + Date.now()).digest('hex').substring(0, 32);
-}
-
-// Hoş geldin emaili gönder (opsiyonel)
-async function sendWelcomeEmail(email, name) {
-  // Burada email gönderme servisi kullanabilirsiniz
-  // Şimdilik sadece log
-  console.log(`Welcome email sent to: ${email} (${name})`);
-}

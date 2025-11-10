@@ -190,6 +190,17 @@ export const subscribeToNewsletter = async (email, name = '') => {
       })
     });
 
+    if (!response.ok) {
+      // HTTP hatası durumunda
+      const errorData = await response.json().catch(() => ({ 
+        message: 'Server-Fehler aufgetreten' 
+      }));
+      return {
+        success: false,
+        message: errorData.message || 'Newsletter subscription failed'
+      };
+    }
+
     const result = await response.json();
     
     if (result.success) {
@@ -203,7 +214,7 @@ export const subscribeToNewsletter = async (email, name = '') => {
     console.error('Newsletter subscription error:', error);
     return {
       success: false,
-      message: 'Newsletter subscription failed'
+      message: 'Verbindungsfehler. Bitte versuchen Sie es erneut.'
     };
   }
 };
@@ -222,13 +233,24 @@ export const unsubscribeFromNewsletter = async (email, token = null) => {
       })
     });
 
+    if (!response.ok) {
+      // HTTP hatası durumunda
+      const errorData = await response.json().catch(() => ({ 
+        message: 'Server-Fehler aufgetreten' 
+      }));
+      return {
+        success: false,
+        message: errorData.message || 'Newsletter unsubscribe failed'
+      };
+    }
+
     const result = await response.json();
     return result;
   } catch (error) {
     console.error('Newsletter unsubscribe error:', error);
     return {
       success: false,
-      message: 'Newsletter unsubscribe failed'
+      message: 'Verbindungsfehler. Bitte versuchen Sie es erneut.'
     };
   }
 };
