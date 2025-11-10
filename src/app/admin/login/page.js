@@ -28,6 +28,14 @@ export default function AdminLogin() {
         body: JSON.stringify(credentials)
       });
 
+      if (!response.ok) {
+        // HTTP hatası durumunda
+        const errorData = await response.json().catch(() => ({ message: 'Server-Fehler aufgetreten' }));
+        setError(errorData.message || 'Verbindungsfehler. Bitte versuchen Sie es erneut.');
+        setLoading(false);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.success) {
@@ -39,6 +47,7 @@ export default function AdminLogin() {
         setError(data.message || 'Ungültige Anmeldedaten');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Verbindungsfehler. Bitte versuchen Sie es erneut.');
     } finally {
       setLoading(false);

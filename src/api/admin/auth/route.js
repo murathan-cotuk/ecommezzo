@@ -1,4 +1,21 @@
 // Admin authentication API endpoint
+import { sessionStore } from '../../../../lib/sessionStore';
+import crypto from 'crypto';
+
+// Session ID oluştur
+function generateSessionId() {
+  return crypto.randomBytes(32).toString('hex');
+}
+
+// Session kaydet - Global store kullan
+async function saveSession(sessionId, sessionData) {
+  try {
+    sessionStore.set(sessionId, sessionData);
+  } catch (error) {
+    console.error('Session save error:', error);
+  }
+}
+
 export async function POST(request) {
   try {
     const { username, password } = await request.json();
@@ -47,22 +64,5 @@ export async function POST(request) {
       success: false,
       message: 'Ein Fehler ist aufgetreten'
     }, { status: 500 });
-  }
-}
-
-// Session ID oluştur
-function generateSessionId() {
-  const crypto = require('crypto');
-  return crypto.randomBytes(32).toString('hex');
-}
-
-// Session kaydet - Global store kullan
-import { sessionStore } from '../../../../lib/sessionStore';
-
-async function saveSession(sessionId, sessionData) {
-  try {
-    sessionStore.set(sessionId, sessionData);
-  } catch (error) {
-    console.error('Session save error:', error);
   }
 }
