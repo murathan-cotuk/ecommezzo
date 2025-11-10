@@ -170,7 +170,7 @@ export default function AdminLogin() {
 
           <div className="text-center">
             <p className="text-xs text-gray-500">
-              Nur autorisierte Personen haben Zugang zu diesem Bereich
+              Nur autorisierte Personen haben Zugang zu diesem Bereich!
             </p>
           </div>
         </motion.form>
