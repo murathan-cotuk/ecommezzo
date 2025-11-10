@@ -1,9 +1,9 @@
 // Admin authentication API endpoint
 import { sessionStore } from '../../../../lib/sessionStore';
-import crypto from 'crypto';
 
 // Session ID oluştur
 function generateSessionId() {
+  const crypto = require('crypto');
   return crypto.randomBytes(32).toString('hex');
 }
 
