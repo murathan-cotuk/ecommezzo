@@ -2,6 +2,9 @@
   "functions": {
     "src/app/api/**/*.js": {
       "maxDuration": 30
+    },
+    "src/app/api/newsletter/**/*.js": {
+      "maxDuration": 30
     }
   }
 }
