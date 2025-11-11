@@ -1,4 +1,6 @@
 // Newsletter abonelik API endpoint
+import { connectToDatabase } from '../../../../lib/mongodb';
+
 // Unsubscribe token oluştur
 function generateUnsubscribeToken(email) {
   const crypto = require('crypto');
@@ -25,41 +27,15 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Abone verisi
-    const subscriber = {
-      email: email.toLowerCase().trim(),
-      name: name?.trim() || '',
-      source: source, // 'contact_form', 'direct_signup', 'website_popup'
-      subscribedAt: new Date().toISOString(),
-      status: 'active',
-      unsubscribeToken: generateUnsubscribeToken(email)
-    };
-
-    // Basit dosya tabanlı veritabanı (production'da gerçek DB kullanın)
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    
-    const dataDir = path.join(process.cwd(), 'data');
-    const subscribersFile = path.join(dataDir, 'newsletter_subscribers.json');
-
-    // Data klasörünü oluştur
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-    } catch (error) {
-      // Klasör zaten var
-    }
-
-    // Mevcut aboneleri oku
-    let subscribers = [];
-    try {
-      const existingData = await fs.readFile(subscribersFile, 'utf8');
-      subscribers = JSON.parse(existingData);
-    } catch (error) {
-      // Dosya yok, boş array ile başla
-    }
+    // MongoDB'ye bağlan
+    const { db } = await connectToDatabase();
+    const subscribersCollection = db.collection('newsletter_subscribers');
 
     // Email zaten kayıtlı mı kontrol et
-    const existingSubscriber = subscribers.find(sub => sub.email === subscriber.email);
+    const existingSubscriber = await subscribersCollection.findOne({ 
+      email: email.toLowerCase().trim() 
+    });
+
     if (existingSubscriber) {
       if (existingSubscriber.status === 'active') {
         return Response.json({
@@ -67,18 +43,49 @@ export async function POST(request) {
           message: 'Diese E-Mail-Adresse ist bereits angemeldet'
         }, { status: 409 });
       } else {
-        // Yeniden abone ol
-        existingSubscriber.status = 'active';
-        existingSubscriber.subscribedAt = new Date().toISOString();
-        existingSubscriber.source = source;
+        // Yeniden abone ol - mevcut kaydı güncelle
+        await subscribersCollection.updateOne(
+          { email: email.toLowerCase().trim() },
+          {
+            $set: {
+              status: 'active',
+              subscribedAt: new Date().toISOString(),
+              source: source,
+              name: name?.trim() || existingSubscriber.name || ''
+            }
+          }
+        );
+
+        // Başarılı abonelik emaili gönder (opsiyonel)
+        try {
+          await sendWelcomeEmail(email, name);
+        } catch (error) {
+          console.warn('Welcome email gönderilemedi:', error);
+        }
+
+        return Response.json({
+          success: true,
+          message: 'Erfolgreich für den Newsletter angemeldet!',
+          subscriber: {
+            email: email.toLowerCase().trim(),
+            subscribedAt: new Date().toISOString()
+          }
+        });
       }
-    } else {
-      // Yeni abone ekle
-      subscribers.push(subscriber);
     }
 
-    // Aboneleri kaydet
-    await fs.writeFile(subscribersFile, JSON.stringify(subscribers, null, 2));
+    // Yeni abone ekle
+    const subscriber = {
+      email: email.toLowerCase().trim(),
+      name: name?.trim() || '',
+      source: source,
+      subscribedAt: new Date().toISOString(),
+      status: 'active',
+      unsubscribeToken: generateUnsubscribeToken(email),
+      createdAt: new Date()
+    };
+
+    await subscribersCollection.insertOne(subscriber);
 
     // Başarılı abonelik emaili gönder (opsiyonel)
     try {
@@ -98,10 +105,24 @@ export async function POST(request) {
 
   } catch (error) {
     console.error('Newsletter subscription error:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+
+    // MongoDB duplicate key hatası (email zaten var)
+    if (error.code === 11000) {
+      return Response.json({
+        success: false,
+        message: 'Diese E-Mail-Adresse ist bereits angemeldet'
+      }, { status: 409 });
+    }
+
     return Response.json({
       success: false,
-      message: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+      message: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     }, { status: 500 });
   }
 }
-

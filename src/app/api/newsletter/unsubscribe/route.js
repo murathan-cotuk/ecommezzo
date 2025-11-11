@@ -1,4 +1,6 @@
 // Newsletter abonelik iptal API endpoint
+import { connectToDatabase } from '../../../../lib/mongodb';
+
 export async function POST(request) {
   try {
     const { email, token } = await request.json();
@@ -10,29 +12,16 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // Basit dosya tabanlı veritabanı
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    
-    const dataDir = path.join(process.cwd(), 'data');
-    const subscribersFile = path.join(dataDir, 'newsletter_subscribers.json');
-
-    // Mevcut aboneleri oku
-    let subscribers = [];
-    try {
-      const existingData = await fs.readFile(subscribersFile, 'utf8');
-      subscribers = JSON.parse(existingData);
-    } catch (error) {
-      return Response.json({
-        success: false,
-        message: 'Keine Abonnenten gefunden'
-      }, { status: 404 });
-    }
+    // MongoDB'ye bağlan
+    const { db } = await connectToDatabase();
+    const subscribersCollection = db.collection('newsletter_subscribers');
 
     // Abone bul
-    const subscriberIndex = subscribers.findIndex(sub => sub.email === email.toLowerCase());
-    
-    if (subscriberIndex === -1) {
+    const subscriber = await subscribersCollection.findOne({ 
+      email: email.toLowerCase().trim() 
+    });
+
+    if (!subscriber) {
       return Response.json({
         success: false,
         message: 'E-Mail-Adresse nicht gefunden'
@@ -40,7 +29,7 @@ export async function POST(request) {
     }
 
     // Token kontrolü (opsiyonel güvenlik)
-    if (token && subscribers[subscriberIndex].unsubscribeToken !== token) {
+    if (token && subscriber.unsubscribeToken !== token) {
       return Response.json({
         success: false,
         message: 'Ungültiger Token'
@@ -48,11 +37,15 @@ export async function POST(request) {
     }
 
     // Aboneliği iptal et
-    subscribers[subscriberIndex].status = 'unsubscribed';
-    subscribers[subscriberIndex].unsubscribedAt = new Date().toISOString();
-
-    // Güncellenmiş listeyi kaydet
-    await fs.writeFile(subscribersFile, JSON.stringify(subscribers, null, 2));
+    await subscribersCollection.updateOne(
+      { email: email.toLowerCase().trim() },
+      {
+        $set: {
+          status: 'unsubscribed',
+          unsubscribedAt: new Date().toISOString()
+        }
+      }
+    );
 
     return Response.json({
       success: true,
@@ -67,4 +60,3 @@ export async function POST(request) {
     }, { status: 500 });
   }
 }
-
