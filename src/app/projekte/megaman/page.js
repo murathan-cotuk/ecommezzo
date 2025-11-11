@@ -16,16 +16,16 @@ export default function MegamanFashion() {
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="w-full min-h-[600px] md:h-[800px] bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-900 flex flex-col md:flex-row items-center relative px-4 sm:px-6 lg:px-8 py-12 md:py-0">
+      <section className="w-full min-h-[600px] md:h-[800px] bg-gradient-to-br from-[#646967] via-[#2a2d2c] to-[#050505] flex flex-col md:flex-row items-center relative px-4 sm:px-6 lg:px-8 py-12 md:py-0">
         
         {/* Mobilde Arka Plan Görsel */}
         <div className="absolute inset-0 md:hidden z-0 opacity-40">
           <img
-            src="/KinetiqPhysioMed/Kinetiq2.jpg"
-            alt="Kinetiq PhysioMed Website"
+            src="/Megaman/MegamanStore3.png"
+            alt="Megaman Jeans Streetwear Shop"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-emerald-900/60 to-emerald-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#646967]/80 via-[#2a2d2c]/60 to-[#050505]/80"></div>
         </div>
         
         {/* Sol Taraf - Metin */}
@@ -40,21 +40,21 @@ export default function MegamanFashion() {
             </div>
             
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-8 bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent leading-tight">
-              Wie Kinetiq PhysioMed zu einem einzigartigen Shop mit uns erhalten
+              Megaman Jeans: Professioneller Shopify Online Shop für Streetwear & Fashion
             </h1>
             
             <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-6 md:mb-8">
-              Dank der Zusammenarbeit mit Ecommezzo präsentiert sich Kinetiq PhysioMed in einem einzigartigen Physio Website, 
-              der exakt auf Identität & Anforderungen der Unternehmen zugeschnitten ist. Das individuelle Setup fußt auf 
-              modernsten Best Practises, verkörpert exakt das Design und hebt die traffic für patienten, pflegeheimen und 
-              bewerbern effektiv auf ein neues Level.
+              Dank der Zusammenarbeit mit Ecommezzo präsentiert sich Megaman Jeans mit einem modernen Shopify E-Commerce Shop, 
+              der exakt auf die Identität der Streetwear-Marke zugeschnitten ist. Das individuelle Setup mit optimiertem 
+              Design, schnellen Ladezeiten und benutzerfreundlicher Navigation steigert den Online-Umsatz und die Conversion-Rate 
+              für Denim, Hoodies, Holzfäller Hemden und Streetwear-Produkte erheblich.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 relative z-20">
               {[
-                { value: "+120%", label: "Traffic Steigerung", color: "from-[#cd5729] to-[#cd5729]" },
-                { value: "+85%", label: "Conversion Rate", color: "from-[#cd5729] to-[#cd5729]" },
-                { value: "+200%", label: "Neue Leads", color: "from-[#cd5729] to-[#cd5729]" }
+                { value: "+150%", label: "Online Umsatz", color: "from-[#cd5729] to-[#cd5729]" },
+                { value: "+95%", label: "Conversion Rate", color: "from-[#cd5729] to-[#cd5729]" },
+                { value: "+180%", label: "Shop Traffic", color: "from-[#cd5729] to-[#cd5729]" }
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -82,11 +82,11 @@ export default function MegamanFashion() {
             className="relative h-full w-full"
           >
             {/* Banner Uzunluğunda Görsel - Ekranın Sağına Tamamen Yapışık */}
-            <div className="h-full w-full rounded-l-3xl shadow-2xl flex items-center justify-center overflow-hidden">
+            <div className="h-full w-full rounded-l-3xl flex items-center justify-center overflow-hidden">
               <img
-                src="/KinetiqPhysioMed/Kinetiq2.jpg"
-                alt="Kinetiq PhysioMed Website"
-                className="h-full w-full object-cover rounded-l-3xl"
+                src="/Megaman/MegamanStore3.png"
+                alt="Megaman Jeans Streetwear Shop"
+                className="h-auto w-full object-cover rounded-l-3xl shadow-2xl"
               />
             </div>
           </motion.div>
@@ -106,7 +106,7 @@ export default function MegamanFashion() {
               className="relative order-2 lg:order-1"
             >
               <div className="bg-[#cd5729] rounded-3xl p-2 shadow-2xl">
-                <div className="aspect-[9/11] bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center overflow-hidden">
+                <div className="aspect-[432/750] bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center overflow-hidden">
                   <video 
                     controls 
                     className="w-full h-full object-cover rounded-2xl [&::-webkit-media-controls-play-button]:block [&::-webkit-media-controls-pause-button]:block [&::-webkit-media-controls-timeline]:block [&::-webkit-media-controls-current-time-display]:block [&::-webkit-media-controls-time-remaining-display]:block [&::-webkit-media-controls-mute-button]:hidden [&::-webkit-media-controls-volume-slider]:hidden [&::-webkit-media-controls-fullscreen-button]:hidden [&::-webkit-media-controls-overflow-button]:hidden [&::-webkit-media-controls-overflow-menu]:hidden"
@@ -114,9 +114,9 @@ export default function MegamanFashion() {
                     muted
                     playsInline
                   >
-                    <source src="/KinetiqPhysioMed/KinetiqMobile.mp4" type="video/mp4" />
+                    <source src="/Megaman/MegamanMobile.mp4" type="video/mp4" />
                     Download the
-                    <a href="/KinetiqPhysioMed/KinetiqMobile.mp4">MP4</a>
+                    <a href="/Megaman/MegamanMobile.mp4">MP4</a>
                     video.
                   </video>
                 </div>
@@ -132,29 +132,30 @@ export default function MegamanFashion() {
               className="order-1 lg:order-2"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">
-                Mobile-First Design für optimale Benutzererfahrung
+                Mobile-First E-Commerce Design für maximale Conversion
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 md:mb-8">
-                Die mobile Version der Kinetiq PhysioMed Website wurde speziell für Smartphones und Tablets optimiert. 
-                Mit einem responsiven Design sorgt sie für eine nahtlose Benutzererfahrung auf allen Geräten und 
-                maximiert die Conversion-Rate bei mobilen Nutzern.
+                Der Megaman Jeans Online Shop wurde mit einem Mobile-First Ansatz entwickelt, um die wachsende Zahl 
+                mobiler Käufer optimal zu bedienen. Mit responsivem Design, schnellen Ladezeiten und intuitiver 
+                Produktnavigation sorgt der Shopify Shop für eine nahtlose Shopping-Erfahrung auf Smartphones und Tablets, 
+                was die Conversion-Rate bei Streetwear- und Fashion-Käufen deutlich steigert.
               </p>
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base text-gray-700">Responsive Design für alle Bildschirmgrößen</span>
+                  <span className="text-sm sm:text-base text-gray-700">Optimierte Produktseiten für mobile Geräte</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base text-gray-700">Optimierte Ladezeiten für mobile Geräte</span>
+                  <span className="text-sm sm:text-base text-gray-700">Schneller Checkout-Prozess mit Apple Pay & PayPal</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-[#cd5729] rounded-full mr-4 flex-shrink-0"></div>
-                  <span className="text-sm sm:text-base text-gray-700">Touch-optimierte Navigation und Buttons</span>
+                  <span className="text-sm sm:text-base text-gray-700">Touch-optimierte Warenkorb- und Produktnavigation</span>
                 </div>
               </div>
               <a
-                href="https://kinetiq-physiomed.de"
+                href="https://megamanjeans.de/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-[#cd5729] to-[#cd5729] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
@@ -170,7 +171,7 @@ export default function MegamanFashion() {
       </section>
 
       {/* 3. Mobile Screenshots Section */}
-      <section className="py-8 md:py-10 px-4 sm:px-6" style={{ backgroundColor: '#008080' }}>
+      <section className="py-8 md:py-10 px-4 sm:px-6 bg-gradient-to-br from-[#646967] via-[#2a2d2c] to-[#050505]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-4 md:mb-2">
           </div>
@@ -180,17 +181,17 @@ export default function MegamanFashion() {
               {
                 title: " ",
                 description: " ",
-                image: "/KinetiqPhysioMed/KinetiqSS1.png"
+                image: "/Megaman/Megaman2.png"
               },
               {
                 title: " ",
                 description: " ",
-                image: "/KinetiqPhysioMed/KinetiqSS1.png"
+                image: "/Megaman/Megaman3.png"
               },
               {
                 title: " ",
                 description: " ",
-                image: "/KinetiqPhysioMed/KinetiqSS1.png"
+                image: "/Megaman/Megaman1.png"
               }
             ].map((screen, index) => (
               <motion.div
@@ -205,7 +206,7 @@ export default function MegamanFashion() {
                 <div className="relative mx-auto w-full max-w-[320px] h-[500px] sm:h-[550px] md:h-[650px] mb-2 mt-2">
                   <img
                     src={screen.image}
-                    alt={screen.title}
+                    alt={`Megaman Jeans ${screen.title} - ${screen.description}`}
                     className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
@@ -229,34 +230,34 @@ export default function MegamanFashion() {
             className="text-center mb-10 md:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">
-              Website-Features & Funktionen
+              E-Commerce Features & Shopify Funktionen
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Moderne Technologien und benutzerfreundliche Features für optimale Performance
+              Professionelle Shopify-Integration mit modernen Payment-Lösungen und optimierter Produktpräsentation für Streetwear & Fashion
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
-                icon: "📅",
-                title: "Online-Terminbuchung",
-                description: "Einfache und intuitive Terminbuchung für Patienten"
+                icon: "🛒",
+                title: "Shopify E-Commerce",
+                description: "Professioneller Online Shop mit Warenkorb, Checkout und Bestellverwaltung"
               },
               {
-                icon: "📱",
-                title: "Responsive Design",
-                description: "Optimiert für alle Geräte und Bildschirmgrößen"
+                icon: "💳",
+                title: "Multiple Payment-Methoden",
+                description: "Klarna, PayPal, Apple Pay, Google Pay und alle gängigen Zahlungsarten"
               },
               {
                 icon: "🔍",
                 title: "SEO-Optimierung",
-                description: "Bessere Sichtbarkeit in Suchmaschinen"
+                description: "Optimierte Produktseiten für bessere Sichtbarkeit bei Streetwear & Fashion"
               },
               {
                 icon: "⚡",
                 title: "Schnelle Ladezeiten",
-                description: "Optimierte Performance für bessere User Experience"
+                description: "Optimierte Performance für bessere Conversion-Rate und User Experience"
               }
             ].map((feature, index) => (
               <motion.div
