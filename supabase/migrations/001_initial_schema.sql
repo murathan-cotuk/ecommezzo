@@ -63,7 +63,8 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
--- Trigger for newsletter_subscribers
+-- Trigger for newsletter_subscribers (drop if exists to make idempotent)
+DROP TRIGGER IF EXISTS update_newsletter_subscribers_updated_at ON newsletter_subscribers;
 CREATE TRIGGER update_newsletter_subscribers_updated_at 
   BEFORE UPDATE ON newsletter_subscribers 
   FOR EACH ROW 
@@ -73,11 +74,13 @@ CREATE TRIGGER update_newsletter_subscribers_updated_at
 -- Newsletter subscribers: Public can insert, but only service role can read/update
 ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public insert for newsletter_subscribers" ON newsletter_subscribers;
 CREATE POLICY "Allow public insert for newsletter_subscribers"
   ON newsletter_subscribers FOR INSERT
   TO anon, authenticated
   WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow service role full access to newsletter_subscribers" ON newsletter_subscribers;
 CREATE POLICY "Allow service role full access to newsletter_subscribers"
   ON newsletter_subscribers
   TO service_role
@@ -87,11 +90,13 @@ CREATE POLICY "Allow service role full access to newsletter_subscribers"
 -- Tracking events: Public can insert, service role can read
 ALTER TABLE tracking_events ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public insert for tracking_events" ON tracking_events;
 CREATE POLICY "Allow public insert for tracking_events"
   ON tracking_events FOR INSERT
   TO anon, authenticated
   WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow service role full access to tracking_events" ON tracking_events;
 CREATE POLICY "Allow service role full access to tracking_events"
   ON tracking_events
   TO service_role
@@ -101,6 +106,7 @@ CREATE POLICY "Allow service role full access to tracking_events"
 -- Daily insights: Service role only
 ALTER TABLE daily_insights ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow service role full access to daily_insights" ON daily_insights;
 CREATE POLICY "Allow service role full access to daily_insights"
   ON daily_insights
   TO service_role
