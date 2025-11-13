@@ -1,5 +1,5 @@
 // Newsletter aboneleri listesi API endpoint (Admin)
-import { connectToDatabase } from '../../../../lib/mongodb';
+import { getSupabaseClient } from '../../../../lib/supabase';
 
 export async function GET(request) {
   try {
@@ -9,42 +9,44 @@ export async function GET(request) {
     const status = searchParams.get('status') || 'all'; // 'all', 'active', 'unsubscribed'
     const source = searchParams.get('source') || 'all'; // 'all', 'contact_form', 'direct_signup', etc.
 
-    // MongoDB'ye bağlan
-    const { db } = await connectToDatabase();
-    const subscribersCollection = db.collection('newsletter_subscribers');
+    const supabase = getSupabaseClient();
 
     // Filtre oluştur
-    const filter = {};
+    let query = supabase
+      .from('newsletter_subscribers')
+      .select('*', { count: 'exact' });
+
     if (status !== 'all') {
-      filter.status = status;
+      query = query.eq('status', status);
     }
     if (source !== 'all') {
-      filter.source = source;
+      query = query.eq('source', source);
     }
 
-    // Toplam sayıyı al
-    const total = await subscribersCollection.countDocuments(filter);
-
-    // Sayfalama için skip ve limit hesapla
-    const skip = (page - 1) * limit;
-    const totalPages = Math.ceil(total / limit);
+    // Sayfalama için range hesapla
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
 
     // Aboneleri çek (en yeni önce sırala)
-    const subscribers = await subscribersCollection
-      .find(filter)
-      .sort({ subscribedAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
+    const { data: subscribers, error: fetchError, count } = await query
+      .order('subscribed_at', { ascending: false })
+      .range(from, to);
 
-    // Hassas bilgileri kaldır (unsubscribeToken hariç)
-    const safeSubscribers = subscribers.map(sub => ({
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    const total = count || 0;
+    const totalPages = Math.ceil(total / limit);
+
+    // Hassas bilgileri kaldır (unsubscribe_token hariç)
+    const safeSubscribers = (subscribers || []).map(sub => ({
       email: sub.email,
       name: sub.name || '',
       source: sub.source || '',
       status: sub.status || 'active',
-      subscribedAt: sub.subscribedAt || sub.createdAt || new Date().toISOString(),
-      unsubscribedAt: sub.unsubscribedAt || null
+      subscribedAt: sub.subscribed_at || sub.created_at || new Date().toISOString(),
+      unsubscribedAt: sub.unsubscribed_at || null
     }));
 
     return Response.json({
@@ -86,17 +88,19 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // MongoDB'ye bağlan
-    const { db } = await connectToDatabase();
-    const subscribersCollection = db.collection('newsletter_subscribers');
+    const supabase = getSupabaseClient();
 
     // Tüm aboneleri çek
-    const subscribers = await subscribersCollection
-      .find({})
-      .sort({ subscribedAt: -1 })
-      .toArray();
+    const { data: subscribers, error: fetchError } = await supabase
+      .from('newsletter_subscribers')
+      .select('*')
+      .order('subscribed_at', { ascending: false });
 
-    if (subscribers.length === 0) {
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    if (!subscribers || subscribers.length === 0) {
       return Response.json({
         success: false,
         message: 'Keine Abonnenten gefunden'
@@ -111,8 +115,8 @@ export async function POST(request) {
         sub.name || '',
         sub.source || '',
         sub.status || 'active',
-        sub.subscribedAt || sub.createdAt || '',
-        sub.unsubscribedAt || ''
+        sub.subscribed_at || sub.created_at || '',
+        sub.unsubscribed_at || ''
       ].map(field => `"${String(field).replace(/"/g, '""')}"`).join(',');
     }).join('\n');
 

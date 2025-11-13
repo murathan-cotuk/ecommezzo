@@ -1,5 +1,5 @@
 // Newsletter abonelik iptal API endpoint
-import { connectToDatabase } from '../../../../lib/mongodb';
+import { getSupabaseClient } from '../../../../lib/supabase';
 
 export async function POST(request) {
   try {
@@ -12,16 +12,17 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // MongoDB'ye bağlan
-    const { db } = await connectToDatabase();
-    const subscribersCollection = db.collection('newsletter_subscribers');
+    const supabase = getSupabaseClient();
+    const normalizedEmail = email.toLowerCase().trim();
 
     // Abone bul
-    const subscriber = await subscribersCollection.findOne({ 
-      email: email.toLowerCase().trim() 
-    });
+    const { data: subscriber, error: fetchError } = await supabase
+      .from('newsletter_subscribers')
+      .select('*')
+      .eq('email', normalizedEmail)
+      .single();
 
-    if (!subscriber) {
+    if (fetchError || !subscriber) {
       return Response.json({
         success: false,
         message: 'E-Mail-Adresse nicht gefunden'
@@ -29,7 +30,7 @@ export async function POST(request) {
     }
 
     // Token kontrolü (opsiyonel güvenlik)
-    if (token && subscriber.unsubscribeToken !== token) {
+    if (token && subscriber.unsubscribe_token !== token) {
       return Response.json({
         success: false,
         message: 'Ungültiger Token'
@@ -37,15 +38,17 @@ export async function POST(request) {
     }
 
     // Aboneliği iptal et
-    await subscribersCollection.updateOne(
-      { email: email.toLowerCase().trim() },
-      {
-        $set: {
-          status: 'unsubscribed',
-          unsubscribedAt: new Date().toISOString()
-        }
-      }
-    );
+    const { error: updateError } = await supabase
+      .from('newsletter_subscribers')
+      .update({
+        status: 'unsubscribed',
+        unsubscribed_at: new Date().toISOString()
+      })
+      .eq('email', normalizedEmail);
+
+    if (updateError) {
+      throw updateError;
+    }
 
     return Response.json({
       success: true,

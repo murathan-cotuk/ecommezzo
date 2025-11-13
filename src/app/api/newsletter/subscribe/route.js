@@ -1,5 +1,5 @@
 // Newsletter abonelik API endpoint
-import { connectToDatabase } from '../../../../lib/mongodb';
+import { getSupabaseClient } from '../../../../lib/supabase';
 
 // Unsubscribe token oluştur
 function generateUnsubscribeToken(email) {
@@ -27,14 +27,15 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // MongoDB'ye bağlan
-    const { db } = await connectToDatabase();
-    const subscribersCollection = db.collection('newsletter_subscribers');
+    const supabase = getSupabaseClient();
+    const normalizedEmail = email.toLowerCase().trim();
 
     // Email zaten kayıtlı mı kontrol et
-    const existingSubscriber = await subscribersCollection.findOne({ 
-      email: email.toLowerCase().trim() 
-    });
+    const { data: existingSubscriber, error: fetchError } = await supabase
+      .from('newsletter_subscribers')
+      .select('*')
+      .eq('email', normalizedEmail)
+      .single();
 
     if (existingSubscriber) {
       if (existingSubscriber.status === 'active') {
@@ -44,17 +45,19 @@ export async function POST(request) {
         }, { status: 409 });
       } else {
         // Yeniden abone ol - mevcut kaydı güncelle
-        await subscribersCollection.updateOne(
-          { email: email.toLowerCase().trim() },
-          {
-            $set: {
-              status: 'active',
-              subscribedAt: new Date().toISOString(),
-              source: source,
-              name: name?.trim() || existingSubscriber.name || ''
-            }
-          }
-        );
+        const { error: updateError } = await supabase
+          .from('newsletter_subscribers')
+          .update({
+            status: 'active',
+            subscribed_at: new Date().toISOString(),
+            source: source,
+            name: name?.trim() || existingSubscriber.name || ''
+          })
+          .eq('email', normalizedEmail);
+
+        if (updateError) {
+          throw updateError;
+        }
 
         // Başarılı abonelik emaili gönder (opsiyonel)
         try {
@@ -67,7 +70,7 @@ export async function POST(request) {
           success: true,
           message: 'Erfolgreich für den Newsletter angemeldet!',
           subscriber: {
-            email: email.toLowerCase().trim(),
+            email: normalizedEmail,
             subscribedAt: new Date().toISOString()
           }
         });
@@ -76,16 +79,30 @@ export async function POST(request) {
 
     // Yeni abone ekle
     const subscriber = {
-      email: email.toLowerCase().trim(),
+      email: normalizedEmail,
       name: name?.trim() || '',
       source: source,
-      subscribedAt: new Date().toISOString(),
+      subscribed_at: new Date().toISOString(),
       status: 'active',
-      unsubscribeToken: generateUnsubscribeToken(email),
-      createdAt: new Date()
+      unsubscribe_token: generateUnsubscribeToken(email)
     };
 
-    await subscribersCollection.insertOne(subscriber);
+    const { data: newSubscriber, error: insertError } = await supabase
+      .from('newsletter_subscribers')
+      .insert(subscriber)
+      .select()
+      .single();
+
+    if (insertError) {
+      // Unique constraint violation (email zaten var)
+      if (insertError.code === '23505') {
+        return Response.json({
+          success: false,
+          message: 'Diese E-Mail-Adresse ist bereits angemeldet'
+        }, { status: 409 });
+      }
+      throw insertError;
+    }
 
     // Başarılı abonelik emaili gönder (opsiyonel)
     try {
@@ -98,8 +115,8 @@ export async function POST(request) {
       success: true,
       message: 'Erfolgreich für den Newsletter angemeldet!',
       subscriber: {
-        email: subscriber.email,
-        subscribedAt: subscriber.subscribedAt
+        email: newSubscriber.email,
+        subscribedAt: newSubscriber.subscribed_at
       }
     });
 
@@ -108,11 +125,12 @@ export async function POST(request) {
     console.error('Error details:', {
       message: error.message,
       stack: error.stack,
-      name: error.name
+      name: error.name,
+      code: error.code
     });
 
-    // MongoDB duplicate key hatası (email zaten var)
-    if (error.code === 11000) {
+    // PostgreSQL unique constraint violation (email zaten var)
+    if (error.code === '23505') {
       return Response.json({
         success: false,
         message: 'Diese E-Mail-Adresse ist bereits angemeldet'
