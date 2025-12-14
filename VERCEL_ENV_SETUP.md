@@ -1,95 +1,55 @@
 # Vercel Environment Variables Kurulumu
 
-## 🚨 Önemli: Vercel Dashboard'dan Environment Variables Ayarlayın
+Vercel'de build hatası almamak için Supabase environment variable'larını Vercel Dashboard'da ayarlamanız gerekiyor.
 
-`vercel.json` dosyasındaki secret referansları kaldırıldı. Environment variable'ları artık Vercel Dashboard'dan doğrudan ayarlamanız gerekiyor.
-
-## 📋 Adım Adım Kurulum
+## Adımlar
 
 ### 1. Vercel Dashboard'a Gidin
+1. [Vercel Dashboard](https://vercel.com/dashboard) sayfanıza gidin
+2. `ecommezzo` projenizi seçin
+3. **Settings** sekmesine tıklayın
+4. Sol menüden **Environment Variables** seçeneğine tıklayın
 
-1. [Vercel Dashboard](https://vercel.com/dashboard) sayfasına gidin
-2. Projenizi seçin
-3. **Settings** sekmesine gidin
-4. **Environment Variables** bölümüne gidin
+### 2. Environment Variables Ekleyin
 
-### 2. Gerekli Environment Variables'ları Ekleyin
+Aşağıdaki 3 environment variable'ı ekleyin:
 
-Aşağıdaki environment variable'ları ekleyin:
+#### 1. NEXT_PUBLIC_SUPABASE_URL
+- **Name:** `NEXT_PUBLIC_SUPABASE_URL`
+- **Value:** `https://ycqlnxstxhrqxolsbzos.supabase.co`
+- **Environment:** Production, Preview, Development (hepsini seçin)
 
-#### Production Environment Variables
+#### 2. NEXT_PUBLIC_SUPABASE_ANON_KEY
+- **Name:** `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- **Value:** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljcWxueHN0eGhycXhvbHNiem9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMTk3MjIsImV4cCI6MjA3ODU5NTcyMn0.rOMTp5dY9tp055JJfb5STIjzsTIA93PuXfAwbyBglKk`
+- **Environment:** Production, Preview, Development (hepsini seçin)
 
-```
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/deepvision
-MONGODB_DB=deepvision
-SHOPIFY_API_KEY=your-shopify-api-key
-SHOPIFY_API_SECRET=your-shopify-api-secret
-SHOPIFY_ACCESS_TOKEN=your-shopify-access-token
-SHOPIFY_WEBHOOK_SECRET=your-shopify-webhook-secret
-NEXTAUTH_SECRET=your-random-secret-key-min-32-chars
-NEXTAUTH_URL=https://your-domain.vercel.app
-```
+#### 3. SUPABASE_SERVICE_ROLE_KEY
+- **Name:** `SUPABASE_SERVICE_ROLE_KEY`
+- **Value:** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljcWxueHN0eGhycXhvbHNiem9zIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MzAxOTcyMiwiZXhwIjoyMDc4NTk1NzIyfQ.vLuykkzsqxn_zcD4GlV4Cs4pm30pngRVbuw1xTEyKd0`
+- **Environment:** Production, Preview, Development (hepsini seçin)
+- **⚠️ ÖNEMLİ:** Bu key hassas bilgidir, sadece server-side'da kullanılır
 
-#### Build-time Environment Variables (Public)
+### 3. Deploy'u Yeniden Başlatın
 
-```
-NEXT_PUBLIC_API_URL=https://your-domain.vercel.app
-NEXT_PUBLIC_SHOPIFY_APP_URL=https://your-domain.vercel.app
-NEXT_PUBLIC_GA_ID=your-google-analytics-id (opsiyonel)
-```
+1. Environment variable'ları ekledikten sonra **Deployments** sekmesine gidin
+2. Son deployment'ın yanındaki **⋯** (üç nokta) menüsüne tıklayın
+3. **Redeploy** seçeneğini seçin
+4. Veya yeni bir commit push edin
 
-### 3. Environment Variable Eklemek İçin
+## Doğrulama
 
-1. Vercel Dashboard > Project > Settings > Environment Variables
-2. **Add New** butonuna tıklayın
-3. **Name** alanına variable adını yazın (örn: `MONGODB_URI`)
-4. **Value** alanına değeri yazın
-5. **Environment** seçeneklerini işaretleyin:
-   - ✅ Production
-   - ✅ Preview
-   - ✅ Development (isteğe bağlı)
-6. **Save** butonuna tıklayın
+Deploy tamamlandıktan sonra:
+1. Newsletter abonelik formunu test edin
+2. API endpoint'lerinin çalıştığını kontrol edin
 
-### 4. Redeploy
+## Sorun Giderme
 
-Environment variable'ları ekledikten sonra:
+### "Missing Supabase environment variables" hatası devam ediyor
+- Environment variable'ların doğru isimlendirildiğinden emin olun (büyük/küçük harf duyarlı)
+- Tüm environment'ları (Production, Preview, Development) seçtiğinizden emin olun
+- Deploy'u yeniden başlatın
 
-1. **Deployments** sekmesine gidin
-2. En son deployment'ı bulun
-3. **⋮** (üç nokta) menüsünden **Redeploy** seçeneğini seçin
-
-VEYA
-
-```bash
-vercel --prod
-```
-
-## 🔒 Güvenlik Notları
-
-- **Asla** environment variable değerlerini GitHub'a commit etmeyin
-- `.env.local` dosyasını `.gitignore`'a eklediğinizden emin olun
-- Production değerlerini sadece Production environment'a ekleyin
-- MongoDB URI'de kullanıcı adı ve şifre varsa bunlar hassas bilgilerdir
-
-## ✅ Kontrol Listesi
-
-- [ ] MongoDB URI eklendi
-- [ ] MongoDB DB name eklendi
-- [ ] Shopify API credentials eklendi
-- [ ] NextAuth secret eklendi (min 32 karakter)
-- [ ] Public URL'ler eklendi (NEXT_PUBLIC_*)
-- [ ] Proje redeploy edildi
-
-## 🐛 Hata Çözümü
-
-Eğer hala `MONGODB_URI references Secret "mongodb_uri", which does not exist` hatası alıyorsanız:
-
-1. Vercel Dashboard'dan environment variable'ları kontrol edin
-2. Projeyi yeniden deploy edin
-3. Eğer hala sorun varsa, `vercel.json` dosyasını kontrol edin (secret referansları olmamalı)
-
-## 📚 Daha Fazla Bilgi
-
-- [Vercel Environment Variables Documentation](https://vercel.com/docs/concepts/projects/environment-variables)
-- [Next.js Environment Variables](https://nextjs.org/docs/basic-features/environment-variables)
-
+### Build başarılı ama runtime'da hata alıyorum
+- Environment variable'ların doğru değerlere sahip olduğunu kontrol edin
+- Supabase projenizin aktif olduğundan emin olun

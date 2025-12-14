@@ -90,7 +90,7 @@ export default function Marktplatz() {
             {/* Metin ve Buton - Mobil Uyumlu */}
             <div className="w-full lg:w-1/2 pl-0 lg:pl-40 pt-20 pb-10 lg:pb-20 z-20 text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold pb-6 lg:pb-10 bg-gradient-to-r from-white via-[#0dc7ee] to-[#2cbdef] bg-clip-text text-transparent">
-              Marktplatz Verwaltung das Ihre Verkäufe steigert
+              Marktplatz Verwaltung das Ihre Verkäufe steigert!
               </h1>
               <p className="text-base sm:text-lg mt-4 max-w-xl mx-auto lg:mx-0 pb-10 lg:pb-20 text-gray-300 leading-relaxed">
                 Ihre Website ist Ihr digitaler erster Eindruck – wir gestalten sie modern, schnell und benutzerfreundlich, um Kunden zu gewinnen und Ihre Marke zu stärken.

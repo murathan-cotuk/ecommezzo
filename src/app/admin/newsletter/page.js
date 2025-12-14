@@ -103,12 +103,28 @@ export default function NewsletterAdmin() {
       const data = await response.json();
       
       if (data.success) {
-        // CSV dosyasını indir
-        window.open(data.downloadUrl, '_blank');
+        // CSV içeriğini indir
+        if (data.csvContent) {
+          // Base64'ten decode et
+          const csvContent = atob(data.csvContent);
+          const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = data.filename || 'newsletter_subscribers.csv';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        } else if (data.downloadUrl) {
+          // Fallback: data URI kullan
+          window.open(data.downloadUrl, '_blank');
+        }
       } else {
-        alert(data.message);
+        alert(data.message || 'Export fehlgeschlagen');
       }
     } catch (err) {
+      console.error('Export error:', err);
       alert('Export fehlgeschlagen');
     } finally {
       setExporting(false);

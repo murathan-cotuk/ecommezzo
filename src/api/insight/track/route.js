@@ -1,26 +1,5 @@
 import { NextResponse } from 'next/server';
-import { MongoClient } from 'mongodb';
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/deepvision';
-const MONGODB_DB = process.env.MONGODB_DB || 'deepvision';
-
-let cachedClient = null;
-let cachedDb = null;
-
-async function connectToDatabase() {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
-  }
-
-  const client = new MongoClient(MONGODB_URI);
-  await client.connect();
-  const db = client.db(MONGODB_DB);
-
-  cachedClient = client;
-  cachedDb = db;
-
-  return { client, db };
-}
+import { getSupabaseClient } from '../../../lib/supabase';
 
 export async function POST(request) {
   try {
@@ -34,22 +13,27 @@ export async function POST(request) {
       );
     }
 
-    const { db } = await connectToDatabase();
+    const supabase = getSupabaseClient();
 
     // Create or update the tracking record
     const trackingData = {
-      shopDomain,
-      event,
-      data,
-      timestamp: timestamp || new Date().toISOString(),
-      createdAt: new Date()
+      shop_domain: shopDomain,
+      event: event,
+      data: data,
+      timestamp: timestamp || new Date().toISOString()
     };
 
     // Insert the tracking event
-    await db.collection('tracking_events').insertOne(trackingData);
+    const { error: insertError } = await supabase
+      .from('tracking_events')
+      .insert(trackingData);
+
+    if (insertError) {
+      throw insertError;
+    }
 
     // Update aggregated data for dashboard
-    await updateAggregatedData(db, shopDomain, event, data);
+    await updateAggregatedData(supabase, shopDomain, event, data);
 
     return NextResponse.json({ 
       success: true, 
@@ -65,50 +49,89 @@ export async function POST(request) {
   }
 }
 
-async function updateAggregatedData(db, shopDomain, event, data) {
+async function updateAggregatedData(supabase, shopDomain, event, data) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const dateStr = today.toISOString().split('T')[0]; // YYYY-MM-DD format
 
-  const filter = {
-    shopDomain,
-    date: today
-  };
+  // Mevcut kaydı kontrol et
+  const { data: existing, error: fetchError } = await supabase
+    .from('daily_insights')
+    .select('*')
+    .eq('shop_domain', shopDomain)
+    .eq('date', dateStr)
+    .single();
 
-  const update = {
-    $inc: {
-      [`events.${event}`]: 1,
-      totalEvents: 1
-    },
-    $set: {
-      lastUpdated: new Date()
-    }
-  };
+  let events = {};
+  let totalEvents = 0;
+  let clicks = 0;
+  let avgTime = 0;
+  let maxTime = 0;
+  let maxScrollDepth = '0%';
+
+  if (existing) {
+    events = existing.events || {};
+    totalEvents = existing.total_events || 0;
+    clicks = existing.clicks || 0;
+    avgTime = existing.avg_time || 0;
+    maxTime = existing.max_time || 0;
+    maxScrollDepth = existing.max_scroll_depth || '0%';
+  }
+
+  // Event sayısını artır
+  events[event] = (events[event] || 0) + 1;
+  totalEvents += 1;
 
   // Handle specific event types
   if (event === 'click') {
-    update.$inc.clicks = 1;
+    clicks += 1;
   } else if (event === 'session_time') {
-    update.$setOnInsert = {
-      avgTime: 0,
-      maxTime: 0
-    };
-    update.$max = {
-      maxTime: data.time || 0
-    };
-    update.$set = {
-      ...update.$set,
-      avgTime: data.time || 0
-    };
+    const time = data.time || 0;
+    maxTime = Math.max(maxTime, time);
+    // Ortalama hesaplama için basit bir yaklaşım (gerçek ortalama için daha karmaşık hesaplama gerekebilir)
+    avgTime = time;
   } else if (event === 'scroll') {
-    update.$setOnInsert = {
-      maxScrollDepth: '0%'
-    };
-    update.$max = {
-      maxScrollDepth: data.depth || '0%'
-    };
+    const depth = data.depth || '0%';
+    const depthNum = parseInt(depth.replace('%', '')) || 0;
+    const currentMax = parseInt(maxScrollDepth.replace('%', '')) || 0;
+    if (depthNum > currentMax) {
+      maxScrollDepth = depth;
+    }
   }
 
-  await db.collection('daily_insights').updateOne(filter, update, { upsert: true });
+  const updateData = {
+    shop_domain: shopDomain,
+    date: dateStr,
+    events: events,
+    total_events: totalEvents,
+    clicks: clicks,
+    avg_time: avgTime,
+    max_time: maxTime,
+    max_scroll_depth: maxScrollDepth,
+    last_updated: new Date().toISOString()
+  };
+
+  if (existing) {
+    // Update existing record
+    const { error: updateError } = await supabase
+      .from('daily_insights')
+      .update(updateData)
+      .eq('shop_domain', shopDomain)
+      .eq('date', dateStr);
+
+    if (updateError) {
+      throw updateError;
+    }
+  } else {
+    // Insert new record
+    const { error: insertError } = await supabase
+      .from('daily_insights')
+      .insert(updateData);
+
+    if (insertError) {
+      throw insertError;
+    }
+  }
 }
 
 export async function GET(request) {
@@ -124,34 +147,63 @@ export async function GET(request) {
       );
     }
 
-    const { db } = await connectToDatabase();
+    const supabase = getSupabaseClient();
 
     // Get aggregated data for the specified period
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
+    const startDateStr = startDate.toISOString().split('T')[0];
 
-    const insights = await db.collection('daily_insights')
-      .find({
-        shopDomain,
-        date: { $gte: startDate }
-      })
-      .sort({ date: 1 })
-      .toArray();
+    // Get daily insights
+    const { data: insights, error: insightsError } = await supabase
+      .from('daily_insights')
+      .select('*')
+      .eq('shop_domain', shopDomain)
+      .gte('date', startDateStr)
+      .order('date', { ascending: true });
+
+    if (insightsError) {
+      throw insightsError;
+    }
 
     // Get recent events for detailed analysis
-    const recentEvents = await db.collection('tracking_events')
-      .find({
-        shopDomain,
-        createdAt: { $gte: startDate }
-      })
-      .sort({ createdAt: -1 })
-      .limit(100)
-      .toArray();
+    const { data: recentEvents, error: eventsError } = await supabase
+      .from('tracking_events')
+      .select('*')
+      .eq('shop_domain', shopDomain)
+      .gte('created_at', startDate.toISOString())
+      .order('created_at', { ascending: false })
+      .limit(100);
+
+    if (eventsError) {
+      throw eventsError;
+    }
+
+    // Transform data to match expected format
+    const transformedInsights = (insights || []).map(insight => ({
+      shopDomain: insight.shop_domain,
+      date: insight.date,
+      events: insight.events || {},
+      totalEvents: insight.total_events || 0,
+      clicks: insight.clicks || 0,
+      avgTime: insight.avg_time || 0,
+      maxTime: insight.max_time || 0,
+      maxScrollDepth: insight.max_scroll_depth || '0%',
+      lastUpdated: insight.last_updated
+    }));
+
+    const transformedEvents = (recentEvents || []).map(event => ({
+      shopDomain: event.shop_domain,
+      event: event.event,
+      data: event.data,
+      timestamp: event.timestamp,
+      createdAt: event.created_at
+    }));
 
     return NextResponse.json({
-      insights,
-      recentEvents,
-      summary: calculateSummary(insights)
+      insights: transformedInsights,
+      recentEvents: transformedEvents,
+      summary: calculateSummary(transformedInsights)
     });
 
   } catch (error) {
@@ -164,7 +216,7 @@ export async function GET(request) {
 }
 
 function calculateSummary(insights) {
-  if (insights.length === 0) {
+  if (!insights || insights.length === 0) {
     return {
       totalClicks: 0,
       avgSessionTime: 0,

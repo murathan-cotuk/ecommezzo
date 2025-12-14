@@ -33,7 +33,7 @@ export default function Portfolio() {
           {[
             {
               title: "Kinetiq PhysioMed",
-              category: "Blog Website",
+              category: "Wordpress Website",
               description: "Moderne Physiotherapie-Website mit Online-Terminbuchung",
               image: "/KinetiqPhysioMed/Kinetiq1.jpg",
               video: "/KinetiqPhysioMed/KinetiqMobile.mp4",
@@ -41,19 +41,19 @@ export default function Portfolio() {
             },
             {
               title: "Megaman Fashion",
-              category: "Online-Shop",
+              category: "Shopify-Shop",
               description: "Professioneller E-Commerce Shop mit optimierter Conversion und modernem Design",
-              image: "/Megaman/Megaman-Logo.png",
-              video: "/KinetiqPhysioMed/KinetiqMobile.mp4",
+              image: "/Megaman/MegamanStore.png",
+              video: "/Megaman/MegamanMobile.mp4",
               link: "/projekte/megaman",
             },
             {
-              title: "Moongirl Lingerie",
+              title: "Metropol Agency",
               category: "Online-Shop",
-              description: "Professioneller E-Commerce Shop mit optimierter Conversion und modernem Design",
-              image: "/KinetiqPhysioMed/KinetiqPhysiomed.jpg",
-              video: "/KinetiqPhysioMed/KinetiqMobile.mp4",
-              link: "/projekte/moongirl",
+              description: "Moderne Textile-Website mit Online-Terminbuchung",
+              image: "/Metropol/MetropolLogo.jpg",
+              video: "/Metropol/MetropolMobile.mp4",
+              link: "/projekte/metropol",
             }
             
           ].map((project, index) => (
