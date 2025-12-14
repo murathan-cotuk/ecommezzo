@@ -17,7 +17,7 @@
     "framer-motion": "^12.4.10",
     "ldrs": "^1.1.9",
     "lucide-react": "^0.475.0",
-    "next": "15.1.6",
+    "next": "15.1.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-fast-marquee": "^1.6.5",
