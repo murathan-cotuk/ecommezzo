@@ -289,7 +289,7 @@ export default function ShopifyPlusHomeSection() {
 
         {/* 3D Planet System - Cards orbiting around logo */}
         <div className="relative w-full flex justify-center items-center my-8 md:my-2" style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px', overflow: 'visible' }}>
-          <div className="relative" style={{ transformStyle: 'preserve-3d', width: '100%', height: '100%' }}>
+          <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
             {/* Central Planet (Shopify Logo) - NO ROTATION */}
             <div className={`relative mx-auto z-10 ${isMobile ? 'w-32 h-16' : 'w-40 h-20 md:w-56 md:h-48'}`} style={{ transform: 'translateZ(0)' }}>
               <div className="relative w-full h-full">
@@ -315,14 +315,18 @@ export default function ShopifyPlusHomeSection() {
               />
             </div>
 
-            {/* Navigation Buttons - Left and Right - Centered vertically */}
+            {/* Navigation Buttons - Left and Right - Perfectly aligned */}
             <motion.button
               onClick={handlePrev}
-              className={`absolute top-1/2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+              className={`absolute z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
                 isMobile 
-                  ? 'left-2 w-10 h-10' 
+                  ? 'left-4 w-10 h-10' 
                   : 'left-4 md:left-0 md:-left-20 w-12 h-12 md:w-16 md:h-16'
               }`}
+              style={{
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -331,11 +335,15 @@ export default function ShopifyPlusHomeSection() {
 
             <motion.button
               onClick={handleNext}
-              className={`absolute top-1/2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+              className={`absolute z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
                 isMobile 
-                  ? 'right-2 w-10 h-10' 
+                  ? 'right-4 w-10 h-10' 
                   : 'right-4 md:right-0 md:-right-20 w-12 h-12 md:w-16 md:h-16'
               }`}
+              style={{
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
