@@ -45,14 +45,16 @@ export default function ShopifyPlusHomeSection() {
     if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    // Sağa kaydırma (touchStart < touchEnd, distance negatif) → next
+    // Sola kaydırma (touchStart > touchEnd, distance pozitif) → prev
+    const isRightSwipe = distance < -minSwipeDistance; // Sağa kaydırma
+    const isLeftSwipe = distance > minSwipeDistance; // Sola kaydırma
 
-    if (isLeftSwipe) {
-      handleNext();
-    }
     if (isRightSwipe) {
-      handlePrev();
+      handleNext(); // Sağa kaydırınca soldan sağa (next)
+    }
+    if (isLeftSwipe) {
+      handlePrev(); // Sola kaydırınca sağdan sola (prev)
     }
   };
 
@@ -130,9 +132,9 @@ export default function ShopifyPlusHomeSection() {
           x: -90,
           y: -1,
           z: -30,
-          scale: 0.4,
-          opacity: 0.4,
-          blur: 2,
+          scale: 0.45,
+          opacity: 0.65,
+          blur: 1.5,
           showDescription: false,
           width: 140
         },
@@ -150,9 +152,9 @@ export default function ShopifyPlusHomeSection() {
           x: 90,
           y: -1,
           z: -30,
-          scale: 0.4,
-          opacity: 0.4,
-          blur: 2,
+          scale: 0.45,
+          opacity: 0.65,
+          blur: 1.5,
           showDescription: false,
           width: 140
         }
