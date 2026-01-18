@@ -16,6 +16,8 @@ import {
 export default function ShopifyPlusHomeSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -26,6 +28,33 @@ export default function ShopifyPlusHomeSection() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
   const cards = [
     {
@@ -288,8 +317,14 @@ export default function ShopifyPlusHomeSection() {
         </motion.div>
 
         {/* 3D Planet System - Cards orbiting around logo */}
-        <div className="relative w-full flex justify-center items-center my-8 md:my-2" style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px', overflow: 'visible' }}>
-          <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
+        <div 
+          className="relative w-full flex justify-center items-center my-8 md:my-2" 
+          style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px', overflow: 'visible' }}
+          onTouchStart={isMobile ? onTouchStart : undefined}
+          onTouchMove={isMobile ? onTouchMove : undefined}
+          onTouchEnd={isMobile ? onTouchEnd : undefined}
+        >
+          <div className="relative" style={{ transformStyle: 'preserve-3d', width: '100%', height: '100%' }}>
             {/* Central Planet (Shopify Logo) - NO ROTATION */}
             <div className={`relative mx-auto z-10 ${isMobile ? 'w-32 h-16' : 'w-40 h-20 md:w-56 md:h-48'}`} style={{ transform: 'translateZ(0)' }}>
               <div className="relative w-full h-full">
@@ -315,40 +350,32 @@ export default function ShopifyPlusHomeSection() {
               />
             </div>
 
-            {/* Navigation Buttons - Left and Right - Perfectly aligned */}
-            <motion.button
-              onClick={handlePrev}
-              className={`absolute z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
-                isMobile 
-                  ? 'left-4 w-10 h-10' 
-                  : 'left-4 md:left-0 md:-left-20 w-12 h-12 md:w-16 md:h-16'
-              }`}
-              style={{
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ChevronLeftIcon className={`text-white ${isMobile ? 'w-5 h-5' : 'w-6 h-6 md:w-8 md:h-8'}`} />
-            </motion.button>
+            {/* Navigation Buttons - Desktop only, Left and Right */}
+            {!isMobile && (
+              <>
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-4 md:left-0 md:-left-20 z-50 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+                  style={{
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                  }}
+                >
+                  <ChevronLeftIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                </button>
 
-            <motion.button
-              onClick={handleNext}
-              className={`absolute z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
-                isMobile 
-                  ? 'right-4 w-10 h-10' 
-                  : 'right-4 md:right-0 md:-right-20 w-12 h-12 md:w-16 md:h-16'
-              }`}
-              style={{
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ChevronRightIcon className={`text-white ${isMobile ? 'w-5 h-5' : 'w-6 h-6 md:w-8 md:h-8'}`} />
-            </motion.button>
+                <button
+                  onClick={handleNext}
+                  className="absolute right-4 md:right-0 md:-right-20 z-50 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+                  style={{
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                  }}
+                >
+                  <ChevronRightIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                </button>
+              </>
+            )}
 
             {/* Orbiting Cards - Positioned around logo */}
             {cards.map((card, index) => {
