@@ -2,6 +2,7 @@
 
 "use client";
 
+import Image from 'next/image';
 import CodeAnimation from "../components/CodeAnimation";
 import ConversionRateCalculator from "../components/ConversionRateCalculator";
 import Home1 from "../components/Home1";
@@ -13,8 +14,9 @@ import ReferenzSection from '../components/WebdesignReferenz';
 import Portfolio from '../components/Portfolio';
 import GraffitiScroll from '../components/GraffitiScroll';
 import NewsletterSignup from '../components/NewsletterSignup';
+import ShopifyPlusHomeSection from '../components/ShopifyPlusHomeSection';
 
-
+ 
 export default function Home() {
   return (
       
@@ -179,6 +181,7 @@ export default function Home() {
         `}</style>
 
         <Home1 />
+        <ShopifyPlusHomeSection />
          {/*<Home2 />*/}
         {/*<Portfolio />*/}
         <Home3 />

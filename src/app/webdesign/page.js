@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from "framer-motion";
 import { ShoppingBagIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import ShopifyPlusSection from '../../components/WebdesignShopifyPlus';
 import ShopifySection from '../../components/WebdesignShopify';
 import WordpressSection from '../../components/WebdesignWordpress';
 import SeoSection from '../../components/WebdesignSeo';
@@ -286,6 +287,7 @@ export default function Webdesign() {
         </div>
       </section>
 
+      <ShopifyPlusSection />
       <ShopifySection />
       <WordpressSection />
       <SeoSection />
