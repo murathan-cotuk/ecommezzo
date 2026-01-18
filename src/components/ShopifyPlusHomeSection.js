@@ -95,37 +95,37 @@ export default function ShopifyPlusHomeSection() {
           opacity: 1,
           blur: 0,
           showDescription: true,
-          width: 320 // Smaller for mobile
+          width: 280 // Smaller for mobile
         },
         1: { // Left
-          x: -120,
+          x: -100,
           y: -1,
           z: -30,
-          scale: 0.5,
+          scale: 0.45,
           opacity: 0.4,
           blur: 2,
           showDescription: false,
-          width: 200
+          width: 160
         },
         2: { // Back
           x: 0,
           y: -2,
           z: -100,
-          scale: 0.4,
+          scale: 0.35,
           opacity: 0.2,
           blur: 4,
           showDescription: false,
-          width: 200
+          width: 160
         },
         3: { // Right
-          x: 120,
+          x: 100,
           y: -1,
           z: -30,
-          scale: 0.5,
+          scale: 0.45,
           opacity: 0.4,
           blur: 2,
           showDescription: false,
-          width: 200
+          width: 160
         }
       };
       return mobilePositions[position];

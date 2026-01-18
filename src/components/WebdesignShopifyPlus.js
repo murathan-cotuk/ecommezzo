@@ -45,7 +45,7 @@ export default function ShopifyPlusSection() {
         {/* Hero Section with Shopify Plus Logo */}
         <motion.div 
           className="text-center mb-16"
-          {...(isMobile ? {} : {
+          {...(isMobile ? { animate: { opacity: 1, y: 0 } } : {
             initial: { opacity: 0, y: 30 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true },
@@ -55,7 +55,7 @@ export default function ShopifyPlusSection() {
           {/* Shopify Plus Logo */}
           <motion.div
             className="flex justify-center mb-8"
-            {...(isMobile ? {} : {
+            {...(isMobile ? { animate: { opacity: 1, scale: 1 } } : {
               initial: { opacity: 0, scale: 0.8 },
               whileInView: { opacity: 1, scale: 1 },
               viewport: { once: true },
@@ -124,7 +124,7 @@ export default function ShopifyPlusSection() {
             <motion.div
               key={title}
               className={`group bg-white border-2 ${borderColor} rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${bgColor}`}
-              {...(isMobile ? {} : {
+              {...(isMobile ? { animate: { opacity: 1, y: 0 } } : {
                 initial: { opacity: 0, y: 50 },
                 whileInView: { opacity: 1, y: 0 },
                 viewport: { once: true },
@@ -153,7 +153,7 @@ export default function ShopifyPlusSection() {
         {/* Shopify Plus Exclusive Features */}
         <motion.div 
           className="bg-gradient-to-br from-gray-50 to-teal-50 rounded-3xl p-8 md:p-12 mb-20 border-2 border-gray-200 shadow-xl"
-          {...(isMobile ? {} : {
+          {...(isMobile ? { animate: { opacity: 1, scale: 1 } } : {
             initial: { opacity: 0, scale: 0.95 },
             whileInView: { opacity: 1, scale: 1 },
             viewport: { once: true },
@@ -223,7 +223,7 @@ export default function ShopifyPlusSection() {
               <motion.div
                 key={title}
                 className="group p-6 bg-white rounded-xl border border-gray-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300"
-                {...(isMobile ? {} : {
+                {...(isMobile ? { animate: { opacity: 1, y: 0 } } : {
                   initial: { opacity: 0, y: 20 },
                   whileInView: { opacity: 1, y: 0 },
                   viewport: { once: true },
@@ -242,7 +242,7 @@ export default function ShopifyPlusSection() {
         {/* Comparison Table */}
         <motion.div 
           className="bg-white rounded-3xl p-8 md:p-12 mb-20 border-2 border-gray-200 shadow-xl"
-          {...(isMobile ? {} : {
+          {...(isMobile ? { animate: { opacity: 1, y: 0 } } : {
             initial: { opacity: 0, y: 30 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true },
@@ -288,7 +288,7 @@ export default function ShopifyPlusSection() {
                   <motion.tr
                     key={feature}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200"
-                    {...(isMobile ? {} : {
+                    {...(isMobile ? { animate: { opacity: 1, x: 0 } } : {
                       initial: { opacity: 0, x: -20 },
                       whileInView: { opacity: 1, x: 0 },
                       viewport: { once: true },
@@ -314,7 +314,7 @@ export default function ShopifyPlusSection() {
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           <motion.div
             className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 border-2 border-teal-200"
-            {...(isMobile ? {} : {
+            {...(isMobile ? { animate: { opacity: 1, x: 0 } } : {
               initial: { opacity: 0, x: -30 },
               whileInView: { opacity: 1, x: 0 },
               viewport: { once: true },
@@ -337,7 +337,7 @@ export default function ShopifyPlusSection() {
                 <motion.div
                   key={benefit}
                   className="flex items-start p-4 bg-white rounded-lg border border-teal-100 hover:border-teal-300 transition-all duration-300"
-                  {...(isMobile ? {} : {
+                  {...(isMobile ? { animate: { opacity: 1, x: 0 } } : {
                     initial: { opacity: 0, x: -20 },
                     whileInView: { opacity: 1, x: 0 },
                     viewport: { once: true },
@@ -353,7 +353,7 @@ export default function ShopifyPlusSection() {
 
           <motion.div
             className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200"
-            {...(isMobile ? {} : {
+            {...(isMobile ? { animate: { opacity: 1, x: 0 } } : {
               initial: { opacity: 0, x: 30 },
               whileInView: { opacity: 1, x: 0 },
               viewport: { once: true },
@@ -376,7 +376,7 @@ export default function ShopifyPlusSection() {
                 <motion.div
                   key={advantage}
                   className="flex items-start p-4 bg-white rounded-lg border border-purple-100 hover:border-purple-300 transition-all duration-300"
-                  {...(isMobile ? {} : {
+                  {...(isMobile ? { animate: { opacity: 1, x: 0 } } : {
                     initial: { opacity: 0, x: 20 },
                     whileInView: { opacity: 1, x: 0 },
                     viewport: { once: true },

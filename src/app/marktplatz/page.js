@@ -141,7 +141,7 @@ export default function Marktplatz() {
               background-image: url('/MarktplatzHero.png');
               background-repeat: no-repeat;
               background-position: right center;
-              background-size: 200% auto; /* show right half */
+              background-size: 150% auto; /* larger for tablet */
               z-index: 0;
               pointer-events: none;
             }
@@ -167,7 +167,7 @@ export default function Marktplatz() {
               background-image: url('/MarktplatzHero.png');
               background-repeat: no-repeat;
               background-position: right 60%;
-              background-size: 200% auto; /* show right half */
+              background-size: 120% auto; /* larger for mobile */
               z-index: 0;
               pointer-events: none;
             }

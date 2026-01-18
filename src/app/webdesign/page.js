@@ -97,7 +97,7 @@ export default function Webdesign() {
             background-image: url('/WebdesignHero.png');
             background-repeat: no-repeat;
             background-position: right center; /* anchor to right */
-            background-size: 200% auto; /* show right 50% */
+            background-size: 150% auto; /* larger for tablet */
             z-index: 0;
             pointer-events: none;
           }
@@ -111,23 +111,23 @@ export default function Webdesign() {
           }
         }
 
-        @media (max-width: 640px) {
-          /* Remove inline BG (cover) and replace with center-fit image layer */
-          main > section:first-of-type {
-            background: none !important;
-            position: relative;
-          }
-          main > section:first-of-type::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('/WebdesignHero.png');
-            background-repeat: no-repeat;
-            background-position: right 60%;
-            background-size: 200% auto; /* show right half */
-            z-index: 0;
-            pointer-events: none;
-          }
+          @media (max-width: 640px) {
+            /* Remove inline BG (cover) and replace with center-fit image layer */
+            main > section:first-of-type {
+              background: none !important;
+              position: relative;
+            }
+            main > section:first-of-type::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background-image: url('/WebdesignHero.png');
+              background-repeat: no-repeat;
+              background-position: right 60%;
+              background-size: 120% auto; /* larger for mobile */
+              z-index: 0;
+              pointer-events: none;
+            }
           main > section:first-of-type::after {
             content: "";
             position: absolute;
