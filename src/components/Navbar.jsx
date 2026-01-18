@@ -14,13 +14,16 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 1) {
-        // Scrolling down and past 100px
-        setIsVisible(false);
-      } else {
-        // Scrolling up
-        setIsVisible(true);
+      // Don't hide navbar if mobile menu is open
+      if (!isMobileMenuOpen) {
+        // Show navbar when scrolling up, hide when scrolling down
+        if (currentScrollY > lastScrollY && currentScrollY > 1) {
+          // Scrolling down and past 100px
+          setIsVisible(false);
+        } else {
+          // Scrolling up
+          setIsVisible(true);
+        }
       }
       
       // Update background based on scroll position
@@ -35,7 +38,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
 
   return (
@@ -313,7 +316,7 @@ export default function Navbar() {
                       > 
                         Marktplatz
                       </motion.a>
-                      <motion.a 
+                      {/*<motion.a 
                         href="/softwares" 
                         className={`block text-2xl font-bold py-4 border-b border-gray-100 ${
                           pathname === '/softwares' 
@@ -330,7 +333,7 @@ export default function Navbar() {
                         transition={{ duration: 0.2 }}
                       > 
                         Softwares
-                      </motion.a>
+                      </motion.a>*/}
                     </div>
                     
                     {/* Contact Button */}
