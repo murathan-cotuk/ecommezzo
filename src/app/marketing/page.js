@@ -160,7 +160,7 @@ export default function Marketing() {
               background-image: url('/MarketingHero.png');
               background-repeat: no-repeat;
               background-position: left center;
-              background-size: 150% auto; /* larger for tablet */
+              background-size: 200% auto; /* show right half */
               z-index: 0;
               pointer-events: none;
             }
@@ -186,7 +186,7 @@ export default function Marketing() {
               background-image: url('/MarketingHero.png');
               background-repeat: no-repeat;
               background-position: left 60%;
-              background-size: 120% auto; /* larger for mobile */
+              background-size: 200% auto; /* show right half */
               z-index: 0;
               pointer-events: none;
             }

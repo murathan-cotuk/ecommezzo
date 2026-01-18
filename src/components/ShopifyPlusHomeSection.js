@@ -95,37 +95,37 @@ export default function ShopifyPlusHomeSection() {
           opacity: 1,
           blur: 0,
           showDescription: true,
-          width: 280 // Smaller for mobile
+          width: 260 // Smaller for mobile, fits content better
         },
         1: { // Left
-          x: -100,
+          x: -90,
           y: -1,
           z: -30,
-          scale: 0.45,
+          scale: 0.4,
           opacity: 0.4,
           blur: 2,
           showDescription: false,
-          width: 160
+          width: 140
         },
         2: { // Back
           x: 0,
           y: -2,
           z: -100,
-          scale: 0.35,
+          scale: 0.3,
           opacity: 0.2,
           blur: 4,
           showDescription: false,
-          width: 160
+          width: 140
         },
         3: { // Right
-          x: 100,
+          x: 90,
           y: -1,
           z: -30,
-          scale: 0.45,
+          scale: 0.4,
           opacity: 0.4,
           blur: 2,
           showDescription: false,
-          width: 160
+          width: 140
         }
       };
       return mobilePositions[position];
@@ -288,7 +288,7 @@ export default function ShopifyPlusHomeSection() {
         </motion.div>
 
         {/* 3D Planet System - Cards orbiting around logo */}
-        <div className="relative w-full flex justify-center items-center my-8 md:my-2 overflow-x-hidden" style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px' }}>
+        <div className="relative w-full flex justify-center items-center my-8 md:my-2" style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px', overflow: 'visible' }}>
           <div className="relative" style={{ transformStyle: 'preserve-3d', width: '100%', height: '100%' }}>
             {/* Central Planet (Shopify Logo) - NO ROTATION */}
             <div className={`relative mx-auto z-10 ${isMobile ? 'w-32 h-16' : 'w-40 h-20 md:w-56 md:h-48'}`} style={{ transform: 'translateZ(0)' }}>
@@ -315,10 +315,10 @@ export default function ShopifyPlusHomeSection() {
               />
             </div>
 
-            {/* Navigation Buttons - Left and Right */}
+            {/* Navigation Buttons - Left and Right - Centered vertically */}
             <motion.button
               onClick={handlePrev}
-              className={`absolute top-2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+              className={`absolute top-1/2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
                 isMobile 
                   ? 'left-2 w-10 h-10' 
                   : 'left-4 md:left-0 md:-left-20 w-12 h-12 md:w-16 md:h-16'
@@ -331,7 +331,7 @@ export default function ShopifyPlusHomeSection() {
 
             <motion.button
               onClick={handleNext}
-              className={`absolute top-2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+              className={`absolute top-1/2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
                 isMobile 
                   ? 'right-2 w-10 h-10' 
                   : 'right-4 md:right-0 md:-right-20 w-12 h-12 md:w-16 md:h-16'
@@ -400,22 +400,22 @@ export default function ShopifyPlusHomeSection() {
                     }`} />
 
                     {/* Content */}
-                    <div className={`relative ${isMobile ? 'p-4' : 'p-6'}`}>
+                    <div className={`relative ${isMobile ? 'p-3' : 'p-6'}`}>
                       {/* Icon */}
                       <motion.div
-                        className={`${isMobile ? 'w-10 h-10' : 'w-12 h-12'} rounded-lg bg-gradient-to-r ${card.gradient} flex items-center justify-center mb-4 shadow-lg`}
+                        className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} rounded-lg bg-gradient-to-r ${card.gradient} flex items-center justify-center ${isMobile ? 'mb-2' : 'mb-4'} shadow-lg`}
                         animate={{
                           rotate: position.showDescription ? 360 : 0,
                           scale: position.showDescription ? 1.2 : 1,
                         }}
                         transition={{ duration: 0.6 }}
                       >
-                        <Icon className={`${isMobile ? 'w-5 h-5' : 'w-6 h-6'} text-white`} />
+                        <Icon className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white`} />
                       </motion.div>
 
                       {/* Title & Short Desc */}
-                      <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-2`}>{card.title}</h3>
-                      <p className={`text-white/70 ${isMobile ? 'text-xs' : 'text-xs'} mb-4`}>{card.shortDesc}</p>
+                      <h3 className={`${isMobile ? 'text-base' : 'text-xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}`}>{card.title}</h3>
+                      <p className={`text-white/70 ${isMobile ? 'text-xs mb-2' : 'text-xs mb-4'}`}>{card.shortDesc}</p>
 
                       {/* Active Card Expanded Content - Full visible */}
                       <AnimatePresence>
@@ -427,30 +427,30 @@ export default function ShopifyPlusHomeSection() {
                             transition={{ duration: 0.4 }}
                             className="overflow-visible"
                           >
-                            <p className="text-white/90 mb-4 leading-relaxed text-sm">{card.fullDesc}</p>
-                            <ul className="space-y-2 mb-4">
+                            <p className={`text-white/90 ${isMobile ? 'mb-2 text-xs leading-snug' : 'mb-4 leading-relaxed text-sm'}`}>{card.fullDesc}</p>
+                            <ul className={`${isMobile ? 'space-y-1 mb-2' : 'space-y-2 mb-4'}`}>
                               {card.features.map((feature, idx) => (
                                 <motion.li
                                   key={idx}
-                                  className="flex items-center text-white/80 text-xs"
+                                  className={`flex items-center text-white/80 ${isMobile ? 'text-xs' : 'text-xs'}`}
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ delay: idx * 0.1 }}
                                 >
-                                  <StarIcon className="w-3 h-3 text-teal-400 mr-2 flex-shrink-0" />
-                                  {feature}
+                                  <StarIcon className={`${isMobile ? 'w-2.5 h-2.5' : 'w-3 h-3'} text-teal-400 mr-2 flex-shrink-0`} />
+                                  <span className={isMobile ? 'text-[10px] leading-tight' : ''}>{feature}</span>
                                 </motion.li>
                               ))}
                             </ul>
                             <motion.a
                               href="/webdesign#shopify-plus"
-                              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-bold rounded-lg hover:from-teal-700 hover:to-cyan-700 transition-all duration-300 shadow-lg text-sm"
+                              className={`inline-flex items-center gap-2 ${isMobile ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm'} bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-bold rounded-lg hover:from-teal-700 hover:to-cyan-700 transition-all duration-300 shadow-lg`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={(e) => e.stopPropagation()}
                             >
                               Mehr erfahren
-                              <ArrowRightIcon className="w-4 h-4" />
+                              <ArrowRightIcon className={isMobile ? 'w-3 h-3' : 'w-4 h-4'} />
                             </motion.a>
                           </motion.div>
                         )}

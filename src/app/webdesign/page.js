@@ -97,7 +97,7 @@ export default function Webdesign() {
             background-image: url('/WebdesignHero.png');
             background-repeat: no-repeat;
             background-position: right center; /* anchor to right */
-            background-size: 150% auto; /* larger for tablet */
+            background-size: 200% auto; /* show right 50% */
             z-index: 0;
             pointer-events: none;
           }
@@ -124,7 +124,7 @@ export default function Webdesign() {
               background-image: url('/WebdesignHero.png');
               background-repeat: no-repeat;
               background-position: right 60%;
-              background-size: 120% auto; /* larger for mobile */
+              background-size: 200% auto; /* show right half */
               z-index: 0;
               pointer-events: none;
             }
