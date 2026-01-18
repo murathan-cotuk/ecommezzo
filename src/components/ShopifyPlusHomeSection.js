@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -15,6 +15,17 @@ import {
 
 export default function ShopifyPlusHomeSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const cards = [
     {
@@ -73,6 +84,54 @@ export default function ShopifyPlusHomeSection() {
     // Position 2: Back
     // Position 3: Right
     
+    // Mobile positions (smaller, closer together)
+    if (isMobile) {
+      const mobilePositions = {
+        0: { // Front - active
+          x: 0,
+          y: 0,
+          z: 100,
+          scale: 1,
+          opacity: 1,
+          blur: 0,
+          showDescription: true,
+          width: 320 // Smaller for mobile
+        },
+        1: { // Left
+          x: -120,
+          y: -1,
+          z: -30,
+          scale: 0.5,
+          opacity: 0.4,
+          blur: 2,
+          showDescription: false,
+          width: 200
+        },
+        2: { // Back
+          x: 0,
+          y: -2,
+          z: -100,
+          scale: 0.4,
+          opacity: 0.2,
+          blur: 4,
+          showDescription: false,
+          width: 200
+        },
+        3: { // Right
+          x: 120,
+          y: -1,
+          z: -30,
+          scale: 0.5,
+          opacity: 0.4,
+          blur: 2,
+          showDescription: false,
+          width: 200
+        }
+      };
+      return mobilePositions[position];
+    }
+    
+    // Desktop positions (original)
     const positions = {
       0: { // Front - active
         x: 0,
@@ -229,10 +288,10 @@ export default function ShopifyPlusHomeSection() {
         </motion.div>
 
         {/* 3D Planet System - Cards orbiting around logo */}
-        <div className="relative w-full flex justify-center items-center my-8 md:my-2" style={{ perspective: '3500px', minHeight: '500px', overflow: 'visible' }}>
+        <div className="relative w-full flex justify-center items-center my-8 md:my-2 overflow-x-hidden" style={{ perspective: isMobile ? '1500px' : '3500px', minHeight: isMobile ? '400px' : '500px' }}>
           <div className="relative" style={{ transformStyle: 'preserve-3d', width: '100%', height: '100%' }}>
             {/* Central Planet (Shopify Logo) - NO ROTATION */}
-            <div className="relative w-40 h-20 md:w-56 md:h-48 mx-auto z-10" style={{ transform: 'translateZ(0)' }}>
+            <div className={`relative mx-auto z-10 ${isMobile ? 'w-32 h-16' : 'w-40 h-20 md:w-56 md:h-48'}`} style={{ transform: 'translateZ(0)' }}>
               <div className="relative w-full h-full">
                 <Image
                   src="/ShopifyLogo.png"
@@ -259,20 +318,28 @@ export default function ShopifyPlusHomeSection() {
             {/* Navigation Buttons - Left and Right */}
             <motion.button
               onClick={handlePrev}
-              className="absolute left-4 md:left-0 md:-left-20 top-2 -translate-y-1/2 z-50 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+              className={`absolute top-2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+                isMobile 
+                  ? 'left-2 w-10 h-10' 
+                  : 'left-4 md:left-0 md:-left-20 w-12 h-12 md:w-16 md:h-16'
+              }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <ChevronLeftIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+              <ChevronLeftIcon className={`text-white ${isMobile ? 'w-5 h-5' : 'w-6 h-6 md:w-8 md:h-8'}`} />
             </motion.button>
 
             <motion.button
               onClick={handleNext}
-              className="absolute right-4 md:right-0 md:-right-20 top-2 -translate-y-1/2 z-50 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20"
+              className={`absolute top-2 -translate-y-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full border-2 border-white/30 hover:border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-white/20 ${
+                isMobile 
+                  ? 'right-2 w-10 h-10' 
+                  : 'right-4 md:right-0 md:-right-20 w-12 h-12 md:w-16 md:h-16'
+              }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <ChevronRightIcon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+              <ChevronRightIcon className={`text-white ${isMobile ? 'w-5 h-5' : 'w-6 h-6 md:w-8 md:h-8'}`} />
             </motion.button>
 
             {/* Orbiting Cards - Positioned around logo */}
@@ -333,22 +400,22 @@ export default function ShopifyPlusHomeSection() {
                     }`} />
 
                     {/* Content */}
-                    <div className="relative p-6">
+                    <div className={`relative ${isMobile ? 'p-4' : 'p-6'}`}>
                       {/* Icon */}
                       <motion.div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-r ${card.gradient} flex items-center justify-center mb-4 shadow-lg`}
+                        className={`${isMobile ? 'w-10 h-10' : 'w-12 h-12'} rounded-lg bg-gradient-to-r ${card.gradient} flex items-center justify-center mb-4 shadow-lg`}
                         animate={{
                           rotate: position.showDescription ? 360 : 0,
                           scale: position.showDescription ? 1.2 : 1,
                         }}
                         transition={{ duration: 0.6 }}
                       >
-                        <Icon className="w-6 h-6 text-white" />
+                        <Icon className={`${isMobile ? 'w-5 h-5' : 'w-6 h-6'} text-white`} />
                       </motion.div>
 
                       {/* Title & Short Desc */}
-                      <h3 className="text-xl font-bold text-white mb-2">{card.title}</h3>
-                      <p className="text-white/70 text-xs mb-4">{card.shortDesc}</p>
+                      <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-2`}>{card.title}</h3>
+                      <p className={`text-white/70 ${isMobile ? 'text-xs' : 'text-xs'} mb-4`}>{card.shortDesc}</p>
 
                       {/* Active Card Expanded Content - Full visible */}
                       <AnimatePresence>

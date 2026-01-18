@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import { 
@@ -17,6 +18,18 @@ import {
 } from "@heroicons/react/24/solid";
 
 export default function ShopifyPlusSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="shopify-plus" className="bg-white py-20 px-6 relative overflow-hidden">
       
@@ -32,18 +45,22 @@ export default function ShopifyPlusSection() {
         {/* Hero Section with Shopify Plus Logo */}
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...(isMobile ? {} : {
+            initial: { opacity: 0, y: 30 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+            transition: { duration: 0.6 }
+          })}
         >
           {/* Shopify Plus Logo */}
           <motion.div
             className="flex justify-center mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            {...(isMobile ? {} : {
+              initial: { opacity: 0, scale: 0.8 },
+              whileInView: { opacity: 1, scale: 1 },
+              viewport: { once: true },
+              transition: { duration: 0.6, delay: 0.2 }
+            })}
           >
             <div className="relative w-64 h-32 md:w-80 md:h-40">
               <Image
@@ -107,15 +124,19 @@ export default function ShopifyPlusSection() {
             <motion.div
               key={title}
               className={`group bg-white border-2 ${borderColor} rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${bgColor}`}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              {...(isMobile ? {} : {
+                initial: { opacity: 0, y: 50 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.6, delay: i * 0.15 }
+              })}
             >
               <motion.div
                 className={`w-16 h-16 bg-gradient-to-r ${color} rounded-xl flex items-center justify-center mb-6 shadow-lg`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                {...(isMobile ? {} : {
+                  whileHover: { scale: 1.1, rotate: 5 },
+                  transition: { type: "spring", stiffness: 300 }
+                })}
               >
                 <Icon className="w-8 h-8 text-white" />
               </motion.div>
@@ -132,10 +153,12 @@ export default function ShopifyPlusSection() {
         {/* Shopify Plus Exclusive Features */}
         <motion.div 
           className="bg-gradient-to-br from-gray-50 to-teal-50 rounded-3xl p-8 md:p-12 mb-20 border-2 border-gray-200 shadow-xl"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...(isMobile ? {} : {
+            initial: { opacity: 0, scale: 0.95 },
+            whileInView: { opacity: 1, scale: 1 },
+            viewport: { once: true },
+            transition: { duration: 0.6 }
+          })}
         >
           <div className="text-center mb-12">
             <h3 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
@@ -200,11 +223,13 @@ export default function ShopifyPlusSection() {
               <motion.div
                 key={title}
                 className="group p-6 bg-white rounded-xl border border-gray-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ y: -5 }}
+                {...(isMobile ? {} : {
+                  initial: { opacity: 0, y: 20 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true },
+                  transition: { duration: 0.4, delay: index * 0.05 },
+                  whileHover: { y: -5 }
+                })}
               >
                 <Icon className={`w-10 h-10 ${color} mb-4 group-hover:scale-110 transition-transform duration-300`} />
                 <h4 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-teal-600 transition-colors duration-300">{title}</h4>
@@ -217,10 +242,12 @@ export default function ShopifyPlusSection() {
         {/* Comparison Table */}
         <motion.div 
           className="bg-white rounded-3xl p-8 md:p-12 mb-20 border-2 border-gray-200 shadow-xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          {...(isMobile ? {} : {
+            initial: { opacity: 0, y: 30 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+            transition: { duration: 0.6 }
+          })}
         >
           <h3 className="text-4xl font-bold text-center mb-12 text-gray-900">
             Shopify Plus vs. Standard Shopify
@@ -261,10 +288,12 @@ export default function ShopifyPlusSection() {
                   <motion.tr
                     key={feature}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    {...(isMobile ? {} : {
+                      initial: { opacity: 0, x: -20 },
+                      whileInView: { opacity: 1, x: 0 },
+                      viewport: { once: true },
+                      transition: { duration: 0.3, delay: index * 0.05 }
+                    })}
                   >
                     <td className="py-4 px-4 font-medium text-gray-900">{feature}</td>
                     <td className="py-4 px-4 text-center">
@@ -285,10 +314,12 @@ export default function ShopifyPlusSection() {
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           <motion.div
             className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 border-2 border-teal-200"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            {...(isMobile ? {} : {
+              initial: { opacity: 0, x: -30 },
+              whileInView: { opacity: 1, x: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.6 }
+            })}
           >
             <h4 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
               <StarIcon className="w-8 h-8 mr-3 text-teal-600" />
@@ -306,10 +337,12 @@ export default function ShopifyPlusSection() {
                 <motion.div
                   key={benefit}
                   className="flex items-start p-4 bg-white rounded-lg border border-teal-100 hover:border-teal-300 transition-all duration-300"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  {...(isMobile ? {} : {
+                    initial: { opacity: 0, x: -20 },
+                    whileInView: { opacity: 1, x: 0 },
+                    viewport: { once: true },
+                    transition: { duration: 0.3, delay: index * 0.1 }
+                  })}
                 >
                   <CheckBadgeIcon className="w-5 h-5 text-teal-600 mr-3 flex-shrink-0 mt-0.5" />
                   <span className="text-gray-700 font-medium">{benefit}</span>
@@ -320,10 +353,12 @@ export default function ShopifyPlusSection() {
 
           <motion.div
             className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            {...(isMobile ? {} : {
+              initial: { opacity: 0, x: 30 },
+              whileInView: { opacity: 1, x: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.6 }
+            })}
           >
             <h4 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
               <BoltIcon className="w-8 h-8 mr-3 text-purple-600" />
@@ -341,10 +376,12 @@ export default function ShopifyPlusSection() {
                 <motion.div
                   key={advantage}
                   className="flex items-start p-4 bg-white rounded-lg border border-purple-100 hover:border-purple-300 transition-all duration-300"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  {...(isMobile ? {} : {
+                    initial: { opacity: 0, x: 20 },
+                    whileInView: { opacity: 1, x: 0 },
+                    viewport: { once: true },
+                    transition: { duration: 0.3, delay: index * 0.1 }
+                  })}
                 >
                   <CheckBadgeIcon className="w-5 h-5 text-purple-600 mr-3 flex-shrink-0 mt-0.5" />
                   <span className="text-gray-700 font-medium">{advantage}</span>
@@ -353,55 +390,6 @@ export default function ShopifyPlusSection() {
             </div>
           </motion.div>
         </div>
-
-        {/* Final CTA Section */}
-        <motion.div 
-          className="text-center bg-gradient-to-br from-teal-600 via-cyan-600 to-purple-600 rounded-3xl p-12 md:p-16 border-2 border-teal-400 shadow-2xl relative overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Animated Background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          </div>
-
-          <div className="relative z-10">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            >
-              <GlobeAltIcon className="w-20 h-20 text-white mx-auto mb-6" />
-            </motion.div>
-            
-            <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Bereit für Enterprise-Level E-Commerce?
-            </h3>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              <span className="font-bold">Shopify Plus</span> bietet die Technologie, 
-              die Ihr Business für nachhaltiges Wachstum benötigt. 
-              Lassen Sie uns gemeinsam einen Online-Shop entwickeln, 
-              der <span className="font-bold">nachweislich mehr Umsatz generiert</span>.
-            </p>
-            <motion.a
-              href="/kontakt"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <button className="px-10 py-5 bg-white text-teal-600 font-bold text-lg rounded-xl shadow-2xl hover:shadow-white/50 transition-all duration-300 inline-flex items-center gap-3 hover:bg-gray-50">
-                Kostenlose Beratung anfragen
-                <RocketLaunchIcon className="w-6 h-6" />
-              </button>
-            </motion.a>
-            <p className="text-white/80 mt-6 text-sm">
-              ✓ Unverbindlich & kostenlos ✓ Individuelle Strategieberatung ✓ Schnelle Antwort
-            </p>
-          </div>
-        </motion.div>
 
       </div>
     </section>
