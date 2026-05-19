@@ -3,6 +3,9 @@ import path from 'path';
 import crypto from 'crypto';
 import { getSupabaseClient } from './supabase';
 
+const BLOB_PATHNAME = 'newsletter_subscribers.json';
+const BUNDLED_DATA_FILE = path.join(process.cwd(), 'data', 'newsletter_subscribers.json');
+
 function getDataFilePath() {
   if (process.env.VERCEL) {
     return path.join('/tmp', 'newsletter_subscribers.json');
@@ -10,7 +13,9 @@ function getDataFilePath() {
   return path.join(process.cwd(), 'data', 'newsletter_subscribers.json');
 }
 
-const BUNDLED_DATA_FILE = path.join(process.cwd(), 'data', 'newsletter_subscribers.json');
+function hasBlobStorage() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+}
 
 let supabaseReachableCache = null;
 let supabaseReachableCheckedAt = 0;
@@ -70,12 +75,17 @@ async function isSupabaseReachable() {
   }
 
   try {
-    const response = await fetch(`${url.replace(/\/$/, '')}/rest/v1/`, {
-      method: 'HEAD',
-      headers: { apikey: key },
-      signal: AbortSignal.timeout(2000),
-    });
-    supabaseReachableCache = response.status < 500;
+    const hostname = new URL(url).hostname;
+    if (!hostname.endsWith('.supabase.co')) {
+      supabaseReachableCache = false;
+    } else {
+      const response = await fetch(`${url.replace(/\/$/, '')}/rest/v1/`, {
+        method: 'HEAD',
+        headers: { apikey: key },
+        signal: AbortSignal.timeout(1500),
+      });
+      supabaseReachableCache = response.status < 500;
+    }
   } catch {
     supabaseReachableCache = false;
   }
@@ -84,7 +94,105 @@ async function isSupabaseReachable() {
   return supabaseReachableCache;
 }
 
-async function readFileSubscribers() {
+function serializeSubscribers(subscribers) {
+  return subscribers.map((sub) => ({
+    email: sub.email,
+    name: sub.name || '',
+    source: sub.source || 'contact_form',
+    status: sub.status || 'active',
+    subscribedAt: sub.subscribed_at || sub.subscribedAt,
+    unsubscribedAt: sub.unsubscribed_at || sub.unsubscribedAt || null,
+    unsubscribeToken: sub.unsubscribe_token || sub.unsubscribeToken || null,
+  }));
+}
+
+function mergeSubscribers(...lists) {
+  const byEmail = new Map();
+
+  for (const list of lists) {
+    for (const sub of list) {
+      if (!sub?.email) continue;
+      const email = sub.email.toLowerCase().trim();
+      const existing = byEmail.get(email);
+      const next = fromDbSubscriber(sub);
+
+      if (!existing) {
+        byEmail.set(email, next);
+        continue;
+      }
+
+      const existingDate = new Date(
+        existing.subscribed_at || existing.subscribedAt || 0
+      ).getTime();
+      const nextDate = new Date(
+        next.subscribed_at || next.subscribedAt || 0
+      ).getTime();
+
+      if (nextDate >= existingDate) {
+        byEmail.set(email, { ...existing, ...next, email });
+      }
+    }
+  }
+
+  return Array.from(byEmail.values());
+}
+
+async function readBlobSubscribers() {
+  if (!hasBlobStorage()) {
+    return [];
+  }
+
+  try {
+    const { list } = await import('@vercel/blob');
+    const { blobs } = await list({ prefix: BLOB_PATHNAME, limit: 1 });
+    if (!blobs.length) {
+      return [];
+    }
+
+    const response = await fetch(blobs[0].url);
+    if (!response.ok) {
+      return [];
+    }
+
+    const parsed = await response.json();
+    return Array.isArray(parsed) ? parsed.map(fromDbSubscriber) : [];
+  } catch (error) {
+    console.warn('Blob newsletter read failed:', error.message);
+    return [];
+  }
+}
+
+async function writeBlobSubscribers(subscribers) {
+  if (!hasBlobStorage()) {
+    return false;
+  }
+
+  try {
+    const { put } = await import('@vercel/blob');
+    await put(BLOB_PATHNAME, JSON.stringify(serializeSubscribers(subscribers), null, 2), {
+      access: 'private',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: 'application/json',
+    });
+    return true;
+  } catch (error) {
+    console.warn('Blob newsletter write failed:', error.message);
+    return false;
+  }
+}
+
+async function readBundledSubscribers() {
+  try {
+    const raw = await fs.readFile(BUNDLED_DATA_FILE, 'utf8');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.map(fromDbSubscriber) : [];
+  } catch {
+    return [];
+  }
+}
+
+async function readLocalFileSubscribers() {
   const dataFile = getDataFilePath();
 
   try {
@@ -95,34 +203,31 @@ async function readFileSubscribers() {
     if (error.code !== 'ENOENT') {
       throw error;
     }
+    return [];
   }
+}
 
-  if (process.env.VERCEL) {
-    try {
-      const raw = await fs.readFile(BUNDLED_DATA_FILE, 'utf8');
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed.map(fromDbSubscriber) : [];
-    } catch {
-      return [];
-    }
-  }
+async function readFileSubscribers() {
+  const [blob, local, bundled] = await Promise.all([
+    readBlobSubscribers(),
+    readLocalFileSubscribers(),
+    readBundledSubscribers(),
+  ]);
 
-  return [];
+  return mergeSubscribers(blob, local, bundled);
 }
 
 async function writeFileSubscribers(subscribers) {
+  const payload = serializeSubscribers(subscribers);
   const dataFile = getDataFilePath();
+
   await fs.mkdir(path.dirname(dataFile), { recursive: true });
-  const payload = subscribers.map((sub) => ({
-    email: sub.email,
-    name: sub.name || '',
-    source: sub.source || 'contact_form',
-    status: sub.status || 'active',
-    subscribedAt: sub.subscribed_at || sub.subscribedAt,
-    unsubscribedAt: sub.unsubscribed_at || sub.unsubscribedAt || null,
-    unsubscribeToken: sub.unsubscribe_token || sub.unsubscribeToken || null,
-  }));
   await fs.writeFile(dataFile, JSON.stringify(payload, null, 2), 'utf8');
+  await writeBlobSubscribers(subscribers);
+
+  if (!process.env.VERCEL) {
+    await fs.writeFile(BUNDLED_DATA_FILE, JSON.stringify(payload, null, 2), 'utf8');
+  }
 }
 
 async function subscribeWithFile({ email, name, source }) {
@@ -331,44 +436,52 @@ export async function unsubscribeFromNewsletter({ email, token }) {
   return { ok: true };
 }
 
-export async function listNewsletterSubscribers({ status = 'all', source = 'all' } = {}) {
-  const useSupabase = await isSupabaseReachable();
-
-  if (useSupabase) {
-    try {
-      const supabase = getSupabaseClient();
-      let query = supabase.from('newsletter_subscribers').select('*');
-
-      if (status !== 'all') {
-        query = query.eq('status', status);
-      }
-      if (source !== 'all') {
-        query = query.eq('source', source);
-      }
-
-      const { data, error } = await query.order('subscribed_at', { ascending: false });
-      if (error) {
-        throw error;
-      }
-
-      return (data || []).map(fromDbSubscriber);
-    } catch (error) {
-      console.warn('Supabase newsletter list failed, using file storage:', error.message);
-    }
-  }
-
-  let subscribers = await readFileSubscribers();
+function filterSubscribers(subscribers, { status, source }) {
+  let filtered = subscribers;
 
   if (status !== 'all') {
-    subscribers = subscribers.filter((sub) => sub.status === status);
+    filtered = filtered.filter((sub) => sub.status === status);
   }
   if (source !== 'all') {
-    subscribers = subscribers.filter((sub) => sub.source === source);
+    filtered = filtered.filter((sub) => sub.source === source);
   }
 
-  return subscribers.sort(
+  return filtered.sort(
     (a, b) =>
       new Date(b.subscribed_at || b.subscribedAt).getTime() -
       new Date(a.subscribed_at || a.subscribedAt).getTime()
   );
+}
+
+export async function listNewsletterSubscribers({ status = 'all', source = 'all' } = {}) {
+  try {
+    const useSupabase = await isSupabaseReachable();
+
+    if (useSupabase) {
+      try {
+        const supabase = getSupabaseClient();
+        let query = supabase.from('newsletter_subscribers').select('*');
+
+        if (status !== 'all') {
+          query = query.eq('status', status);
+        }
+        if (source !== 'all') {
+          query = query.eq('source', source);
+        }
+
+        const { data, error } = await query.order('subscribed_at', { ascending: false });
+        if (!error && data?.length) {
+          return (data || []).map(fromDbSubscriber);
+        }
+      } catch (error) {
+        console.warn('Supabase newsletter list failed, using file storage:', error.message);
+      }
+    }
+
+    const subscribers = await readFileSubscribers();
+    return filterSubscribers(subscribers, { status, source });
+  } catch (error) {
+    console.error('listNewsletterSubscribers error:', error);
+    return [];
+  }
 }

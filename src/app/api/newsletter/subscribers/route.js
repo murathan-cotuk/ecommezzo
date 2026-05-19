@@ -1,7 +1,27 @@
 // Newsletter aboneleri listesi API endpoint (Admin)
 import { listNewsletterSubscribers } from '../../../../lib/newsletterStore';
+import { getAdminSessionFromRequest } from '../../../../lib/adminSession';
+
+function requireAdmin(request) {
+  const session = getAdminSessionFromRequest(request);
+  if (!session) {
+    return Response.json(
+      {
+        success: false,
+        message: 'Nicht autorisiert',
+      },
+      { status: 401 }
+    );
+  }
+  return null;
+}
 
 export async function GET(request) {
+  const unauthorized = requireAdmin(request);
+  if (unauthorized) {
+    return unauthorized;
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page')) || 1;
@@ -21,7 +41,8 @@ export async function GET(request) {
       name: sub.name || '',
       source: sub.source || '',
       status: sub.status || 'active',
-      subscribedAt: sub.subscribed_at || sub.created_at || new Date().toISOString(),
+      subscribedAt:
+        sub.subscribed_at || sub.subscribedAt || sub.created_at || new Date().toISOString(),
       unsubscribedAt: sub.unsubscribed_at || null
     }));
 
@@ -54,6 +75,11 @@ export async function GET(request) {
 
 // CSV export endpoint
 export async function POST(request) {
+  const unauthorized = requireAdmin(request);
+  if (unauthorized) {
+    return unauthorized;
+  }
+
   try {
     const { format = 'csv' } = await request.json();
 

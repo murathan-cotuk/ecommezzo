@@ -61,9 +61,18 @@ export default function NewsletterAdmin() {
     router.push('/admin/login');
   };
 
+  const getAdminHeaders = () => {
+    const sessionId = localStorage.getItem('admin_session');
+    return {
+      'Content-Type': 'application/json',
+      ...(sessionId ? { 'x-admin-session': sessionId } : {}),
+    };
+  };
+
   // Aboneleri yükle
   const loadSubscribers = async () => {
     setLoading(true);
+    setError(null);
     try {
       const params = new URLSearchParams();
       Object.entries(filters).forEach(([key, value]) => {
@@ -72,8 +81,17 @@ export default function NewsletterAdmin() {
         }
       });
 
-      const response = await fetch(`/api/newsletter/subscribers?${params.toString()}`);
+      const response = await fetch(`/api/newsletter/subscribers?${params.toString()}`, {
+        headers: getAdminHeaders(),
+      });
       const data = await response.json();
+
+      if (response.status === 401) {
+        localStorage.removeItem('admin_authenticated');
+        localStorage.removeItem('admin_session');
+        router.push('/admin/login');
+        return;
+      }
 
       if (data.success) {
         setSubscribers(data.data);
@@ -94,9 +112,7 @@ export default function NewsletterAdmin() {
     try {
       const response = await fetch('/api/newsletter/subscribers', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAdminHeaders(),
         body: JSON.stringify({ format: 'csv' })
       });
 
