@@ -3,7 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { getSupabaseClient } from './supabase';
 
-const BLOB_PATHNAME = 'newsletter_subscribers.json';
+const BLOB_PATHNAME = 'data/newsletter_subscribers.json';
 const BUNDLED_DATA_FILE = path.join(process.cwd(), 'data', 'newsletter_subscribers.json');
 
 function getDataFilePath() {
@@ -47,12 +47,40 @@ function fromDbSubscriber(record) {
     name: record.name || '',
     source: record.source || 'contact_form',
     status: record.status || 'active',
+    record_type: record.record_type || record.recordType || 'newsletter',
     subscribed_at: record.subscribed_at || record.subscribedAt,
     subscribedAt: record.subscribed_at || record.subscribedAt,
     unsubscribed_at: record.unsubscribed_at || record.unsubscribedAt || null,
     unsubscribedAt: record.unsubscribed_at || record.unsubscribedAt || null,
     unsubscribe_token: record.unsubscribe_token || record.unsubscribeToken || null,
+    phone: record.phone || '',
+    company: record.company || '',
+    message: record.message || '',
+    project_type: record.project_type || record.projectType || '',
+    budget: record.budget || '',
+    timeline: record.timeline || '',
+    newsletter_opt_in: Boolean(record.newsletter_opt_in ?? record.newsletterOptIn),
   };
+}
+
+async function getStorageBackend() {
+  if (hasBlobStorage()) {
+    return 'blob';
+  }
+  if (await isSupabaseReachable()) {
+    return 'supabase';
+  }
+  return 'file';
+}
+
+export function getStorageInfo() {
+  if (hasBlobStorage()) {
+    return { backend: 'blob', persistent: true };
+  }
+  if (process.env.VERCEL) {
+    return { backend: 'ephemeral', persistent: false };
+  }
+  return { backend: 'file', persistent: true };
 }
 
 async function isSupabaseReachable() {
@@ -100,9 +128,17 @@ function serializeSubscribers(subscribers) {
     name: sub.name || '',
     source: sub.source || 'contact_form',
     status: sub.status || 'active',
+    recordType: sub.record_type || sub.recordType || 'newsletter',
     subscribedAt: sub.subscribed_at || sub.subscribedAt,
     unsubscribedAt: sub.unsubscribed_at || sub.unsubscribedAt || null,
     unsubscribeToken: sub.unsubscribe_token || sub.unsubscribeToken || null,
+    phone: sub.phone || '',
+    company: sub.company || '',
+    message: sub.message || '',
+    projectType: sub.project_type || sub.projectType || '',
+    budget: sub.budget || '',
+    timeline: sub.timeline || '',
+    newsletterOptIn: Boolean(sub.newsletter_opt_in ?? sub.newsletterOptIn),
   }));
 }
 
@@ -137,19 +173,23 @@ function mergeSubscribers(...lists) {
   return Array.from(byEmail.values());
 }
 
+function getBlobToken() {
+  return process.env.BLOB_READ_WRITE_TOKEN;
+}
+
 async function readBlobSubscribers() {
-  if (!hasBlobStorage()) {
+  const token = getBlobToken();
+  if (!token) {
     return [];
   }
 
   try {
-    const { list } = await import('@vercel/blob');
-    const { blobs } = await list({ prefix: BLOB_PATHNAME, limit: 1 });
-    if (!blobs.length) {
-      return [];
-    }
+    const { head } = await import('@vercel/blob');
+    const blob = await head(BLOB_PATHNAME, { token });
+    const response = await fetch(blob.url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-    const response = await fetch(blobs[0].url);
     if (!response.ok) {
       return [];
     }
@@ -157,13 +197,17 @@ async function readBlobSubscribers() {
     const parsed = await response.json();
     return Array.isArray(parsed) ? parsed.map(fromDbSubscriber) : [];
   } catch (error) {
+    if (error?.message?.includes('not found') || error?.status === 404) {
+      return [];
+    }
     console.warn('Blob newsletter read failed:', error.message);
     return [];
   }
 }
 
 async function writeBlobSubscribers(subscribers) {
-  if (!hasBlobStorage()) {
+  const token = getBlobToken();
+  if (!token) {
     return false;
   }
 
@@ -171,6 +215,7 @@ async function writeBlobSubscribers(subscribers) {
     const { put } = await import('@vercel/blob');
     await put(BLOB_PATHNAME, JSON.stringify(serializeSubscribers(subscribers), null, 2), {
       access: 'private',
+      token,
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: 'application/json',
@@ -207,7 +252,25 @@ async function readLocalFileSubscribers() {
   }
 }
 
+async function seedBlobFromBundledIfEmpty() {
+  if (!hasBlobStorage()) {
+    return;
+  }
+
+  const blobData = await readBlobSubscribers();
+  if (blobData.length > 0) {
+    return;
+  }
+
+  const bundled = await readBundledSubscribers();
+  if (bundled.length > 0) {
+    await writeBlobSubscribers(bundled);
+  }
+}
+
 async function readFileSubscribers() {
+  await seedBlobFromBundledIfEmpty();
+
   const [blob, local, bundled] = await Promise.all([
     readBlobSubscribers(),
     readLocalFileSubscribers(),
@@ -217,16 +280,58 @@ async function readFileSubscribers() {
   return mergeSubscribers(blob, local, bundled);
 }
 
-async function writeFileSubscribers(subscribers) {
+async function writeAllSubscribers(subscribers) {
+  const backend = await getStorageBackend();
+
+  if (backend === 'blob') {
+    const written = await writeBlobSubscribers(subscribers);
+    if (written) {
+      return;
+    }
+  }
+
+  if (backend === 'supabase') {
+    try {
+      await syncSubscribersToSupabase(subscribers);
+      return;
+    } catch (error) {
+      console.warn('Supabase sync failed, using file storage:', error.message);
+    }
+  }
+
   const payload = serializeSubscribers(subscribers);
   const dataFile = getDataFilePath();
-
   await fs.mkdir(path.dirname(dataFile), { recursive: true });
   await fs.writeFile(dataFile, JSON.stringify(payload, null, 2), 'utf8');
-  await writeBlobSubscribers(subscribers);
+
+  if (backend !== 'blob') {
+    await writeBlobSubscribers(subscribers);
+  }
 
   if (!process.env.VERCEL) {
     await fs.writeFile(BUNDLED_DATA_FILE, JSON.stringify(payload, null, 2), 'utf8');
+  }
+}
+
+async function syncSubscribersToSupabase(subscribers) {
+  const supabase = getSupabaseClient();
+  for (const sub of subscribers) {
+    const row = toDbSubscriber(sub);
+    const { error } = await supabase.from('newsletter_subscribers').upsert(
+      {
+        email: row.email,
+        name: row.name,
+        source: row.source,
+        status: row.status,
+        subscribed_at: row.subscribed_at,
+        unsubscribed_at: row.unsubscribed_at,
+        unsubscribe_token: row.unsubscribe_token,
+      },
+      { onConflict: 'email' }
+    );
+    if (error) {
+      throw error;
+    }
   }
 }
 
@@ -260,13 +365,14 @@ async function subscribeWithFile({ email, name, source }) {
         name: name?.trim() || '',
         source,
         status: 'active',
+        record_type: 'newsletter',
         subscribed_at: now,
         unsubscribe_token: generateUnsubscribeToken(normalizedEmail),
       })
     );
   }
 
-  await writeFileSubscribers(subscribers);
+  await writeAllSubscribers(subscribers);
 
   return {
     ok: true,
@@ -275,6 +381,67 @@ async function subscribeWithFile({ email, name, source }) {
       subscribedAt: now,
     },
   };
+}
+
+export async function saveContactLead(formData) {
+  const normalizedEmail = formData.email?.toLowerCase().trim();
+  if (!normalizedEmail) {
+    return { ok: false, status: 400, message: 'E-Mail ist erforderlich' };
+  }
+
+  const subscribers = await readFileSubscribers();
+  const existing = subscribers.find((sub) => sub.email === normalizedEmail);
+  const now = new Date().toISOString();
+
+  const projectType = Array.isArray(formData.projectType)
+    ? formData.projectType.join(', ')
+    : formData.projectType || '';
+  const budget = Array.isArray(formData.budget)
+    ? formData.budget.join(', ')
+    : formData.budget || '';
+  const timeline = Array.isArray(formData.timeline)
+    ? formData.timeline.join(', ')
+    : formData.timeline || '';
+
+  const lead = fromDbSubscriber({
+    email: normalizedEmail,
+    name: formData.name?.trim() || '',
+    source: 'contact_form',
+    status: 'active',
+    record_type: 'contact',
+    subscribed_at: existing?.subscribed_at || existing?.subscribedAt || now,
+    phone: formData.phone || '',
+    company: formData.company || '',
+    message: formData.message || '',
+    project_type: projectType,
+    budget,
+    timeline,
+    newsletter_opt_in: Boolean(
+      formData.newsletterOptIn ?? formData.newsletterSubscription
+    ),
+    unsubscribe_token:
+      existing?.unsubscribe_token ||
+      existing?.unsubscribeToken ||
+      generateUnsubscribeToken(normalizedEmail),
+  });
+
+  if (existing) {
+    Object.assign(existing, lead);
+  } else {
+    subscribers.push(lead);
+  }
+
+  await writeAllSubscribers(subscribers);
+
+  if (lead.newsletter_opt_in) {
+    await subscribeToNewsletter({
+      email: normalizedEmail,
+      name: formData.name,
+      source: 'contact_form',
+    });
+  }
+
+  return { ok: true };
 }
 
 async function subscribeWithSupabase({ email, name, source }) {
@@ -360,9 +527,9 @@ async function subscribeWithSupabase({ email, name, source }) {
 }
 
 export async function subscribeToNewsletter({ email, name, source }) {
-  const useSupabase = await isSupabaseReachable();
+  const backend = await getStorageBackend();
 
-  if (useSupabase) {
+  if (backend === 'supabase') {
     try {
       return await subscribeWithSupabase({ email, name, source });
     } catch (error) {
@@ -431,7 +598,7 @@ export async function unsubscribeFromNewsletter({ email, token }) {
   const now = new Date().toISOString();
   subscriber.unsubscribed_at = now;
   subscriber.unsubscribedAt = now;
-  await writeFileSubscribers(subscribers);
+  await writeAllSubscribers(subscribers);
 
   return { ok: true };
 }
@@ -455,9 +622,9 @@ function filterSubscribers(subscribers, { status, source }) {
 
 export async function listNewsletterSubscribers({ status = 'all', source = 'all' } = {}) {
   try {
-    const useSupabase = await isSupabaseReachable();
+    const backend = await getStorageBackend();
 
-    if (useSupabase) {
+    if (backend === 'supabase') {
       try {
         const supabase = getSupabaseClient();
         let query = supabase.from('newsletter_subscribers').select('*');
@@ -471,7 +638,11 @@ export async function listNewsletterSubscribers({ status = 'all', source = 'all'
 
         const { data, error } = await query.order('subscribed_at', { ascending: false });
         if (!error && data?.length) {
-          return (data || []).map(fromDbSubscriber);
+          const fileSubs = await readFileSubscribers();
+          return filterSubscribers(
+            mergeSubscribers((data || []).map(fromDbSubscriber), fileSubs),
+            { status, source }
+          );
         }
       } catch (error) {
         console.warn('Supabase newsletter list failed, using file storage:', error.message);
@@ -479,6 +650,11 @@ export async function listNewsletterSubscribers({ status = 'all', source = 'all'
     }
 
     const subscribers = await readFileSubscribers();
+
+    if (backend === 'blob' && subscribers.length > 0) {
+      return filterSubscribers(subscribers, { status, source });
+    }
+
     return filterSubscribers(subscribers, { status, source });
   } catch (error) {
     console.error('listNewsletterSubscribers error:', error);

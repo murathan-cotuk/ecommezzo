@@ -19,6 +19,7 @@ export default function NewsletterAdmin() {
   const [exporting, setExporting] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
+  const [storageInfo, setStorageInfo] = useState(null);
 
   // Authentication kontrolü
   const checkAuth = async () => {
@@ -96,6 +97,7 @@ export default function NewsletterAdmin() {
       if (data.success) {
         setSubscribers(data.data);
         setPagination(data.pagination);
+        setStorageInfo(data.storage || null);
       } else {
         setError(data.message);
       }
@@ -234,6 +236,14 @@ export default function NewsletterAdmin() {
             </div>
           </div>
         </div>
+
+        {storageInfo && !storageInfo.persistent && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-amber-900 text-sm">
+            <strong>Hinweis:</strong> Auf Vercel fehlt persistente Speicherung (Vercel Blob oder
+            Supabase). Neue Einträge sind in der Admin-Ansicht möglicherweise nicht sichtbar. Bitte
+            im Vercel Dashboard unter Storage → Blob ein Blob Store anlegen und redeployen.
+          </div>
+        )}
 
         {/* Filtreler */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
@@ -379,6 +389,9 @@ export default function NewsletterAdmin() {
                       Name
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Telefon
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Quelle
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -403,6 +416,9 @@ export default function NewsletterAdmin() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {subscriber.name || '-'}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {subscriber.phone || '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${

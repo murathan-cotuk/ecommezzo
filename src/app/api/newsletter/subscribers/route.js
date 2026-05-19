@@ -1,5 +1,8 @@
 // Newsletter aboneleri listesi API endpoint (Admin)
-import { listNewsletterSubscribers } from '../../../../lib/newsletterStore';
+import {
+  listNewsletterSubscribers,
+  getStorageInfo,
+} from '../../../../lib/newsletterStore';
 import { getAdminSessionFromRequest } from '../../../../lib/adminSession';
 
 function requireAdmin(request) {
@@ -36,19 +39,28 @@ export async function GET(request) {
     const totalPages = Math.ceil(total / limit);
 
     // Hassas bilgileri kaldır (unsubscribe_token hariç)
-    const safeSubscribers = (subscribers || []).map(sub => ({
+    const safeSubscribers = (subscribers || []).map((sub) => ({
       email: sub.email,
       name: sub.name || '',
       source: sub.source || '',
       status: sub.status || 'active',
+      recordType: sub.record_type || sub.recordType || 'newsletter',
+      phone: sub.phone || '',
+      company: sub.company || '',
+      message: sub.message || '',
+      projectType: sub.project_type || sub.projectType || '',
+      budget: sub.budget || '',
+      timeline: sub.timeline || '',
+      newsletterOptIn: Boolean(sub.newsletter_opt_in ?? sub.newsletterOptIn),
       subscribedAt:
         sub.subscribed_at || sub.subscribedAt || sub.created_at || new Date().toISOString(),
-      unsubscribedAt: sub.unsubscribed_at || null
+      unsubscribedAt: sub.unsubscribed_at || sub.unsubscribedAt || null,
     }));
 
     return Response.json({
       success: true,
       data: safeSubscribers,
+      storage: getStorageInfo(),
       pagination: {
         page: page,
         limit: limit,

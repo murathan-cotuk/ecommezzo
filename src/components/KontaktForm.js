@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from './Calendar';
-import { sendEmail, subscribeToNewsletter } from '../services/emailService';
+import { sendEmail } from '../services/emailService';
 import { useRouter } from 'next/navigation';
 
 export default function KontaktForm() {
@@ -218,17 +218,20 @@ export default function KontaktForm() {
       const result = await sendEmail(formData, appointmentData);
       
       if (result.success) {
-        // Bülten aboneliği kontrolü
-        if (formData.newsletterSubscription) {
-          try {
-            await subscribeToNewsletter(formData.email, formData.name);
-            console.log('Newsletter subscription successful');
-          } catch (newsletterError) {
-            console.warn('Newsletter subscription failed:', newsletterError);
-            // Newsletter hatası ana formu etkilemesin
-          }
+        try {
+          await fetch('/api/contact/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              ...formData,
+              newsletterOptIn: formData.newsletterSubscription,
+              appointmentData,
+            }),
+          });
+        } catch (saveError) {
+          console.warn('Contact save failed:', saveError);
         }
-        
+
         setCurrentStep(questions.length + 1); // Teşekkür sayfasına geç
       } else {
         alert(result.message);
