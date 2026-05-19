@@ -1,5 +1,5 @@
 // Newsletter aboneleri listesi API endpoint (Admin)
-import { getSupabaseClient } from '../../../../lib/supabase';
+import { listNewsletterSubscribers } from '../../../../lib/newsletterStore';
 
 export async function GET(request) {
   try {
@@ -9,34 +9,10 @@ export async function GET(request) {
     const status = searchParams.get('status') || 'all'; // 'all', 'active', 'unsubscribed'
     const source = searchParams.get('source') || 'all'; // 'all', 'contact_form', 'direct_signup', etc.
 
-    const supabase = getSupabaseClient();
-
-    // Filtre oluştur
-    let query = supabase
-      .from('newsletter_subscribers')
-      .select('*', { count: 'exact' });
-
-    if (status !== 'all') {
-      query = query.eq('status', status);
-    }
-    if (source !== 'all') {
-      query = query.eq('source', source);
-    }
-
-    // Sayfalama için range hesapla
+    const allSubscribers = await listNewsletterSubscribers({ status, source });
+    const total = allSubscribers.length;
     const from = (page - 1) * limit;
-    const to = from + limit - 1;
-
-    // Aboneleri çek (en yeni önce sırala)
-    const { data: subscribers, error: fetchError, count } = await query
-      .order('subscribed_at', { ascending: false })
-      .range(from, to);
-
-    if (fetchError) {
-      throw fetchError;
-    }
-
-    const total = count || 0;
+    const subscribers = allSubscribers.slice(from, from + limit);
     const totalPages = Math.ceil(total / limit);
 
     // Hassas bilgileri kaldır (unsubscribe_token hariç)
@@ -88,17 +64,7 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    const supabase = getSupabaseClient();
-
-    // Tüm aboneleri çek
-    const { data: subscribers, error: fetchError } = await supabase
-      .from('newsletter_subscribers')
-      .select('*')
-      .order('subscribed_at', { ascending: false });
-
-    if (fetchError) {
-      throw fetchError;
-    }
+    const subscribers = await listNewsletterSubscribers();
 
     if (!subscribers || subscribers.length === 0) {
       return Response.json({
@@ -115,8 +81,8 @@ export async function POST(request) {
         sub.name || '',
         sub.source || '',
         sub.status || 'active',
-        sub.subscribed_at || sub.created_at || '',
-        sub.unsubscribed_at || ''
+        sub.subscribed_at || sub.subscribedAt || sub.created_at || '',
+        sub.unsubscribed_at || sub.unsubscribedAt || ''
       ].map(field => `"${String(field).replace(/"/g, '""')}"`).join(',');
     }).join('\n');
 
